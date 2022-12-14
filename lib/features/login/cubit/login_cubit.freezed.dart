@@ -19,6 +19,8 @@ mixin _$LoginState {
   FormzStatus get status => throw _privateConstructorUsedError;
   ServerField get server => throw _privateConstructorUsedError;
   TokenField get token => throw _privateConstructorUsedError;
+  NickNameField get nickName => throw _privateConstructorUsedError;
+  Color? get color => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,6 +38,8 @@ abstract class $LoginStateCopyWith<$Res> {
       {FormzStatus status,
       ServerField server,
       TokenField token,
+      NickNameField nickName,
+      Color? color,
       String? error});
 }
 
@@ -55,6 +59,8 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? status = null,
     Object? server = null,
     Object? token = null,
+    Object? nickName = null,
+    Object? color = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -70,6 +76,14 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as TokenField,
+      nickName: null == nickName
+          ? _value.nickName
+          : nickName // ignore: cast_nullable_to_non_nullable
+              as NickNameField,
+      color: freezed == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as Color?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -90,6 +104,8 @@ abstract class _$$_LoginStateCopyWith<$Res>
       {FormzStatus status,
       ServerField server,
       TokenField token,
+      NickNameField nickName,
+      Color? color,
       String? error});
 }
 
@@ -107,6 +123,8 @@ class __$$_LoginStateCopyWithImpl<$Res>
     Object? status = null,
     Object? server = null,
     Object? token = null,
+    Object? nickName = null,
+    Object? color = freezed,
     Object? error = freezed,
   }) {
     return _then(_$_LoginState(
@@ -122,6 +140,14 @@ class __$$_LoginStateCopyWithImpl<$Res>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as TokenField,
+      nickName: null == nickName
+          ? _value.nickName
+          : nickName // ignore: cast_nullable_to_non_nullable
+              as NickNameField,
+      color: freezed == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as Color?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -137,6 +163,8 @@ class _$_LoginState implements _LoginState {
       {this.status = FormzStatus.pure,
       this.server = const ServerField.pure(),
       this.token = const TokenField.pure(),
+      this.nickName = const NickNameField.pure(),
+      this.color,
       this.error});
 
   @override
@@ -149,11 +177,16 @@ class _$_LoginState implements _LoginState {
   @JsonKey()
   final TokenField token;
   @override
+  @JsonKey()
+  final NickNameField nickName;
+  @override
+  final Color? color;
+  @override
   final String? error;
 
   @override
   String toString() {
-    return 'LoginState(status: $status, server: $server, token: $token, error: $error)';
+    return 'LoginState(status: $status, server: $server, token: $token, nickName: $nickName, color: $color, error: $error)';
   }
 
   @override
@@ -164,11 +197,15 @@ class _$_LoginState implements _LoginState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.server, server) || other.server == server) &&
             (identical(other.token, token) || other.token == token) &&
+            (identical(other.nickName, nickName) ||
+                other.nickName == nickName) &&
+            (identical(other.color, color) || other.color == color) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, server, token, error);
+  int get hashCode =>
+      Object.hash(runtimeType, status, server, token, nickName, color, error);
 
   @JsonKey(ignore: true)
   @override
@@ -182,6 +219,8 @@ abstract class _LoginState implements LoginState {
       {final FormzStatus status,
       final ServerField server,
       final TokenField token,
+      final NickNameField nickName,
+      final Color? color,
       final String? error}) = _$_LoginState;
 
   @override
@@ -190,6 +229,10 @@ abstract class _LoginState implements LoginState {
   ServerField get server;
   @override
   TokenField get token;
+  @override
+  NickNameField get nickName;
+  @override
+  Color? get color;
   @override
   String? get error;
   @override

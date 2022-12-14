@@ -16,18 +16,16 @@ class SubmitButton extends StatelessWidget {
               ? null
               : () {
                   FocusScope.of(context).unfocus();
-                  context.read<LoginCubit>().login(
-                        server: state.server.value,
-                        token: state.token.value,
-                      );
+
+                  context.read<LoginCubit>().login();
                 },
           style: ElevatedButton.styleFrom(
             minimumSize: const Size.fromHeight(48),
           ),
           child: Text(
             state.status == FormzStatus.submissionInProgress
-                ? 'Saving...'
-                : 'Save',
+                ? 'Loading ...'
+                : 'Login',
           ),
         );
       },
