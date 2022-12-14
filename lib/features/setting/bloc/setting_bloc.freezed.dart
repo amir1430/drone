@@ -19,34 +19,34 @@ mixin _$SettingEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(Account account) logoutRequested,
-    required TResult Function(Account account) changeUser,
+    required TResult Function(User user) logoutRequested,
+    required TResult Function(User user) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
-    required TResult Function(Account account) updateAccount,
+    required TResult Function(User user) updateUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(Account account)? logoutRequested,
-    TResult? Function(Account account)? changeUser,
+    TResult? Function(User user)? logoutRequested,
+    TResult? Function(User user)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
-    TResult? Function(Account account)? updateAccount,
+    TResult? Function(User user)? updateUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(Account account)? logoutRequested,
-    TResult Function(Account account)? changeUser,
+    TResult Function(User user)? logoutRequested,
+    TResult Function(User user)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
-    TResult Function(Account account)? updateAccount,
+    TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ mixin _$SettingEvent {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
-    required TResult Function(_UpdateAccount value) updateAccount,
+    required TResult Function(_UpdateUser value) updateUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,7 +69,7 @@ mixin _$SettingEvent {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
-    TResult? Function(_UpdateAccount value)? updateAccount,
+    TResult? Function(_UpdateUser value)? updateUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,7 +80,7 @@ mixin _$SettingEvent {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
-    TResult Function(_UpdateAccount value)? updateAccount,
+    TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -142,12 +142,12 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(Account account) logoutRequested,
-    required TResult Function(Account account) changeUser,
+    required TResult Function(User user) logoutRequested,
+    required TResult Function(User user) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
-    required TResult Function(Account account) updateAccount,
+    required TResult Function(User user) updateUser,
   }) {
     return started();
   }
@@ -156,12 +156,12 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(Account account)? logoutRequested,
-    TResult? Function(Account account)? changeUser,
+    TResult? Function(User user)? logoutRequested,
+    TResult? Function(User user)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
-    TResult? Function(Account account)? updateAccount,
+    TResult? Function(User user)? updateUser,
   }) {
     return started?.call();
   }
@@ -170,12 +170,12 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(Account account)? logoutRequested,
-    TResult Function(Account account)? changeUser,
+    TResult Function(User user)? logoutRequested,
+    TResult Function(User user)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
-    TResult Function(Account account)? updateAccount,
+    TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -193,7 +193,7 @@ class _$_Started implements _Started {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
-    required TResult Function(_UpdateAccount value) updateAccount,
+    required TResult Function(_UpdateUser value) updateUser,
   }) {
     return started(this);
   }
@@ -207,7 +207,7 @@ class _$_Started implements _Started {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
-    TResult? Function(_UpdateAccount value)? updateAccount,
+    TResult? Function(_UpdateUser value)? updateUser,
   }) {
     return started?.call(this);
   }
@@ -221,7 +221,7 @@ class _$_Started implements _Started {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
-    TResult Function(_UpdateAccount value)? updateAccount,
+    TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -241,7 +241,7 @@ abstract class _$$_LogoutRequestedCopyWith<$Res> {
           _$_LogoutRequested value, $Res Function(_$_LogoutRequested) then) =
       __$$_LogoutRequestedCopyWithImpl<$Res>;
   @useResult
-  $Res call({Account account});
+  $Res call({User user});
 }
 
 /// @nodoc
@@ -255,13 +255,13 @@ class __$$_LogoutRequestedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? account = null,
+    Object? user = null,
   }) {
     return _then(_$_LogoutRequested(
-      account: null == account
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as Account,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
     ));
   }
 }
@@ -269,14 +269,14 @@ class __$$_LogoutRequestedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LogoutRequested implements _LogoutRequested {
-  const _$_LogoutRequested({required this.account});
+  const _$_LogoutRequested({required this.user});
 
   @override
-  final Account account;
+  final User user;
 
   @override
   String toString() {
-    return 'SettingEvent.logoutRequested(account: $account)';
+    return 'SettingEvent.logoutRequested(user: $user)';
   }
 
   @override
@@ -284,11 +284,11 @@ class _$_LogoutRequested implements _LogoutRequested {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LogoutRequested &&
-            (identical(other.account, account) || other.account == account));
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, account);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
@@ -300,44 +300,44 @@ class _$_LogoutRequested implements _LogoutRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(Account account) logoutRequested,
-    required TResult Function(Account account) changeUser,
+    required TResult Function(User user) logoutRequested,
+    required TResult Function(User user) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
-    required TResult Function(Account account) updateAccount,
+    required TResult Function(User user) updateUser,
   }) {
-    return logoutRequested(account);
+    return logoutRequested(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(Account account)? logoutRequested,
-    TResult? Function(Account account)? changeUser,
+    TResult? Function(User user)? logoutRequested,
+    TResult? Function(User user)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
-    TResult? Function(Account account)? updateAccount,
+    TResult? Function(User user)? updateUser,
   }) {
-    return logoutRequested?.call(account);
+    return logoutRequested?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(Account account)? logoutRequested,
-    TResult Function(Account account)? changeUser,
+    TResult Function(User user)? logoutRequested,
+    TResult Function(User user)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
-    TResult Function(Account account)? updateAccount,
+    TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
-      return logoutRequested(account);
+      return logoutRequested(user);
     }
     return orElse();
   }
@@ -351,7 +351,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
-    required TResult Function(_UpdateAccount value) updateAccount,
+    required TResult Function(_UpdateUser value) updateUser,
   }) {
     return logoutRequested(this);
   }
@@ -365,7 +365,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
-    TResult? Function(_UpdateAccount value)? updateAccount,
+    TResult? Function(_UpdateUser value)? updateUser,
   }) {
     return logoutRequested?.call(this);
   }
@@ -379,7 +379,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
-    TResult Function(_UpdateAccount value)? updateAccount,
+    TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
@@ -390,10 +390,10 @@ class _$_LogoutRequested implements _LogoutRequested {
 }
 
 abstract class _LogoutRequested implements SettingEvent {
-  const factory _LogoutRequested({required final Account account}) =
+  const factory _LogoutRequested({required final User user}) =
       _$_LogoutRequested;
 
-  Account get account;
+  User get user;
   @JsonKey(ignore: true)
   _$$_LogoutRequestedCopyWith<_$_LogoutRequested> get copyWith =>
       throw _privateConstructorUsedError;
@@ -405,7 +405,7 @@ abstract class _$$_ChangeUserCopyWith<$Res> {
           _$_ChangeUser value, $Res Function(_$_ChangeUser) then) =
       __$$_ChangeUserCopyWithImpl<$Res>;
   @useResult
-  $Res call({Account account});
+  $Res call({User user});
 }
 
 /// @nodoc
@@ -419,13 +419,13 @@ class __$$_ChangeUserCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? account = null,
+    Object? user = null,
   }) {
     return _then(_$_ChangeUser(
-      account: null == account
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as Account,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
     ));
   }
 }
@@ -433,14 +433,14 @@ class __$$_ChangeUserCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ChangeUser implements _ChangeUser {
-  const _$_ChangeUser({required this.account});
+  const _$_ChangeUser({required this.user});
 
   @override
-  final Account account;
+  final User user;
 
   @override
   String toString() {
-    return 'SettingEvent.changeUser(account: $account)';
+    return 'SettingEvent.changeUser(user: $user)';
   }
 
   @override
@@ -448,11 +448,11 @@ class _$_ChangeUser implements _ChangeUser {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ChangeUser &&
-            (identical(other.account, account) || other.account == account));
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, account);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
@@ -464,44 +464,44 @@ class _$_ChangeUser implements _ChangeUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(Account account) logoutRequested,
-    required TResult Function(Account account) changeUser,
+    required TResult Function(User user) logoutRequested,
+    required TResult Function(User user) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
-    required TResult Function(Account account) updateAccount,
+    required TResult Function(User user) updateUser,
   }) {
-    return changeUser(account);
+    return changeUser(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(Account account)? logoutRequested,
-    TResult? Function(Account account)? changeUser,
+    TResult? Function(User user)? logoutRequested,
+    TResult? Function(User user)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
-    TResult? Function(Account account)? updateAccount,
+    TResult? Function(User user)? updateUser,
   }) {
-    return changeUser?.call(account);
+    return changeUser?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(Account account)? logoutRequested,
-    TResult Function(Account account)? changeUser,
+    TResult Function(User user)? logoutRequested,
+    TResult Function(User user)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
-    TResult Function(Account account)? updateAccount,
+    TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
     if (changeUser != null) {
-      return changeUser(account);
+      return changeUser(user);
     }
     return orElse();
   }
@@ -515,7 +515,7 @@ class _$_ChangeUser implements _ChangeUser {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
-    required TResult Function(_UpdateAccount value) updateAccount,
+    required TResult Function(_UpdateUser value) updateUser,
   }) {
     return changeUser(this);
   }
@@ -529,7 +529,7 @@ class _$_ChangeUser implements _ChangeUser {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
-    TResult? Function(_UpdateAccount value)? updateAccount,
+    TResult? Function(_UpdateUser value)? updateUser,
   }) {
     return changeUser?.call(this);
   }
@@ -543,7 +543,7 @@ class _$_ChangeUser implements _ChangeUser {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
-    TResult Function(_UpdateAccount value)? updateAccount,
+    TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
     if (changeUser != null) {
@@ -554,9 +554,9 @@ class _$_ChangeUser implements _ChangeUser {
 }
 
 abstract class _ChangeUser implements SettingEvent {
-  const factory _ChangeUser({required final Account account}) = _$_ChangeUser;
+  const factory _ChangeUser({required final User user}) = _$_ChangeUser;
 
-  Account get account;
+  User get user;
   @JsonKey(ignore: true)
   _$$_ChangeUserCopyWith<_$_ChangeUser> get copyWith =>
       throw _privateConstructorUsedError;
@@ -601,12 +601,12 @@ class _$_AddNewUser implements _AddNewUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(Account account) logoutRequested,
-    required TResult Function(Account account) changeUser,
+    required TResult Function(User user) logoutRequested,
+    required TResult Function(User user) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
-    required TResult Function(Account account) updateAccount,
+    required TResult Function(User user) updateUser,
   }) {
     return addNewUser();
   }
@@ -615,12 +615,12 @@ class _$_AddNewUser implements _AddNewUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(Account account)? logoutRequested,
-    TResult? Function(Account account)? changeUser,
+    TResult? Function(User user)? logoutRequested,
+    TResult? Function(User user)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
-    TResult? Function(Account account)? updateAccount,
+    TResult? Function(User user)? updateUser,
   }) {
     return addNewUser?.call();
   }
@@ -629,12 +629,12 @@ class _$_AddNewUser implements _AddNewUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(Account account)? logoutRequested,
-    TResult Function(Account account)? changeUser,
+    TResult Function(User user)? logoutRequested,
+    TResult Function(User user)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
-    TResult Function(Account account)? updateAccount,
+    TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
     if (addNewUser != null) {
@@ -652,7 +652,7 @@ class _$_AddNewUser implements _AddNewUser {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
-    required TResult Function(_UpdateAccount value) updateAccount,
+    required TResult Function(_UpdateUser value) updateUser,
   }) {
     return addNewUser(this);
   }
@@ -666,7 +666,7 @@ class _$_AddNewUser implements _AddNewUser {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
-    TResult? Function(_UpdateAccount value)? updateAccount,
+    TResult? Function(_UpdateUser value)? updateUser,
   }) {
     return addNewUser?.call(this);
   }
@@ -680,7 +680,7 @@ class _$_AddNewUser implements _AddNewUser {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
-    TResult Function(_UpdateAccount value)? updateAccount,
+    TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
     if (addNewUser != null) {
@@ -759,12 +759,12 @@ class _$_TokenChanged implements _TokenChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(Account account) logoutRequested,
-    required TResult Function(Account account) changeUser,
+    required TResult Function(User user) logoutRequested,
+    required TResult Function(User user) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
-    required TResult Function(Account account) updateAccount,
+    required TResult Function(User user) updateUser,
   }) {
     return tokenChanged(value);
   }
@@ -773,12 +773,12 @@ class _$_TokenChanged implements _TokenChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(Account account)? logoutRequested,
-    TResult? Function(Account account)? changeUser,
+    TResult? Function(User user)? logoutRequested,
+    TResult? Function(User user)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
-    TResult? Function(Account account)? updateAccount,
+    TResult? Function(User user)? updateUser,
   }) {
     return tokenChanged?.call(value);
   }
@@ -787,12 +787,12 @@ class _$_TokenChanged implements _TokenChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(Account account)? logoutRequested,
-    TResult Function(Account account)? changeUser,
+    TResult Function(User user)? logoutRequested,
+    TResult Function(User user)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
-    TResult Function(Account account)? updateAccount,
+    TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
     if (tokenChanged != null) {
@@ -810,7 +810,7 @@ class _$_TokenChanged implements _TokenChanged {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
-    required TResult Function(_UpdateAccount value) updateAccount,
+    required TResult Function(_UpdateUser value) updateUser,
   }) {
     return tokenChanged(this);
   }
@@ -824,7 +824,7 @@ class _$_TokenChanged implements _TokenChanged {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
-    TResult? Function(_UpdateAccount value)? updateAccount,
+    TResult? Function(_UpdateUser value)? updateUser,
   }) {
     return tokenChanged?.call(this);
   }
@@ -838,7 +838,7 @@ class _$_TokenChanged implements _TokenChanged {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
-    TResult Function(_UpdateAccount value)? updateAccount,
+    TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
     if (tokenChanged != null) {
@@ -922,12 +922,12 @@ class _$_ServerChanged implements _ServerChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(Account account) logoutRequested,
-    required TResult Function(Account account) changeUser,
+    required TResult Function(User user) logoutRequested,
+    required TResult Function(User user) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
-    required TResult Function(Account account) updateAccount,
+    required TResult Function(User user) updateUser,
   }) {
     return serverChanged(value);
   }
@@ -936,12 +936,12 @@ class _$_ServerChanged implements _ServerChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(Account account)? logoutRequested,
-    TResult? Function(Account account)? changeUser,
+    TResult? Function(User user)? logoutRequested,
+    TResult? Function(User user)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
-    TResult? Function(Account account)? updateAccount,
+    TResult? Function(User user)? updateUser,
   }) {
     return serverChanged?.call(value);
   }
@@ -950,12 +950,12 @@ class _$_ServerChanged implements _ServerChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(Account account)? logoutRequested,
-    TResult Function(Account account)? changeUser,
+    TResult Function(User user)? logoutRequested,
+    TResult Function(User user)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
-    TResult Function(Account account)? updateAccount,
+    TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
     if (serverChanged != null) {
@@ -973,7 +973,7 @@ class _$_ServerChanged implements _ServerChanged {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
-    required TResult Function(_UpdateAccount value) updateAccount,
+    required TResult Function(_UpdateUser value) updateUser,
   }) {
     return serverChanged(this);
   }
@@ -987,7 +987,7 @@ class _$_ServerChanged implements _ServerChanged {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
-    TResult? Function(_UpdateAccount value)? updateAccount,
+    TResult? Function(_UpdateUser value)? updateUser,
   }) {
     return serverChanged?.call(this);
   }
@@ -1001,7 +1001,7 @@ class _$_ServerChanged implements _ServerChanged {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
-    TResult Function(_UpdateAccount value)? updateAccount,
+    TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
     if (serverChanged != null) {
@@ -1021,108 +1021,108 @@ abstract class _ServerChanged implements SettingEvent {
 }
 
 /// @nodoc
-abstract class _$$_UpdateAccountCopyWith<$Res> {
-  factory _$$_UpdateAccountCopyWith(
-          _$_UpdateAccount value, $Res Function(_$_UpdateAccount) then) =
-      __$$_UpdateAccountCopyWithImpl<$Res>;
+abstract class _$$_UpdateUserCopyWith<$Res> {
+  factory _$$_UpdateUserCopyWith(
+          _$_UpdateUser value, $Res Function(_$_UpdateUser) then) =
+      __$$_UpdateUserCopyWithImpl<$Res>;
   @useResult
-  $Res call({Account account});
+  $Res call({User user});
 }
 
 /// @nodoc
-class __$$_UpdateAccountCopyWithImpl<$Res>
-    extends _$SettingEventCopyWithImpl<$Res, _$_UpdateAccount>
-    implements _$$_UpdateAccountCopyWith<$Res> {
-  __$$_UpdateAccountCopyWithImpl(
-      _$_UpdateAccount _value, $Res Function(_$_UpdateAccount) _then)
+class __$$_UpdateUserCopyWithImpl<$Res>
+    extends _$SettingEventCopyWithImpl<$Res, _$_UpdateUser>
+    implements _$$_UpdateUserCopyWith<$Res> {
+  __$$_UpdateUserCopyWithImpl(
+      _$_UpdateUser _value, $Res Function(_$_UpdateUser) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? account = null,
+    Object? user = null,
   }) {
-    return _then(_$_UpdateAccount(
-      account: null == account
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as Account,
+    return _then(_$_UpdateUser(
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_UpdateAccount implements _UpdateAccount {
-  const _$_UpdateAccount({required this.account});
+class _$_UpdateUser implements _UpdateUser {
+  const _$_UpdateUser({required this.user});
 
   @override
-  final Account account;
+  final User user;
 
   @override
   String toString() {
-    return 'SettingEvent.updateAccount(account: $account)';
+    return 'SettingEvent.updateUser(user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateAccount &&
-            (identical(other.account, account) || other.account == account));
+            other is _$_UpdateUser &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, account);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UpdateAccountCopyWith<_$_UpdateAccount> get copyWith =>
-      __$$_UpdateAccountCopyWithImpl<_$_UpdateAccount>(this, _$identity);
+  _$$_UpdateUserCopyWith<_$_UpdateUser> get copyWith =>
+      __$$_UpdateUserCopyWithImpl<_$_UpdateUser>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(Account account) logoutRequested,
-    required TResult Function(Account account) changeUser,
+    required TResult Function(User user) logoutRequested,
+    required TResult Function(User user) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
-    required TResult Function(Account account) updateAccount,
+    required TResult Function(User user) updateUser,
   }) {
-    return updateAccount(account);
+    return updateUser(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(Account account)? logoutRequested,
-    TResult? Function(Account account)? changeUser,
+    TResult? Function(User user)? logoutRequested,
+    TResult? Function(User user)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
-    TResult? Function(Account account)? updateAccount,
+    TResult? Function(User user)? updateUser,
   }) {
-    return updateAccount?.call(account);
+    return updateUser?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(Account account)? logoutRequested,
-    TResult Function(Account account)? changeUser,
+    TResult Function(User user)? logoutRequested,
+    TResult Function(User user)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
-    TResult Function(Account account)? updateAccount,
+    TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
-    if (updateAccount != null) {
-      return updateAccount(account);
+    if (updateUser != null) {
+      return updateUser(user);
     }
     return orElse();
   }
@@ -1136,9 +1136,9 @@ class _$_UpdateAccount implements _UpdateAccount {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
-    required TResult Function(_UpdateAccount value) updateAccount,
+    required TResult Function(_UpdateUser value) updateUser,
   }) {
-    return updateAccount(this);
+    return updateUser(this);
   }
 
   @override
@@ -1150,9 +1150,9 @@ class _$_UpdateAccount implements _UpdateAccount {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
-    TResult? Function(_UpdateAccount value)? updateAccount,
+    TResult? Function(_UpdateUser value)? updateUser,
   }) {
-    return updateAccount?.call(this);
+    return updateUser?.call(this);
   }
 
   @override
@@ -1164,23 +1164,22 @@ class _$_UpdateAccount implements _UpdateAccount {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
-    TResult Function(_UpdateAccount value)? updateAccount,
+    TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
-    if (updateAccount != null) {
-      return updateAccount(this);
+    if (updateUser != null) {
+      return updateUser(this);
     }
     return orElse();
   }
 }
 
-abstract class _UpdateAccount implements SettingEvent {
-  const factory _UpdateAccount({required final Account account}) =
-      _$_UpdateAccount;
+abstract class _UpdateUser implements SettingEvent {
+  const factory _UpdateUser({required final User user}) = _$_UpdateUser;
 
-  Account get account;
+  User get user;
   @JsonKey(ignore: true)
-  _$$_UpdateAccountCopyWith<_$_UpdateAccount> get copyWith =>
+  _$$_UpdateUserCopyWith<_$_UpdateUser> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

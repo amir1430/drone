@@ -11,23 +11,12 @@ part 'repos_bloc.freezed.dart';
 
 class ReposBloc extends Bloc<ReposEvent, ReposState> {
   ReposBloc({required this.appBloc}) : super(const _Initial()) {
-    // _streamSubscription = appBloc.stream.listen((event) {
-    //   event.mapOrNull(
-    //     authenticated: (value) {
-    //       reposRepository =
-    //           RepoRepository(remoteDataSource: value.currentClient);
-    //       add(const ReposEvent.started());
-    //     },
-    //   );
-    // });
-    // reposRepository.init();
     on<_Started>(_onStarted);
     on<_UpdateRepo>(_onUpdateRepo);
   }
 
   RepoRepository? reposRepository;
   final AppBloc appBloc;
-  late final StreamSubscription<AppState> _streamSubscription;
 
   Future<void> _onStarted(
     _Started event,
@@ -70,7 +59,6 @@ class ReposBloc extends Bloc<ReposEvent, ReposState> {
 
   @override
   Future<void> close() {
-    _streamSubscription.cancel();
     return super.close();
   }
 }

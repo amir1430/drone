@@ -9,10 +9,10 @@ part 'app_bloc.freezed.dart';
 part 'app_event.dart';
 part 'app_state.dart';
 
-class AppBloc extends Bloc<AppEvent, AppState> {
+class AppBloc extends Bloc<AppEvent, AuthenticationStatus> {
   AppBloc({required AuthRepository authRepository})
       : _authRepository = authRepository,
-        super(const Unknown()) {
+        super(const AuthenticationStatus.unknown()) {
     on<_Started>(_onStarted);
   }
 
@@ -20,18 +20,18 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   Future<void> _onStarted(
     _Started event,
-    Emitter<AppState> emit,
+    Emitter<AuthenticationStatus> emit,
   ) async {
     await emit.forEach(
       _authRepository.authenticationStatus,
       onData: (AuthenticationStatus status) {
         return status.when(
-          unknown: Unknown.new,
-          authenticated: (accounts, currentAccount) => Authenticated(
-            accounts: accounts,
-            currentAccount: currentAccount,
+          unknown: UnknownAuthenticationStatus.new,
+          authenticated: (users, currentUser) => Authenticated(
+            users: users,
+            currentUser: currentUser,
           ),
-          unauthenticated: UnAuthenticated.new,
+          unAuthenticated: UnAuthenticated.new,
         );
       },
     );

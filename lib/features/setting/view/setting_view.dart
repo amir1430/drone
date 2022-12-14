@@ -51,15 +51,15 @@ class _SettingBody extends HookWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             DroneAppBar(
-              title: BlocBuilder<AppBloc, AppState>(
+              title: BlocBuilder<AppBloc, AuthenticationStatus>(
                 buildWhen: (previous, current) {
-                  return previous.asAuthenticated!.currentAccount !=
-                      current.asAuthenticated!.currentAccount;
+                  return previous.asAuthenticated!.currentUser !=
+                      current.asAuthenticated!.currentUser;
                 },
                 builder: (context, state) {
                   return state.maybeWhen(
                     orElse: SizedBox.shrink,
-                    authenticated: (accounts, _) {
+                    authenticated: (users, currentUser) {
                       return SizedBox(
                         height: const DroneAppBar().preferredSize.height,
                         child: ListView.builder(
@@ -68,11 +68,11 @@ class _SettingBody extends HookWidget {
                             top: 2,
                             bottom: 2,
                           ),
-                          itemCount: accounts.length + 1,
+                          itemCount: users.length + 1,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (BuildContext context, int index) {
-                            if (index < accounts.length) {
-                              final account = accounts[index];
+                            if (index < users.length) {
+                              final user = users[index];
                               return Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -85,7 +85,7 @@ class _SettingBody extends HookWidget {
                                                 .height *
                                             .8,
                                       ),
-                                      shape: account.user.isCurrentUser
+                                      shape: user == currentUser
                                           ? RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(10),
@@ -94,23 +94,19 @@ class _SettingBody extends HookWidget {
                                       side: BorderSide(
                                         color: context.primaryColor
                                             .withOpacity(.2),
-                                        width:
-                                            account.user.isCurrentUser ? 4 : 0,
+                                        width: user == currentUser ? 4 : 0,
                                       ),
-                                      elevation:
-                                          accounts.currentAccount == account
-                                              ? 3
-                                              : 2,
+                                      elevation: user == currentUser ? 3 : 2,
                                       child: ClipRRect(
                                         child: Image.network(
-                                          account.user.avatarUrl,
+                                          user.avatarUrl,
                                           fit: BoxFit.cover,
                                         ),
                                       ),
                                       onTap: () {
                                         context.read<SettingBloc>().add(
                                               SettingEvent.changeUser(
-                                                account: account,
+                                                user: user,
                                               ),
                                             );
                                       },
@@ -149,11 +145,11 @@ class _SettingBody extends HookWidget {
                                 .read<AppBloc>()
                                 .state
                                 .asAuthenticated!
-                                .currentAccount;
+                                .currentUser;
 
                             context.read<SettingBloc>().add(
-                                  SettingEvent.updateAccount(
-                                    account: currentUser,
+                                  SettingEvent.updateUser(
+                                    user: currentUser,
                                   ),
                                 );
                           },
@@ -233,7 +229,6 @@ class _SettingBody extends HookWidget {
                         },
                       ),
                       const SizedBox(height: 12),
-                    
                       ListTile(
                         title: const Text('Logout'),
                         leading: Icon(
@@ -241,7 +236,7 @@ class _SettingBody extends HookWidget {
                           color: context.iconColor,
                         ),
                         onTap: () {
-                          final account =
+                          final state =
                               context.read<AppBloc>().state.asAuthenticated;
                           showAlertDialog(
                             context,
@@ -249,7 +244,7 @@ class _SettingBody extends HookWidget {
                             acceptText: 'Logout',
                             onAccept: () => context.read<SettingBloc>().add(
                                   SettingEvent.logoutRequested(
-                                    account: account!.currentAccount,
+                                    user: state!.currentUser,
                                   ),
                                 ),
                           );

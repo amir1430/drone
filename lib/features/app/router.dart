@@ -171,7 +171,7 @@ class _AppRoute extends GoRoute {
 }
 
 class _GoRouterRefreshStream extends ChangeNotifier {
-  _GoRouterRefreshStream(Stream<AppState> stream) {
+  _GoRouterRefreshStream(Stream<dynamic> stream) {
     _streamSubscription = stream.listen((_) {
       notifyListeners();
     });

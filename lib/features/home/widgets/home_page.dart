@@ -1,3 +1,4 @@
+import 'package:auth_repository/auth_repository.dart';
 import 'package:drone/core/core.dart';
 import 'package:drone/features/app/app.dart';
 import 'package:drone/features/home/home.dart';
@@ -14,7 +15,7 @@ class HomePage extends HookWidget {
   Widget build(BuildContext context) {
     final searchController = useTextEditingController();
 
-    return BlocListener<AppBloc, AppState>(
+    return BlocListener<AppBloc, AuthenticationStatus>(
       listener: (_, state) {
         state.mapOrNull(
           authenticated: (_) {
@@ -41,18 +42,18 @@ class HomePage extends HookWidget {
               onPressed: () => context.openDrawer,
             ),
             actions: [
-              BlocBuilder<AppBloc, AppState>(
+              BlocBuilder<AppBloc, AuthenticationStatus>(
                 builder: (context, state) {
-                  return state.maybeMap(
+                  return state.maybeWhen(
                     orElse: SizedBox.shrink,
-                    authenticated: (data) => Padding(
+                    authenticated: (users, current) => Padding(
                       padding: const EdgeInsets.all(8),
                       child: UserTileWidget(
                         size: const Size.square(40),
                         elevation: 4,
                         child: ClipRRect(
                           child: Image.network(
-                            data.currentAccount.user.avatarUrl,
+                            current.avatarUrl,
                             fit: BoxFit.cover,
                           ),
                         ),

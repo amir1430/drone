@@ -15,7 +15,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     required this.authRepository,
     required this.repoRepository,
   }) : super(const _HomeState()) {
-    repoRepository.client = authRepository.currentAccount.client;
+    repoRepository.client = authRepository.currentUser!.client;
 
     _appStateSubscription =
         authRepository.authenticationStatus.listen((status) {
@@ -41,7 +41,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     _Started event,
     Emitter<HomeState> emit,
   ) async {
-    repoRepository.client = authRepository.currentAccount.client;
+    repoRepository.client = authRepository.currentUser!.client;
 
     emit(state.copyWith(status: HomeStatus.loading));
 

@@ -10,11 +10,11 @@ class SettingState with _$SettingState {
     String? errorMessage,
   }) = _SettingState;
 
-  factory SettingState.fromAccount(Account account) {
+  factory SettingState.fromUser(User user) {
     return SettingState(
       status: FormzStatus.pure,
-      server: ServerField.pure(account.user.server),
-      token: TokenField.pure(account.user.token),
+      server: ServerField.pure(user.server),
+      token: TokenField.pure(user.token),
     );
   }
 
