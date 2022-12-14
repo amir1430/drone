@@ -186,9 +186,11 @@ packages:
   drone_dart:
     dependency: transitive
     description:
-      path: "D:/Drone-sdk/drone-dart"
-      relative: false
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: bbb3066395bd7f1b5717395ecfd8895352de51f6
+      url: "https://github.com/amir1430/drone-dart.git"
+    source: git
     version: "1.1.3"
   equatable:
     dependency: "direct main"
