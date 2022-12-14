@@ -13,15 +13,15 @@ class LoginState with _$LoginState {
 }
 
 Color _randomColor() {
-  final colors = [
-    Colors.red,
-    Colors.cyan,
-    Colors.blue,
-    Colors.indigo,
-    Colors.pink,
-    Colors.purple,
-    Colors.amber,
-    Colors.grey,
+  const colors = [
+    Color.fromARGB(255, 247, 123, 114),
+    Color.fromARGB(255, 149, 243, 255),
+    Color.fromARGB(255, 107, 182, 243),
+    Color.fromARGB(255, 131, 148, 245),
+    Color.fromARGB(255, 235, 114, 154),
+    Color.fromARGB(255, 237, 134, 255),
+    Color.fromARGB(255, 255, 231, 159),
+    Color.fromARGB(255, 187, 187, 187),
   ];
   return colors[Random().nextInt(7)];
 }

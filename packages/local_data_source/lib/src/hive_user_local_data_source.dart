@@ -78,7 +78,7 @@ class HiveUserLocalDataSource implements UserLocalDataSource {
     required User newUser,
   }) async {
     await add(newUser);
-    if (oldUser != newUser) {
+    if (oldUser.token != newUser.token) {
       await delete(oldUser);
     }
   }

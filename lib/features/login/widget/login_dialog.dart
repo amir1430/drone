@@ -3,6 +3,7 @@ import 'package:drone/core/core.dart';
 import 'package:drone/features/login/cubit/login_cubit.dart';
 import 'package:drone/features/login/widget/nick_name_text_field.dart';
 import 'package:drone/features/login/widget/server_text_field.dart';
+import 'package:drone/features/login/widget/submit_button.dart';
 import 'package:drone/features/login/widget/token_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,41 +36,21 @@ class _NewAccountDiolog extends HookWidget {
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-        child: BlocBuilder<LoginCubit, LoginState>(
-          builder: (context, state) {
-            return SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 32),
-                  const ServerTextField(),
-                  const SizedBox(height: 16),
-                  const TokenTextField(),
-                  const SizedBox(height: 16),
-                  const NickNameTextField(),
-                  const SizedBox(height: 14),
-                  ElevatedButton(
-                    onPressed: !state.status.isValidated
-                        ? null
-                        : () {
-                            FocusScope.of(context).unfocus();
-
-                            context.read<LoginCubit>().login();
-                          },
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size.fromHeight(48),
-                    ),
-                    child: Text(
-                      state.status == FormzStatus.submissionInProgress
-                          ? 'Loading ...'
-                          : 'Login',
-                    ),
-                  )
-                ],
-              ),
-            );
-          },
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              SizedBox(height: 32),
+              ServerTextField(),
+              SizedBox(height: 16),
+              TokenTextField(),
+              SizedBox(height: 16),
+              NickNameTextField(),
+              SizedBox(height: 14),
+              SubmitButton()
+            ],
+          ),
         ),
       ),
     );

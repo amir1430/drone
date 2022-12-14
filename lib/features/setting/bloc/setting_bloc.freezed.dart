@@ -20,10 +20,11 @@ mixin _$SettingEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(User user) logoutRequested,
-    required TResult Function(User user) changeUser,
+    required TResult Function(User user, int? color) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
+    required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,10 +32,11 @@ mixin _$SettingEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(User user)? logoutRequested,
-    TResult? Function(User user)? changeUser,
+    TResult? Function(User user, int? color)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
+    TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,10 +44,11 @@ mixin _$SettingEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(User user)? logoutRequested,
-    TResult Function(User user)? changeUser,
+    TResult Function(User user, int? color)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
+    TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) =>
@@ -58,6 +61,7 @@ mixin _$SettingEvent {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
+    required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
   }) =>
       throw _privateConstructorUsedError;
@@ -69,6 +73,7 @@ mixin _$SettingEvent {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
+    TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
   }) =>
       throw _privateConstructorUsedError;
@@ -80,6 +85,7 @@ mixin _$SettingEvent {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
+    TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) =>
@@ -143,10 +149,11 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(User user) logoutRequested,
-    required TResult Function(User user) changeUser,
+    required TResult Function(User user, int? color) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
+    required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
   }) {
     return started();
@@ -157,10 +164,11 @@ class _$_Started implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(User user)? logoutRequested,
-    TResult? Function(User user)? changeUser,
+    TResult? Function(User user, int? color)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
+    TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
   }) {
     return started?.call();
@@ -171,10 +179,11 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(User user)? logoutRequested,
-    TResult Function(User user)? changeUser,
+    TResult Function(User user, int? color)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
+    TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
@@ -193,6 +202,7 @@ class _$_Started implements _Started {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
+    required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
   }) {
     return started(this);
@@ -207,6 +217,7 @@ class _$_Started implements _Started {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
+    TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
   }) {
     return started?.call(this);
@@ -221,6 +232,7 @@ class _$_Started implements _Started {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
+    TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
@@ -301,10 +313,11 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(User user) logoutRequested,
-    required TResult Function(User user) changeUser,
+    required TResult Function(User user, int? color) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
+    required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
   }) {
     return logoutRequested(user);
@@ -315,10 +328,11 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(User user)? logoutRequested,
-    TResult? Function(User user)? changeUser,
+    TResult? Function(User user, int? color)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
+    TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
   }) {
     return logoutRequested?.call(user);
@@ -329,10 +343,11 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(User user)? logoutRequested,
-    TResult Function(User user)? changeUser,
+    TResult Function(User user, int? color)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
+    TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
@@ -351,6 +366,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
+    required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
   }) {
     return logoutRequested(this);
@@ -365,6 +381,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
+    TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
   }) {
     return logoutRequested?.call(this);
@@ -379,6 +396,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
+    TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
@@ -405,7 +423,7 @@ abstract class _$$_ChangeUserCopyWith<$Res> {
           _$_ChangeUser value, $Res Function(_$_ChangeUser) then) =
       __$$_ChangeUserCopyWithImpl<$Res>;
   @useResult
-  $Res call({User user});
+  $Res call({User user, int? color});
 }
 
 /// @nodoc
@@ -420,12 +438,17 @@ class __$$_ChangeUserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = null,
+    Object? color = freezed,
   }) {
     return _then(_$_ChangeUser(
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
+      color: freezed == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -433,14 +456,16 @@ class __$$_ChangeUserCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ChangeUser implements _ChangeUser {
-  const _$_ChangeUser({required this.user});
+  const _$_ChangeUser({required this.user, this.color});
 
   @override
   final User user;
+  @override
+  final int? color;
 
   @override
   String toString() {
-    return 'SettingEvent.changeUser(user: $user)';
+    return 'SettingEvent.changeUser(user: $user, color: $color)';
   }
 
   @override
@@ -448,11 +473,12 @@ class _$_ChangeUser implements _ChangeUser {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ChangeUser &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.color, color) || other.color == color));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType, user, color);
 
   @JsonKey(ignore: true)
   @override
@@ -465,13 +491,14 @@ class _$_ChangeUser implements _ChangeUser {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(User user) logoutRequested,
-    required TResult Function(User user) changeUser,
+    required TResult Function(User user, int? color) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
+    required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
   }) {
-    return changeUser(user);
+    return changeUser(user, color);
   }
 
   @override
@@ -479,13 +506,14 @@ class _$_ChangeUser implements _ChangeUser {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(User user)? logoutRequested,
-    TResult? Function(User user)? changeUser,
+    TResult? Function(User user, int? color)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
+    TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
   }) {
-    return changeUser?.call(user);
+    return changeUser?.call(user, color);
   }
 
   @override
@@ -493,15 +521,16 @@ class _$_ChangeUser implements _ChangeUser {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(User user)? logoutRequested,
-    TResult Function(User user)? changeUser,
+    TResult Function(User user, int? color)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
+    TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
     if (changeUser != null) {
-      return changeUser(user);
+      return changeUser(user, color);
     }
     return orElse();
   }
@@ -515,6 +544,7 @@ class _$_ChangeUser implements _ChangeUser {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
+    required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
   }) {
     return changeUser(this);
@@ -529,6 +559,7 @@ class _$_ChangeUser implements _ChangeUser {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
+    TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
   }) {
     return changeUser?.call(this);
@@ -543,6 +574,7 @@ class _$_ChangeUser implements _ChangeUser {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
+    TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
@@ -554,9 +586,11 @@ class _$_ChangeUser implements _ChangeUser {
 }
 
 abstract class _ChangeUser implements SettingEvent {
-  const factory _ChangeUser({required final User user}) = _$_ChangeUser;
+  const factory _ChangeUser({required final User user, final int? color}) =
+      _$_ChangeUser;
 
   User get user;
+  int? get color;
   @JsonKey(ignore: true)
   _$$_ChangeUserCopyWith<_$_ChangeUser> get copyWith =>
       throw _privateConstructorUsedError;
@@ -602,10 +636,11 @@ class _$_AddNewUser implements _AddNewUser {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(User user) logoutRequested,
-    required TResult Function(User user) changeUser,
+    required TResult Function(User user, int? color) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
+    required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
   }) {
     return addNewUser();
@@ -616,10 +651,11 @@ class _$_AddNewUser implements _AddNewUser {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(User user)? logoutRequested,
-    TResult? Function(User user)? changeUser,
+    TResult? Function(User user, int? color)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
+    TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
   }) {
     return addNewUser?.call();
@@ -630,10 +666,11 @@ class _$_AddNewUser implements _AddNewUser {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(User user)? logoutRequested,
-    TResult Function(User user)? changeUser,
+    TResult Function(User user, int? color)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
+    TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
@@ -652,6 +689,7 @@ class _$_AddNewUser implements _AddNewUser {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
+    required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
   }) {
     return addNewUser(this);
@@ -666,6 +704,7 @@ class _$_AddNewUser implements _AddNewUser {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
+    TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
   }) {
     return addNewUser?.call(this);
@@ -680,6 +719,7 @@ class _$_AddNewUser implements _AddNewUser {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
+    TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
@@ -760,10 +800,11 @@ class _$_TokenChanged implements _TokenChanged {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(User user) logoutRequested,
-    required TResult Function(User user) changeUser,
+    required TResult Function(User user, int? color) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
+    required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
   }) {
     return tokenChanged(value);
@@ -774,10 +815,11 @@ class _$_TokenChanged implements _TokenChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(User user)? logoutRequested,
-    TResult? Function(User user)? changeUser,
+    TResult? Function(User user, int? color)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
+    TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
   }) {
     return tokenChanged?.call(value);
@@ -788,10 +830,11 @@ class _$_TokenChanged implements _TokenChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(User user)? logoutRequested,
-    TResult Function(User user)? changeUser,
+    TResult Function(User user, int? color)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
+    TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
@@ -810,6 +853,7 @@ class _$_TokenChanged implements _TokenChanged {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
+    required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
   }) {
     return tokenChanged(this);
@@ -824,6 +868,7 @@ class _$_TokenChanged implements _TokenChanged {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
+    TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
   }) {
     return tokenChanged?.call(this);
@@ -838,6 +883,7 @@ class _$_TokenChanged implements _TokenChanged {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
+    TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
@@ -923,10 +969,11 @@ class _$_ServerChanged implements _ServerChanged {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(User user) logoutRequested,
-    required TResult Function(User user) changeUser,
+    required TResult Function(User user, int? color) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
+    required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
   }) {
     return serverChanged(value);
@@ -937,10 +984,11 @@ class _$_ServerChanged implements _ServerChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(User user)? logoutRequested,
-    TResult? Function(User user)? changeUser,
+    TResult? Function(User user, int? color)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
+    TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
   }) {
     return serverChanged?.call(value);
@@ -951,10 +999,11 @@ class _$_ServerChanged implements _ServerChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(User user)? logoutRequested,
-    TResult Function(User user)? changeUser,
+    TResult Function(User user, int? color)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
+    TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
@@ -973,6 +1022,7 @@ class _$_ServerChanged implements _ServerChanged {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
+    required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
   }) {
     return serverChanged(this);
@@ -987,6 +1037,7 @@ class _$_ServerChanged implements _ServerChanged {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
+    TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
   }) {
     return serverChanged?.call(this);
@@ -1001,6 +1052,7 @@ class _$_ServerChanged implements _ServerChanged {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
+    TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
@@ -1017,6 +1069,175 @@ abstract class _ServerChanged implements SettingEvent {
   String get value;
   @JsonKey(ignore: true)
   _$$_ServerChangedCopyWith<_$_ServerChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_NickNameChangedCopyWith<$Res> {
+  factory _$$_NickNameChangedCopyWith(
+          _$_NickNameChanged value, $Res Function(_$_NickNameChanged) then) =
+      __$$_NickNameChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$$_NickNameChangedCopyWithImpl<$Res>
+    extends _$SettingEventCopyWithImpl<$Res, _$_NickNameChanged>
+    implements _$$_NickNameChangedCopyWith<$Res> {
+  __$$_NickNameChangedCopyWithImpl(
+      _$_NickNameChanged _value, $Res Function(_$_NickNameChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$_NickNameChanged(
+      null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_NickNameChanged implements _NickNameChanged {
+  const _$_NickNameChanged(this.value);
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'SettingEvent.nickNameChanged(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_NickNameChanged &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_NickNameChangedCopyWith<_$_NickNameChanged> get copyWith =>
+      __$$_NickNameChangedCopyWithImpl<_$_NickNameChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(User user) logoutRequested,
+    required TResult Function(User user, int? color) changeUser,
+    required TResult Function() addNewUser,
+    required TResult Function(String value) tokenChanged,
+    required TResult Function(String value) serverChanged,
+    required TResult Function(String value) nickNameChanged,
+    required TResult Function(User user) updateUser,
+  }) {
+    return nickNameChanged(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(User user)? logoutRequested,
+    TResult? Function(User user, int? color)? changeUser,
+    TResult? Function()? addNewUser,
+    TResult? Function(String value)? tokenChanged,
+    TResult? Function(String value)? serverChanged,
+    TResult? Function(String value)? nickNameChanged,
+    TResult? Function(User user)? updateUser,
+  }) {
+    return nickNameChanged?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(User user)? logoutRequested,
+    TResult Function(User user, int? color)? changeUser,
+    TResult Function()? addNewUser,
+    TResult Function(String value)? tokenChanged,
+    TResult Function(String value)? serverChanged,
+    TResult Function(String value)? nickNameChanged,
+    TResult Function(User user)? updateUser,
+    required TResult orElse(),
+  }) {
+    if (nickNameChanged != null) {
+      return nickNameChanged(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_LogoutRequested value) logoutRequested,
+    required TResult Function(_ChangeUser value) changeUser,
+    required TResult Function(_AddNewUser value) addNewUser,
+    required TResult Function(_TokenChanged value) tokenChanged,
+    required TResult Function(_ServerChanged value) serverChanged,
+    required TResult Function(_NickNameChanged value) nickNameChanged,
+    required TResult Function(_UpdateUser value) updateUser,
+  }) {
+    return nickNameChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_LogoutRequested value)? logoutRequested,
+    TResult? Function(_ChangeUser value)? changeUser,
+    TResult? Function(_AddNewUser value)? addNewUser,
+    TResult? Function(_TokenChanged value)? tokenChanged,
+    TResult? Function(_ServerChanged value)? serverChanged,
+    TResult? Function(_NickNameChanged value)? nickNameChanged,
+    TResult? Function(_UpdateUser value)? updateUser,
+  }) {
+    return nickNameChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_LogoutRequested value)? logoutRequested,
+    TResult Function(_ChangeUser value)? changeUser,
+    TResult Function(_AddNewUser value)? addNewUser,
+    TResult Function(_TokenChanged value)? tokenChanged,
+    TResult Function(_ServerChanged value)? serverChanged,
+    TResult Function(_NickNameChanged value)? nickNameChanged,
+    TResult Function(_UpdateUser value)? updateUser,
+    required TResult orElse(),
+  }) {
+    if (nickNameChanged != null) {
+      return nickNameChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NickNameChanged implements SettingEvent {
+  const factory _NickNameChanged(final String value) = _$_NickNameChanged;
+
+  String get value;
+  @JsonKey(ignore: true)
+  _$$_NickNameChangedCopyWith<_$_NickNameChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1086,10 +1307,11 @@ class _$_UpdateUser implements _UpdateUser {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(User user) logoutRequested,
-    required TResult Function(User user) changeUser,
+    required TResult Function(User user, int? color) changeUser,
     required TResult Function() addNewUser,
     required TResult Function(String value) tokenChanged,
     required TResult Function(String value) serverChanged,
+    required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
   }) {
     return updateUser(user);
@@ -1100,10 +1322,11 @@ class _$_UpdateUser implements _UpdateUser {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(User user)? logoutRequested,
-    TResult? Function(User user)? changeUser,
+    TResult? Function(User user, int? color)? changeUser,
     TResult? Function()? addNewUser,
     TResult? Function(String value)? tokenChanged,
     TResult? Function(String value)? serverChanged,
+    TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
   }) {
     return updateUser?.call(user);
@@ -1114,10 +1337,11 @@ class _$_UpdateUser implements _UpdateUser {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(User user)? logoutRequested,
-    TResult Function(User user)? changeUser,
+    TResult Function(User user, int? color)? changeUser,
     TResult Function()? addNewUser,
     TResult Function(String value)? tokenChanged,
     TResult Function(String value)? serverChanged,
+    TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
     required TResult orElse(),
   }) {
@@ -1136,6 +1360,7 @@ class _$_UpdateUser implements _UpdateUser {
     required TResult Function(_AddNewUser value) addNewUser,
     required TResult Function(_TokenChanged value) tokenChanged,
     required TResult Function(_ServerChanged value) serverChanged,
+    required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
   }) {
     return updateUser(this);
@@ -1150,6 +1375,7 @@ class _$_UpdateUser implements _UpdateUser {
     TResult? Function(_AddNewUser value)? addNewUser,
     TResult? Function(_TokenChanged value)? tokenChanged,
     TResult? Function(_ServerChanged value)? serverChanged,
+    TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
   }) {
     return updateUser?.call(this);
@@ -1164,6 +1390,7 @@ class _$_UpdateUser implements _UpdateUser {
     TResult Function(_AddNewUser value)? addNewUser,
     TResult Function(_TokenChanged value)? tokenChanged,
     TResult Function(_ServerChanged value)? serverChanged,
+    TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
@@ -1188,6 +1415,7 @@ mixin _$SettingState {
   FormzStatus get status => throw _privateConstructorUsedError;
   TokenField get token => throw _privateConstructorUsedError;
   ServerField get server => throw _privateConstructorUsedError;
+  NickNameField get nickName => throw _privateConstructorUsedError;
   bool get inNewUser => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
@@ -1206,6 +1434,7 @@ abstract class $SettingStateCopyWith<$Res> {
       {FormzStatus status,
       TokenField token,
       ServerField server,
+      NickNameField nickName,
       bool inNewUser,
       String? errorMessage});
 }
@@ -1226,6 +1455,7 @@ class _$SettingStateCopyWithImpl<$Res, $Val extends SettingState>
     Object? status = null,
     Object? token = null,
     Object? server = null,
+    Object? nickName = null,
     Object? inNewUser = null,
     Object? errorMessage = freezed,
   }) {
@@ -1242,6 +1472,10 @@ class _$SettingStateCopyWithImpl<$Res, $Val extends SettingState>
           ? _value.server
           : server // ignore: cast_nullable_to_non_nullable
               as ServerField,
+      nickName: null == nickName
+          ? _value.nickName
+          : nickName // ignore: cast_nullable_to_non_nullable
+              as NickNameField,
       inNewUser: null == inNewUser
           ? _value.inNewUser
           : inNewUser // ignore: cast_nullable_to_non_nullable
@@ -1266,6 +1500,7 @@ abstract class _$$_SettingStateCopyWith<$Res>
       {FormzStatus status,
       TokenField token,
       ServerField server,
+      NickNameField nickName,
       bool inNewUser,
       String? errorMessage});
 }
@@ -1284,6 +1519,7 @@ class __$$_SettingStateCopyWithImpl<$Res>
     Object? status = null,
     Object? token = null,
     Object? server = null,
+    Object? nickName = null,
     Object? inNewUser = null,
     Object? errorMessage = freezed,
   }) {
@@ -1300,6 +1536,10 @@ class __$$_SettingStateCopyWithImpl<$Res>
           ? _value.server
           : server // ignore: cast_nullable_to_non_nullable
               as ServerField,
+      nickName: null == nickName
+          ? _value.nickName
+          : nickName // ignore: cast_nullable_to_non_nullable
+              as NickNameField,
       inNewUser: null == inNewUser
           ? _value.inNewUser
           : inNewUser // ignore: cast_nullable_to_non_nullable
@@ -1319,6 +1559,7 @@ class _$_SettingState extends _SettingState {
       {this.status = FormzStatus.pure,
       this.token = const TokenField.pure(),
       this.server = const ServerField.pure(),
+      this.nickName = const NickNameField.pure(),
       this.inNewUser = false,
       this.errorMessage})
       : super._();
@@ -1334,13 +1575,16 @@ class _$_SettingState extends _SettingState {
   final ServerField server;
   @override
   @JsonKey()
+  final NickNameField nickName;
+  @override
+  @JsonKey()
   final bool inNewUser;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'SettingState(status: $status, token: $token, server: $server, inNewUser: $inNewUser, errorMessage: $errorMessage)';
+    return 'SettingState(status: $status, token: $token, server: $server, nickName: $nickName, inNewUser: $inNewUser, errorMessage: $errorMessage)';
   }
 
   @override
@@ -1351,6 +1595,8 @@ class _$_SettingState extends _SettingState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.token, token) || other.token == token) &&
             (identical(other.server, server) || other.server == server) &&
+            (identical(other.nickName, nickName) ||
+                other.nickName == nickName) &&
             (identical(other.inNewUser, inNewUser) ||
                 other.inNewUser == inNewUser) &&
             (identical(other.errorMessage, errorMessage) ||
@@ -1358,8 +1604,8 @@ class _$_SettingState extends _SettingState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, token, server, inNewUser, errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType, status, token, server, nickName, inNewUser, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -1373,6 +1619,7 @@ abstract class _SettingState extends SettingState {
       {final FormzStatus status,
       final TokenField token,
       final ServerField server,
+      final NickNameField nickName,
       final bool inNewUser,
       final String? errorMessage}) = _$_SettingState;
   const _SettingState._() : super._();
@@ -1383,6 +1630,8 @@ abstract class _SettingState extends SettingState {
   TokenField get token;
   @override
   ServerField get server;
+  @override
+  NickNameField get nickName;
   @override
   bool get inNewUser;
   @override

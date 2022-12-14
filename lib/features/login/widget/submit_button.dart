@@ -16,7 +16,6 @@ class SubmitButton extends StatelessWidget {
               ? null
               : () {
                   FocusScope.of(context).unfocus();
-
                   context.read<LoginCubit>().login();
                 },
           style: ElevatedButton.styleFrom(

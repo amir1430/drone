@@ -39,12 +39,21 @@ class AuthRepository {
     required String token,
     required String server,
     String? nickName,
+    int? color,
   }) async {
     try {
       final client = DroneClient(server: server, token: token);
       final droneUser = await client.userSection.info();
       final user = User.fromDroneUser(
-          user: droneUser, server: server, nickName: nickName);
+        user: droneUser,
+        server: server,
+        nickName: nickName == null
+            ? null
+            : nickName.isEmpty
+                ? null
+                : nickName,
+        color: color,
+      );
       return user;
     } catch (e) {
       rethrow;

@@ -32,11 +32,13 @@ class _SettingBody extends HookWidget {
   Widget build(BuildContext context) {
     final tokenController = useTextEditingController();
     final serverController = useTextEditingController();
+    final nickNameController = useTextEditingController();
 
     return BlocListener<SettingBloc, SettingState>(
       listener: (context, state) {
         serverController.text = state.server.value;
         tokenController.text = state.token.value;
+        nickNameController.text = state.nickName.value;
 
         if (state.status.isSubmissionFailure) {
           showDroneSnackbar(
@@ -79,6 +81,7 @@ class _SettingBody extends HookWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 8),
                                     child: UserTileWidget(
+                                      color: Color(user.color),
                                       size: Size.square(
                                         const DroneAppBar()
                                                 .preferredSize
@@ -97,16 +100,24 @@ class _SettingBody extends HookWidget {
                                         width: user == currentUser ? 4 : 0,
                                       ),
                                       elevation: user == currentUser ? 3 : 2,
-                                      child: ClipRRect(
-                                        child: Image.network(
-                                          user.avatarUrl,
-                                          fit: BoxFit.cover,
+                                      child: Center(
+                                        child: Text(
+                                          user.nickName[0].toUpperCase(),
+                                          style: context.headline2!
+                                              .copyWith(color: Colors.white),
                                         ),
                                       ),
+                                      // child: ClipRRect(
+                                      //   child: Image.network(
+                                      //     user.avatarUrl,
+                                      //     fit: BoxFit.cover,
+                                      //   ),
+                                      // ),
                                       onTap: () {
                                         context.read<SettingBloc>().add(
                                               SettingEvent.changeUser(
                                                 user: user,
+                                                color: user.color,
                                               ),
                                             );
                                       },
@@ -170,10 +181,6 @@ class _SettingBody extends HookWidget {
               ],
             ),
             BlocBuilder<SettingBloc, SettingState>(
-              // buildWhen: (previous, current) {
-              //   return previous.server != current.server &&
-              //       previous.token != current.token;
-              // },
               builder: (context, state) {
                 if (state.inNewUser) return const NewAccountDiolog();
                 return Expanded(
@@ -183,6 +190,30 @@ class _SettingBody extends HookWidget {
                       vertical: 12,
                     ),
                     children: [
+                      BlocBuilder<SettingBloc, SettingState>(
+                        buildWhen: (previous, current) =>
+                            previous.nickName != current.nickName,
+                        builder: (context, state) {
+                          return DroneTextField(
+                            border: const UnderlineInputBorder(
+                              borderSide: BorderSide(width: 2),
+                            ),
+                            color: Colors.transparent,
+                            elevation: 0,
+                            controller: nickNameController,
+                            label: 'Nick name',
+                            errorText: state.nickName.invalid
+                                ? NickNameFieldError.invalid.name
+                                : null,
+                            onChange: (value) {
+                              context
+                                  .read<SettingBloc>()
+                                  .add(SettingEvent.nickNameChanged(value));
+                            },
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 12),
                       BlocBuilder<SettingBloc, SettingState>(
                         buildWhen: (previous, current) =>
                             previous.server != current.server,

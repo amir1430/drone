@@ -8,8 +8,8 @@ enum NickNameFieldError {
 }
 
 class NickNameField extends FormzInput<String, NickNameFieldError> {
-  NickNameField.dirty([String value = '']) : super.dirty(value);
-  NickNameField.pure([String value = '']) : super.pure(value);
+  const NickNameField.dirty([String value = '']) : super.dirty(value);
+  const NickNameField.pure([String value = '']) : super.pure(value);
 
   @override
   NickNameFieldError? validator(String value) {

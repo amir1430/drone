@@ -20,6 +20,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     on<_AddNewUser>(_onAddNewUser);
     on<_LogoutRequested>(_onLogoutRequested);
     on<_ChangeUser>(_onChangeUserRequested);
+    on<_NickNameChanged>(_onNickNameChanged);
     on<_ServerChanged>(_onServerChanged);
     on<_TokenChanged>(_onTokenChanged);
     on<_UpdateUser>(_onUpdateAccount);
@@ -107,6 +108,8 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
       final newUser = await _authRepository.getUserCredentials(
         token: state.token.value,
         server: state.server.value,
+        nickName: state.nickName.value,
+        color: event.user.color,
       );
 
       await _authRepository.updateUser(
@@ -134,6 +137,21 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     }
   }
 
+  Future<void> _onNickNameChanged(
+    _NickNameChanged event,
+    Emitter<SettingState> emit,
+  ) async {
+    final _nickName = NickNameField.dirty(event.value);
+    emit(
+      state.copyWith(
+        nickName: _nickName,
+        status: Formz.validate(
+          [_nickName, state.token, state.server],
+        ),
+      ),
+    );
+  }
+
   Future<void> _onServerChanged(
     _ServerChanged event,
     Emitter<SettingState> emit,
@@ -143,7 +161,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
       state.copyWith(
         server: _server,
         status: Formz.validate(
-          [_server, state.token],
+          [_server, state.token, state.nickName],
         ),
       ),
     );
@@ -158,7 +176,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
       state.copyWith(
         token: _token,
         status: Formz.validate(
-          [_token, state.server],
+          [_token, state.server, state.nickName],
         ),
       ),
     );

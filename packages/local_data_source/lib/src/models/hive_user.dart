@@ -32,15 +32,16 @@ class User with EquatableMixin {
     int? color,
   }) {
     return User(
-        nickName: nickName ?? user.login,
-        name: user.login,
-        email: user.email,
-        avatarUrl: user.avatar,
-        admin: user.admin,
-        machine: user.machine,
-        token: user.token,
-        server: server,
-        color: color ?? 0xff457E75);
+      name: user.login,
+      nickName: nickName ?? user.login,
+      email: user.email,
+      avatarUrl: user.avatar,
+      admin: user.admin,
+      machine: user.machine,
+      token: user.token,
+      server: server,
+      color: color ?? 0xff457E75,
+    );
   }
 
   User copyWith({
@@ -73,14 +74,13 @@ class User with EquatableMixin {
 
   @override
   List<Object?> get props =>
-      [color, nickName, name, email, avatarUrl, admin, machine, server, token];
+      [nickName, name, email, avatarUrl, admin, machine, server, token, color];
 }
 
 class HiveUserAdapter extends TypeAdapter<User> {
   @override
   User read(BinaryReader reader) {
     return User(
-      color: reader.readInt(),
       nickName: reader.readString(),
       name: reader.readString(),
       email: reader.readString(),
@@ -89,6 +89,7 @@ class HiveUserAdapter extends TypeAdapter<User> {
       machine: reader.readBool(),
       token: reader.readString(),
       server: reader.readString(),
+      color: reader.readUint32(),
     );
   }
 
@@ -97,7 +98,6 @@ class HiveUserAdapter extends TypeAdapter<User> {
 
   @override
   void write(BinaryWriter writer, User obj) {
-    writer.write(obj.color);
     writer.writeString(obj.nickName);
     writer.writeString(obj.name);
     writer.writeString(obj.email);
@@ -106,5 +106,6 @@ class HiveUserAdapter extends TypeAdapter<User> {
     writer.writeBool(obj.machine);
     writer.writeString(obj.token);
     writer.writeString(obj.server);
+    writer.writeUint32(obj.color);
   }
 }

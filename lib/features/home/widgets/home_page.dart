@@ -50,11 +50,13 @@ class HomePage extends HookWidget {
                       padding: const EdgeInsets.all(8),
                       child: UserTileWidget(
                         size: const Size.square(40),
+                        color: Color(current.color),
                         elevation: 4,
-                        child: ClipRRect(
-                          child: Image.network(
-                            current.avatarUrl,
-                            fit: BoxFit.cover,
+                        child: Center(
+                          child: Text(
+                            current.nickName[0].toUpperCase(),
+                            style: context.headline2!
+                                .copyWith(color: Colors.white),
                           ),
                         ),
                         onTap: () => context.pushNamed('settings'),
