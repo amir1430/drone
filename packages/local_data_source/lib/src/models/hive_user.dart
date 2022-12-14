@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 class User with EquatableMixin {
   User({
     required this.name,
+    required this.nickName,
     required this.email,
     required this.avatarUrl,
     required this.admin,
@@ -14,6 +15,7 @@ class User with EquatableMixin {
   });
 
   String name;
+  String nickName;
   String email;
   String avatarUrl;
   bool admin;
@@ -24,8 +26,10 @@ class User with EquatableMixin {
   factory User.fromDroneUser({
     required DroneUser user,
     required String server,
+    String? nickName,
   }) {
     return User(
+        nickName: nickName ?? user.login,
         name: user.login,
         email: user.email,
         avatarUrl: user.avatar,
@@ -38,6 +42,7 @@ class User with EquatableMixin {
   User copyWith({
     bool? isCurrentUser,
     String? name,
+    String? nickName,
     String? email,
     String? avatarUrl,
     bool? admin,
@@ -46,6 +51,7 @@ class User with EquatableMixin {
     String? token,
   }) {
     return User(
+      nickName: nickName ?? this.nickName,
       name: name ?? this.name,
       email: email ?? this.email,
       avatarUrl: avatarUrl ?? this.avatarUrl,
@@ -61,13 +67,14 @@ class User with EquatableMixin {
 
   @override
   List<Object?> get props =>
-      [name, email, avatarUrl, admin, machine, server, token];
+      [nickName, name, email, avatarUrl, admin, machine, server, token];
 }
 
 class HiveUserAdapter extends TypeAdapter<User> {
   @override
   User read(BinaryReader reader) {
     return User(
+      nickName: reader.readString(),
       name: reader.readString(),
       email: reader.readString(),
       avatarUrl: reader.readString(),
@@ -83,6 +90,7 @@ class HiveUserAdapter extends TypeAdapter<User> {
 
   @override
   void write(BinaryWriter writer, User obj) {
+    writer.writeString(obj.nickName);
     writer.writeString(obj.name);
     writer.writeString(obj.email);
     writer.writeString(obj.avatarUrl);
