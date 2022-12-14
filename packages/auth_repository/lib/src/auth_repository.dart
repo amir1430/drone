@@ -38,11 +38,13 @@ class AuthRepository {
   Future<User> getUserCredentials({
     required String token,
     required String server,
+    String? nickName,
   }) async {
     try {
       final client = DroneClient(server: server, token: token);
       final droneUser = await client.userSection.info();
-      final user = User.fromDroneUser(user: droneUser, server: server);
+      final user = User.fromDroneUser(
+          user: droneUser, server: server, nickName: nickName);
       return user;
     } catch (e) {
       rethrow;
