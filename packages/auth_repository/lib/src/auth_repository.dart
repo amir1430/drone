@@ -1,11 +1,8 @@
 import 'dart:async';
 
-import 'package:auth_repository/src/model/account.dart';
 import 'package:auth_repository/src/model/auth_status.dart';
 import 'package:drone_dart/drone_dart.dart';
 import 'package:local_data_source/local_data_sorce.dart';
-
-part 'convetor.dart';
 
 class AuthRepository {
   const AuthRepository({
@@ -15,58 +12,30 @@ class AuthRepository {
   final UserLocalDataSource dataSource;
 
   Stream<AuthenticationStatus> get authenticationStatus {
-    return accountsStream.map((accounts) {
-      if (accounts.isEmpty) {
-        return AuthenticationStatus.unauthenticated();
+    return userStream.map((current) {
+      if (current == null) {
+        return AuthenticationStatus.unAuthenticated();
       }
       return AuthenticationStatus.authenticated(
-        accounts: accounts,
-        currentAccount: accounts.currentAccount!,
-      );
+          users: users, currentUser: current);
     });
-    // yield AuthenticationStatus.unknown();
-    // final acc = accounts;
-    // if (acc.isEmpty) {
-    //   yield AuthenticationStatus.unauthenticated();
-    // } else {
-    //   yield AuthenticationStatus.authenticated(
-    //     accounts: accounts,
-    //     currentAccount: accounts.currentAccount!,
-    //   );
-    // }
-
-    // yield* accountsStream.map((accounts) {
-    //   if (accounts.isEmpty) {
-    //     return AuthenticationStatus.unauthenticated();
-    //   }
-    //   return AuthenticationStatus.authenticated(
-    //     accounts: accounts,
-    //     currentAccount: accounts.currentAccount!,
-    //   );
-    // });
   }
 
-  List<Account> get accounts =>
-      [...dataSource.users.map((user) => Account.fromUser(user: user))];
+  List<User> get users => [...dataSource.users];
 
-  Account get currentAccount => Account.fromUser(
-        user: dataSource.currentUser,
-      );
+  User? get currentUser => dataSource.currentUser;
 
-  Stream<Account> get accountStream =>
-      dataSource.userStream.transform(_userToAccountTransformer);
+  Stream<User?> get userStream => dataSource.currentUserStream;
 
-  Stream<List<Account>> get accountsStream =>
-      dataSource.usersStream.transform(_usersToAccountsTransformer);
+  Stream<List<User>> get usersStream => dataSource.usersStream;
 
-  Future<void> changeAccount(Account account) =>
-      dataSource.alterUser(account.user);
+  Future<void> changeUser(User user) => dataSource.add(user);
 
-  Future<void> logIn(Account account) => dataSource.alterUser(account.user);
+  Future<void> logIn(User user) => dataSource.add(user);
 
-  Future<void> logOut(Account account) => dataSource.delete(account.user);
+  Future<void> logOut(User user) => dataSource.delete(user);
 
-  Future<Account> getUserCredentials({
+  Future<User> getUserCredentials({
     required String token,
     required String server,
   }) async {
@@ -74,38 +43,38 @@ class AuthRepository {
       final client = DroneClient(server: server, token: token);
       final droneUser = await client.userSection.info();
       final user = User.fromDroneUser(user: droneUser, server: server);
-      return Account.fromUser(user: user);
+      return user;
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<void> updateAccount({
-    required Account oldAccount,
-    required Account newAccount,
+  Future<void> updateUser({
+    required User oldUser,
+    required User newUser,
   }) async {
-    await dataSource.updateUser(
-      oldUser: oldAccount.user,
-      newUser: newAccount.user,
+    await dataSource.update(
+      oldUser: oldUser,
+      newUser: newUser,
     );
   }
 
-  Future<void> checkAccounts() async {
-    final accounts = this.accounts;
-    for (final oldAccount in accounts) {
+  Future<void> checkUsers() async {
+    final users = this.users;
+    for (final user in users) {
       try {
-        final newAccount = await getUserCredentials(
-            token: oldAccount.user.token, server: oldAccount.user.server);
-        if (newAccount != oldAccount) {
-          await dataSource.updateUser(
-            oldUser: oldAccount.user,
-            newUser: newAccount.user,
+        final newUser =
+            await getUserCredentials(token: user.token, server: user.server);
+        if (newUser != user) {
+          await dataSource.update(
+            oldUser: user,
+            newUser: newUser,
           );
         }
       } on DroneException catch (e) {
         e.whenOrNull(
           unauthorizedException: (message) async {
-            await logOut(oldAccount);
+            await logOut(user);
           },
         );
       }
@@ -115,4 +84,8 @@ class AuthRepository {
   Future<void> close() async {
     await dataSource.close();
   }
+}
+
+extension UserX on User {
+  DroneClient get client => DroneClient(server: server, token: token);
 }
