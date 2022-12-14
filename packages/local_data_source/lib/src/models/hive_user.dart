@@ -12,6 +12,7 @@ class User with EquatableMixin {
     required this.machine,
     required this.token,
     required this.server,
+    required this.color,
   });
 
   String name;
@@ -22,11 +23,13 @@ class User with EquatableMixin {
   bool machine;
   String server;
   String token;
+  int color;
 
   factory User.fromDroneUser({
     required DroneUser user,
     required String server,
     String? nickName,
+    int? color,
   }) {
     return User(
         nickName: nickName ?? user.login,
@@ -36,7 +39,8 @@ class User with EquatableMixin {
         admin: user.admin,
         machine: user.machine,
         token: user.token,
-        server: server);
+        server: server,
+        color: color ?? 0xff457E75);
   }
 
   User copyWith({
@@ -49,6 +53,7 @@ class User with EquatableMixin {
     bool? machine,
     String? server,
     String? token,
+    int? color,
   }) {
     return User(
       nickName: nickName ?? this.nickName,
@@ -59,6 +64,7 @@ class User with EquatableMixin {
       machine: machine ?? this.machine,
       token: token ?? this.token,
       server: server ?? this.server,
+      color: color ?? this.color,
     );
   }
 
@@ -67,13 +73,14 @@ class User with EquatableMixin {
 
   @override
   List<Object?> get props =>
-      [nickName, name, email, avatarUrl, admin, machine, server, token];
+      [color, nickName, name, email, avatarUrl, admin, machine, server, token];
 }
 
 class HiveUserAdapter extends TypeAdapter<User> {
   @override
   User read(BinaryReader reader) {
     return User(
+      color: reader.readInt(),
       nickName: reader.readString(),
       name: reader.readString(),
       email: reader.readString(),
@@ -90,6 +97,7 @@ class HiveUserAdapter extends TypeAdapter<User> {
 
   @override
   void write(BinaryWriter writer, User obj) {
+    writer.write(obj.color);
     writer.writeString(obj.nickName);
     writer.writeString(obj.name);
     writer.writeString(obj.email);
