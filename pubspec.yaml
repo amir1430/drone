@@ -30,6 +30,7 @@ dependencies:
   formz: ^0.4.1
   intl: ^0.17.0
   bloc_concurrency: ^0.2.0
+  flutter_launcher_icons: "^0.11.0"
 
 dev_dependencies:
   analyzer: ^5.2.0
@@ -62,3 +63,11 @@ flutter:
           weight: 500
         - asset: fonts/Signika-Bold.ttf
           weight: 700
+
+flutter_icons:
+  image_path_android: "assets/logo.png"
+  android: "drone"
+  windows:
+    generate: true
+    image_path: "assets/logo.png"
+    icon_size: 48 
