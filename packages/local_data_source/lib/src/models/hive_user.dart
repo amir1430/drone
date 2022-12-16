@@ -109,3 +109,7 @@ class HiveUserAdapter extends TypeAdapter<User> {
     writer.writeUint32(obj.color);
   }
 }
+
+extension UserX on User {
+  DroneClient get client => DroneClient(server: server, token: token);
+}

@@ -24,25 +24,11 @@ class ReposBloc extends Bloc<ReposEvent, ReposState> {
   ) async {
     emit(const _Loading());
     try {
-      // print(reposRepository.remoteDataSource);
       final repos = await reposRepository?.getAllRepos();
       emit(_Loaded(repos: repos ?? []));
     } catch (e) {
       emit(_Failure(error: '$e'));
     }
-
-    // await emit.forEach<List<DroneRepo>>(
-    //   reposRepository.reposStream,
-    //   onData: (repos) {
-    //     return _Loaded(repos: repos);
-    //   },
-    //   onError: (e, s) {
-    //     if (e is DroneException) {
-    //       return _Failure(error: e.message);
-    //     }
-    //     return _Failure(error: e.toString());
-    //   },
-    // );
   }
 
   Future<void> _onUpdateRepo(

@@ -96,7 +96,3 @@ class AuthRepository {
     await dataSource.close();
   }
 }
-
-extension UserX on User {
-  DroneClient get client => DroneClient(server: server, token: token);
-}

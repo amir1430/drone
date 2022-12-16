@@ -6,8 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:local_data_source/local_data_sorce.dart';
+import 'package:repo_repository/repo_repository.dart';
 
 Future<void> main() async {
+  DroneClient.log = true;
+
   Bloc.observer = AppBlocObserver();
   await runZonedGuarded(
     () async {

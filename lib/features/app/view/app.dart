@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:local_data_source/local_data_sorce.dart';
 import 'package:repo_repository/repo_repository.dart';
 
 class App extends HookWidget {
@@ -31,8 +30,9 @@ class App extends HookWidget {
               AuthRepository(dataSource: context.read<UserLocalDataSource>()),
         ),
         RepositoryProvider<RepoRepository>(
-          create: (_) => RepoRepository(),
-          child: Container(),
+          create: (context) => RepoRepository(
+            userLocalDataSource: context.read<UserLocalDataSource>(),
+          ),
         )
       ],
       child: MultiBlocProvider(

@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:repo_repository/repo_repository.dart';
 
+part 'builds_bloc.freezed.dart';
 part 'builds_event.dart';
 part 'builds_state.dart';
-part 'builds_bloc.freezed.dart';
 
 class BuildsBloc extends Bloc<BuildsEvent, BuildsState> {
   BuildsBloc({
@@ -20,21 +21,19 @@ class BuildsBloc extends Bloc<BuildsEvent, BuildsState> {
             isLoadingMore: false,
           ),
         ) {
-    // _streamSubscription = _repoRepository.stream.listen(
-    //   (repo) {
-    //     add(_NewBuild(repo: repo));
-    //   },
-    //   onError: (e) {
-    //     log('$e');
-    //   },
-    // );
+    _streamSubscription = _repoRepository.newRepoEvent.listen((event) {
+      if (event != null) {
+        add(_NewBuild(repo: event.repo));
+      }
+    });
+
     on<_Started>(_onStarted);
     on<_LoadMoreBuilds>(_onLoadMoreBuilds);
     on<_NewBuild>(_onNewBuild);
   }
 
   final RepoRepository _repoRepository;
-  // late final StreamSubscription<DroneRepo> _streamSubscription;
+  late final StreamSubscription<DroneEvent?> _streamSubscription;
 
   Future<void> _onStarted(
     _Started event,
@@ -56,29 +55,6 @@ class BuildsBloc extends Bloc<BuildsEvent, BuildsState> {
     } catch (e) {
       emit(state.copyWith(status: Status.failure));
     }
-
-    // await emit.forEach<DroneRepo>(
-    //   _repoRepository.stream,
-    //   onData: (data) {
-    //     final isInList = state.builds
-    //         .firstWhereOrNull((element) => element.id == data.build!.id);
-    //     return state.copyWith(
-    //       builds: [
-    //         data.build!,
-    //         if (isInList == null)
-    //           ...state.builds
-    //         else
-    //           ...state.builds.where((element) =>
-    // element.id != data.build!.id)
-    //       ],
-    //       latestRepo: data,
-    //     );
-    //   },
-    //   onError: (e, s) {
-    //     print(e);
-    //     return state.copyWith(status: Status.failure);
-    //   },
-    // );
   }
 
   Future<void> _onLoadMoreBuilds(
@@ -106,28 +82,28 @@ class BuildsBloc extends Bloc<BuildsEvent, BuildsState> {
   }
 
   Future<void> _onNewBuild(_NewBuild event, Emitter<BuildsState> emit) async {
-    // final isInList = state.builds.firstWhereOrNull(
-    //   (element) => element.id == event.repo.build!.id,
-    // );
+    final isInList = state.builds.firstWhereOrNull(
+      (element) => element.id == event.repo.build!.id,
+    );
 
-    // emit(
-    //   state.copyWith(
-    //     builds: [
-    //       event.repo.build!,
-    //       if (isInList == null)
-    //         ...state.builds
-    //       else
-    //         ...state.builds
-    //             .where((element) => element.id != event.repo.build!.id)
-    //     ],
-    //     latestRepo: event.repo,
-    //   ),
-    // );
+    emit(
+      state.copyWith(
+        builds: [
+          event.repo.build!,
+          if (isInList == null)
+            ...state.builds
+          else
+            ...state.builds
+                .where((element) => element.id != event.repo.build!.id)
+        ],
+        latestRepo: event.repo,
+      ),
+    );
   }
 
-  // @override
-  // Future<void> close() {
-  //   _streamSubscription.cancel();
-  //   return super.close();
-  // }
+  @override
+  Future<void> close() {
+    _streamSubscription.cancel();
+    return super.close();
+  }
 }

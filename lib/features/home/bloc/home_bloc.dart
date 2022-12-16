@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:auth_repository/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:repo_repository/repo_repository.dart';
 
@@ -15,17 +16,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     required this.authRepository,
     required this.repoRepository,
   }) : super(const _HomeState()) {
-    repoRepository.client = authRepository.currentUser!.client;
-
     _appStateSubscription =
         authRepository.authenticationStatus.listen((status) {
       status.whenOrNull(
         authenticated: (accounts, currentAccount) {
-          repoRepository.client = currentAccount.client;
           add(const _Started());
         },
       );
     });
+
+    // _droneEventSubscription = repoRepository.newRepoEvent.listen((event) {});
 
     on<_Started>(_onStarted, transformer: restartable());
     on<_OnSearched>(_onSearched);
@@ -33,6 +33,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   late final StreamSubscription<AuthenticationStatus> _appStateSubscription;
+  // late final StreamSubscription<DroneEvent?> _droneEventSubscription;
 
   final RepoRepository repoRepository;
   final AuthRepository authRepository;
@@ -41,8 +42,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     _Started event,
     Emitter<HomeState> emit,
   ) async {
-    repoRepository.client = authRepository.currentUser!.client;
-
     emit(state.copyWith(status: HomeStatus.loading));
 
     try {
@@ -72,6 +71,33 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ),
       );
     }
+
+    await emit.forEach(
+      repoRepository.newRepoEvent,
+      onData: (DroneEvent? droneEvent) {
+        if (droneEvent == null) {
+          return state;
+        }
+        final _repos = state.repos;
+        final _isInRepos = _repos
+            .firstWhereOrNull((element) => element.id == droneEvent.repo.id);
+        final _new = <DroneRepo>[
+          droneEvent.repo,
+          if (_isInRepos == null)
+            ..._repos
+          else
+            ..._repos.where(
+              (element) => element.id != _isInRepos.id,
+            )
+        ];
+
+        return state.copyWith(
+          repos: [..._new],
+          drawerRepos: [..._new],
+          homeRepos: [..._new],
+        );
+      },
+    );
   }
 
   Future<void> _onSearched(
@@ -94,7 +120,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   @override
   Future<void> close() async {
+    await repoRepository.close();
     await _appStateSubscription.cancel();
+    // await _droneEventSubscription.cancel();
     return super.close();
   }
 }
