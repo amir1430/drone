@@ -7,41 +7,50 @@ import 'package:rxdart/rxdart.dart';
 class RepoRepository {
   RepoRepository({
     required UserLocalDataSource userLocalDataSource,
-  }) {
+  }) : _userLocalDataSource = userLocalDataSource;
+
+  final UserLocalDataSource _userLocalDataSource;
+
+  late final StreamSubscription<User?> _currentUserStreamSubscription;
+  late final StreamSubscription<List<User>> _usersStreamSubscription;
+
+  late StreamSubscription<DroneEvent>? _newRepoEventsubscription;
+  late StreamController<DroneEvent?>? _newRepoEventcontroller;
+
+  late DroneClient _client;
+  // set client(DroneClient c) => _client = c;
+  DroneClient get clinet => _client;
+
+  Future<void> init() async {
     _newRepoEventsubscription = null;
     _newRepoEventsubscription?.cancel();
     _newRepoEventcontroller = BehaviorSubject.seeded(null);
 
     _currentUserStreamSubscription =
-        userLocalDataSource.currentUserStream.listen((currentUser) {
+        _userLocalDataSource.currentUserStream.listen((currentUser) {
       _newRepoEventsubscription?.cancel();
 
       if (currentUser != null) {
         _client = currentUser.client;
 
         _newRepoEventsubscription = _client.stream.listen(
-          _newRepoEventcontroller.sink.add,
+          _newRepoEventcontroller?.sink.add,
         );
       }
     });
 
     _usersStreamSubscription =
-        userLocalDataSource.usersStream.listen((users) {});
+        _userLocalDataSource.usersStream.listen((users) {});
   }
 
-  // final UserLocalDataSource _userLocalDataSource;
+  Future<void> close() async {
+    await _newRepoEventcontroller?.close();
+    _newRepoEventcontroller = null;
+    await _usersStreamSubscription.cancel();
+    await _currentUserStreamSubscription.cancel();
+  }
 
-  late final StreamSubscription<User?> _currentUserStreamSubscription;
-  late final StreamSubscription<List<User>> _usersStreamSubscription;
-
-  late StreamSubscription<DroneEvent>? _newRepoEventsubscription;
-  late final StreamController<DroneEvent?> _newRepoEventcontroller;
-
-  late DroneClient _client;
-  // set client(DroneClient c) => _client = c;
-  DroneClient get clinet => _client;
-
-  Stream<DroneEvent?> get newRepoEvent => _newRepoEventcontroller.stream;
+  Stream<DroneEvent?> get newRepoEvent => _newRepoEventcontroller!.stream;
 
   Future<List<DroneRepo>> getAllRepos() => _fetch(_client.userSection.repos());
 
@@ -126,12 +135,5 @@ class RepoRepository {
     } catch (_) {
       rethrow;
     }
-  }
-
-  Future<void> close() async {
-    await _newRepoEventcontroller.close();
-    await _newRepoEventsubscription?.cancel();
-    await _usersStreamSubscription.cancel();
-    await _currentUserStreamSubscription.cancel();
   }
 }

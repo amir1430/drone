@@ -37,7 +37,7 @@ class AppRouter {
             return BlocProvider(
               create: (context) => HomeBloc(
                 authRepository: context.read(),
-                repoRepository: context.read(),
+                repoRepository: context.read()..init(),
               ),
               child: const HomeView(),
             );
