@@ -24,23 +24,30 @@ class BranchesView extends StatelessWidget {
             if (branches.isEmpty) {
               return const Center(child: Text('No branches'));
             }
-            return ListView.builder(
-              itemCount: branches.length,
-              itemBuilder: (BuildContext context, int index) {
-                final branch = branches[index];
-                return ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(branch.authorAvatar),
-                  ),
-                  trailing: branch.status.buildStatusToIcon,
-                  title: Text(
-                    branch.message,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  subtitle: Text('${branch.target}, ${branch.sender}'),
-                );
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<BranchesBloc>().add(
+                      BranchesEvent.started(owner: owner, repoName: repoName),
+                    );
               },
+              child: ListView.builder(
+                itemCount: branches.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final branch = branches[index];
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(branch.authorAvatar),
+                    ),
+                    trailing: branch.status.buildStatusToIcon,
+                    title: Text(
+                      branch.message,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    subtitle: Text('${branch.target}, ${branch.sender}'),
+                  );
+                },
+              ),
             );
           },
           failure: (message) => DroneErrorWidget(

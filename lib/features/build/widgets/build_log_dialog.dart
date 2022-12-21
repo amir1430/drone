@@ -29,15 +29,12 @@ class BuildLogDialog extends StatelessWidget {
     return BlocProvider(
       create: (context) => BuildLogBloc(
         repoRepository: context.read<RepoRepository>(),
-      )..add(
-          BuildLogEvent.started(
-            number: number,
-            stage: stageNum,
-            step: stepNum,
-            owner: owner,
-            repoName: name,
-          ),
-        ),
+        number: number,
+        stage: stageNum,
+        step: stepNum,
+        owner: owner,
+        name: name,
+      ),
       lazy: false,
       child: Scaffold(
         appBar: DroneAppBar(
@@ -108,13 +105,7 @@ class BuildLogDialog extends StatelessWidget {
                       child: DroneErrorWidget(
                         message: message,
                         onRetry: () => context.read<BuildLogBloc>().add(
-                              BuildLogEvent.started(
-                                number: number,
-                                stage: stageNum,
-                                step: stepNum,
-                                owner: owner,
-                                repoName: name,
-                              ),
+                              const BuildLogEvent.started(),
                             ),
                       ),
                     );

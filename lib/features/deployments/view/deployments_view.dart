@@ -24,22 +24,32 @@ class DeploymentsView extends StatelessWidget {
             if (data.deployments.isEmpty) {
               return const Center(child: Text('No deployments'));
             }
-            return ListView.separated(
-              itemCount: data.deployments.length,
-              itemBuilder: (BuildContext context, int index) {
-                final deployment = data.deployments[index];
-                return ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(deployment.authorAvatar),
-                  ),
-                  trailing: deployment.status.buildStatusToIcon,
-                  title: Text('${deployment.sender}/ ${deployment.deployTo}'),
-                  subtitle: Text(deployment.message),
-                );
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<DeploymentsBloc>().add(
+                      DeploymentsEvent.started(
+                        owner: owner,
+                        repoName: repoName,
+                      ),
+                    );
               },
-              separatorBuilder: (context, _) {
-                return const Divider();
-              },
+              child: ListView.separated(
+                itemCount: data.deployments.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final deployment = data.deployments[index];
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(deployment.authorAvatar),
+                    ),
+                    trailing: deployment.status.buildStatusToIcon,
+                    title: Text('${deployment.sender}/ ${deployment.deployTo}'),
+                    subtitle: Text(deployment.message),
+                  );
+                },
+                separatorBuilder: (context, _) {
+                  return const Divider();
+                },
+              ),
             );
           },
           failure: (message) => DroneErrorWidget(

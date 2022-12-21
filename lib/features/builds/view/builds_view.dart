@@ -68,108 +68,117 @@ class _BuildsView extends StatelessWidget {
     if (builds.isEmpty) {
       return const Center(child: Text('No builds'));
     }
-    return CustomScrollView(
-      slivers: <Widget>[
-        SliverPadding(
-          padding: const EdgeInsets.all(8),
-          sliver: SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                final build = builds[index];
+    return RefreshIndicator(
+      onRefresh: () async {
+        context
+            .read<BuildsBloc>()
+            .add(BuildsEvent.started(owner: owner, repoName: repoName));
+        return;
+      },
+      child: CustomScrollView(
+        slivers: <Widget>[
+          SliverPadding(
+            padding: const EdgeInsets.all(8),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final build = builds[index];
 
-                return ListTile(
-                  onTap: () {
-                    final location = GoRouter.of(context).location.split('/');
-                    final owner = location[2];
-                    final repoName = location[3];
-                    context.pushNamed(
-                      'build',
-                      params: {
-                        'owner': owner,
-                        'repo_name': repoName,
-                        'number': '${build.number}'
-                      },
-                    );
-                  },
-                  title: Row(
-                    children: [
-                      Expanded(
-                        child: Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: '# ${build.number}.',
-                                style: context.caption,
-                              ),
-                              TextSpan(
-                                text: build.message.trim(),
-                              ),
-                            ],
-                          ),
-                          maxLines: 2,
-                        ),
-                      ),
-                    ],
-                  ),
-                  trailing: Tooltip(
-                    message: build.status,
-                    child: build.status.buildStatusToIcon,
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const SizedBox(height: 4),
-                      SimpleActivity(build),
-                      const SizedBox(height: 6),
-                      Text(
-                        build.started.unixToHuman,
-                        style: context.caption?.copyWith(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                );
-              },
-              childCount: builds.length,
-            ),
-          ),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 6,
-            horizontal: 12,
-          ),
-          sliver: SliverToBoxAdapter(
-            child: BlocBuilder<BuildsBloc, BuildsState>(
-              buildWhen: (previous, current) =>
-                  previous.isLoadingMore != current.isLoadingMore,
-              builder: (context, state) {
-                if (state.isReachedMax) {
-                  return const SizedBox.shrink();
-                }
-                return TextButton(
-                  onPressed: state.isLoadingMore
-                      ? null
-                      : () {
-                          context.read<BuildsBloc>().add(
-                                BuildsEvent.loadMoreBuilds(
-                                  owner: owner,
-                                  repoName: repoName,
-                                ),
-                              );
+                  return ListTile(
+                    onTap: () {
+                      final location = GoRouter.of(context).location.split('/');
+                      final owner = location[2];
+                      final repoName = location[3];
+                      context.pushNamed(
+                        'build',
+                        params: {
+                          'owner': owner,
+                          'repo_name': repoName,
+                          'number': '${build.number}'
                         },
-                  child: Text(state.isLoadingMore ? 'Loading...' : 'Show more'),
-                );
-              },
+                      );
+                    },
+                    title: Row(
+                      children: [
+                        Expanded(
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: '# ${build.number}.',
+                                  style: context.caption,
+                                ),
+                                TextSpan(
+                                  text: build.message.trim(),
+                                ),
+                              ],
+                            ),
+                            maxLines: 2,
+                          ),
+                        ),
+                      ],
+                    ),
+                    trailing: Tooltip(
+                      message: build.status,
+                      child: build.status.buildStatusToIcon,
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const SizedBox(height: 4),
+                        SimpleActivity(build),
+                        const SizedBox(height: 6),
+                        Text(
+                          build.started.unixToHuman,
+                          style: context.caption?.copyWith(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                childCount: builds.length,
+              ),
             ),
           ),
-        )
-      ],
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 6,
+              horizontal: 12,
+            ),
+            sliver: SliverToBoxAdapter(
+              child: BlocBuilder<BuildsBloc, BuildsState>(
+                buildWhen: (previous, current) =>
+                    previous.isLoadingMore != current.isLoadingMore,
+                builder: (context, state) {
+                  if (state.isReachedMax) {
+                    return const SizedBox.shrink();
+                  }
+                  return TextButton(
+                    onPressed: state.isLoadingMore
+                        ? null
+                        : () {
+                            context.read<BuildsBloc>().add(
+                                  BuildsEvent.loadMoreBuilds(
+                                    owner: owner,
+                                    repoName: repoName,
+                                  ),
+                                );
+                          },
+                    child:
+                        Text(state.isLoadingMore ? 'Loading...' : 'Show more'),
+                  );
+                },
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

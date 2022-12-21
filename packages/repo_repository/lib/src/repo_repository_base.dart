@@ -52,6 +52,21 @@ class RepoRepository {
 
   Stream<DroneEvent?> get newRepoEvent => _newRepoEventcontroller!.stream;
 
+  Stream<DroneLogEvent> logStream({
+    required int build,
+    required String stage,
+    required String step,
+    required String owner,
+    required String repoName,
+  }) {
+    return _client.logStream(
+        repoName: repoName,
+        stage: stage,
+        step: step,
+        nameSpace: owner,
+        build: '$build');
+  }
+
   Future<List<DroneRepo>> getAllRepos() => _fetch(_client.userSection.repos());
 
   Future<DroneRepo> enableRepo({

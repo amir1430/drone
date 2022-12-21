@@ -16,52 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BuildLogEvent {
-  int get number => throw _privateConstructorUsedError;
-  String get stage => throw _privateConstructorUsedError;
-  String get step => throw _privateConstructorUsedError;
-  String get owner => throw _privateConstructorUsedError;
-  String get repoName => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int number, String stage, String step,
-            String owner, String repoName)
-        started,
+    required TResult Function() started,
+    required TResult Function(DroneLog log) bewLog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int number, String stage, String step, String owner,
-            String repoName)?
-        started,
+    TResult? Function()? started,
+    TResult? Function(DroneLog log)? bewLog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int number, String stage, String step, String owner,
-            String repoName)?
-        started,
+    TResult Function()? started,
+    TResult Function(DroneLog log)? bewLog,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_NewLog value) bewLog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_NewLog value)? bewLog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_NewLog value)? bewLog,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $BuildLogEventCopyWith<BuildLogEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -70,9 +61,6 @@ abstract class $BuildLogEventCopyWith<$Res> {
   factory $BuildLogEventCopyWith(
           BuildLogEvent value, $Res Function(BuildLogEvent) then) =
       _$BuildLogEventCopyWithImpl<$Res, BuildLogEvent>;
-  @useResult
-  $Res call(
-      {int number, String stage, String step, String owner, String repoName});
 }
 
 /// @nodoc
@@ -84,51 +72,13 @@ class _$BuildLogEventCopyWithImpl<$Res, $Val extends BuildLogEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? number = null,
-    Object? stage = null,
-    Object? step = null,
-    Object? owner = null,
-    Object? repoName = null,
-  }) {
-    return _then(_value.copyWith(
-      number: null == number
-          ? _value.number
-          : number // ignore: cast_nullable_to_non_nullable
-              as int,
-      stage: null == stage
-          ? _value.stage
-          : stage // ignore: cast_nullable_to_non_nullable
-              as String,
-      step: null == step
-          ? _value.step
-          : step // ignore: cast_nullable_to_non_nullable
-              as String,
-      owner: null == owner
-          ? _value.owner
-          : owner // ignore: cast_nullable_to_non_nullable
-              as String,
-      repoName: null == repoName
-          ? _value.repoName
-          : repoName // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res>
-    implements $BuildLogEventCopyWith<$Res> {
+abstract class _$$_StartedCopyWith<$Res> {
   factory _$$_StartedCopyWith(
           _$_Started value, $Res Function(_$_Started) then) =
       __$$_StartedCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int number, String stage, String step, String owner, String repoName});
 }
 
 /// @nodoc
@@ -137,120 +87,54 @@ class __$$_StartedCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? number = null,
-    Object? stage = null,
-    Object? step = null,
-    Object? owner = null,
-    Object? repoName = null,
-  }) {
-    return _then(_$_Started(
-      number: null == number
-          ? _value.number
-          : number // ignore: cast_nullable_to_non_nullable
-              as int,
-      stage: null == stage
-          ? _value.stage
-          : stage // ignore: cast_nullable_to_non_nullable
-              as String,
-      step: null == step
-          ? _value.step
-          : step // ignore: cast_nullable_to_non_nullable
-              as String,
-      owner: null == owner
-          ? _value.owner
-          : owner // ignore: cast_nullable_to_non_nullable
-              as String,
-      repoName: null == repoName
-          ? _value.repoName
-          : repoName // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_Started implements _Started {
-  const _$_Started(
-      {required this.number,
-      required this.stage,
-      required this.step,
-      required this.owner,
-      required this.repoName});
-
-  @override
-  final int number;
-  @override
-  final String stage;
-  @override
-  final String step;
-  @override
-  final String owner;
-  @override
-  final String repoName;
+  const _$_Started();
 
   @override
   String toString() {
-    return 'BuildLogEvent.started(number: $number, stage: $stage, step: $step, owner: $owner, repoName: $repoName)';
+    return 'BuildLogEvent.started()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Started &&
-            (identical(other.number, number) || other.number == number) &&
-            (identical(other.stage, stage) || other.stage == stage) &&
-            (identical(other.step, step) || other.step == step) &&
-            (identical(other.owner, owner) || other.owner == owner) &&
-            (identical(other.repoName, repoName) ||
-                other.repoName == repoName));
+        (other.runtimeType == runtimeType && other is _$_Started);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, number, stage, step, owner, repoName);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_StartedCopyWith<_$_Started> get copyWith =>
-      __$$_StartedCopyWithImpl<_$_Started>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int number, String stage, String step,
-            String owner, String repoName)
-        started,
+    required TResult Function() started,
+    required TResult Function(DroneLog log) bewLog,
   }) {
-    return started(number, stage, step, owner, repoName);
+    return started();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int number, String stage, String step, String owner,
-            String repoName)?
-        started,
+    TResult? Function()? started,
+    TResult? Function(DroneLog log)? bewLog,
   }) {
-    return started?.call(number, stage, step, owner, repoName);
+    return started?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int number, String stage, String step, String owner,
-            String repoName)?
-        started,
+    TResult Function()? started,
+    TResult Function(DroneLog log)? bewLog,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started(number, stage, step, owner, repoName);
+      return started();
     }
     return orElse();
   }
@@ -259,6 +143,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_NewLog value) bewLog,
   }) {
     return started(this);
   }
@@ -267,6 +152,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_NewLog value)? bewLog,
   }) {
     return started?.call(this);
   }
@@ -275,6 +161,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_NewLog value)? bewLog,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -285,26 +172,147 @@ class _$_Started implements _Started {
 }
 
 abstract class _Started implements BuildLogEvent {
-  const factory _Started(
-      {required final int number,
-      required final String stage,
-      required final String step,
-      required final String owner,
-      required final String repoName}) = _$_Started;
+  const factory _Started() = _$_Started;
+}
+
+/// @nodoc
+abstract class _$$_NewLogCopyWith<$Res> {
+  factory _$$_NewLogCopyWith(_$_NewLog value, $Res Function(_$_NewLog) then) =
+      __$$_NewLogCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DroneLog log});
+
+  $DroneLogCopyWith<$Res> get log;
+}
+
+/// @nodoc
+class __$$_NewLogCopyWithImpl<$Res>
+    extends _$BuildLogEventCopyWithImpl<$Res, _$_NewLog>
+    implements _$$_NewLogCopyWith<$Res> {
+  __$$_NewLogCopyWithImpl(_$_NewLog _value, $Res Function(_$_NewLog) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? log = null,
+  }) {
+    return _then(_$_NewLog(
+      log: null == log
+          ? _value.log
+          : log // ignore: cast_nullable_to_non_nullable
+              as DroneLog,
+    ));
+  }
 
   @override
-  int get number;
+  @pragma('vm:prefer-inline')
+  $DroneLogCopyWith<$Res> get log {
+    return $DroneLogCopyWith<$Res>(_value.log, (value) {
+      return _then(_value.copyWith(log: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_NewLog implements _NewLog {
+  const _$_NewLog({required this.log});
+
   @override
-  String get stage;
+  final DroneLog log;
+
   @override
-  String get step;
+  String toString() {
+    return 'BuildLogEvent.bewLog(log: $log)';
+  }
+
   @override
-  String get owner;
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_NewLog &&
+            (identical(other.log, log) || other.log == log));
+  }
+
   @override
-  String get repoName;
-  @override
+  int get hashCode => Object.hash(runtimeType, log);
+
   @JsonKey(ignore: true)
-  _$$_StartedCopyWith<_$_Started> get copyWith =>
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_NewLogCopyWith<_$_NewLog> get copyWith =>
+      __$$_NewLogCopyWithImpl<_$_NewLog>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(DroneLog log) bewLog,
+  }) {
+    return bewLog(log);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(DroneLog log)? bewLog,
+  }) {
+    return bewLog?.call(log);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(DroneLog log)? bewLog,
+    required TResult orElse(),
+  }) {
+    if (bewLog != null) {
+      return bewLog(log);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_NewLog value) bewLog,
+  }) {
+    return bewLog(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_NewLog value)? bewLog,
+  }) {
+    return bewLog?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NewLog value)? bewLog,
+    required TResult orElse(),
+  }) {
+    if (bewLog != null) {
+      return bewLog(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NewLog implements BuildLogEvent {
+  const factory _NewLog({required final DroneLog log}) = _$_NewLog;
+
+  DroneLog get log;
+  @JsonKey(ignore: true)
+  _$$_NewLogCopyWith<_$_NewLog> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

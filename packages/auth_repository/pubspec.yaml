@@ -18,7 +18,7 @@ dev_dependencies:
 dependencies:
   equatable: ^2.0.5
   drone_dart: 
-    git: https://github.com/amir1430/drone-dart.git
+    path: D:/Drone-sdk/drone-dart
   local_data_source: 
     path: ../local_data_source
   freezed_annotation: ^2.2.0

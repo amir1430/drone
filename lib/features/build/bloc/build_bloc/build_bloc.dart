@@ -17,7 +17,7 @@ class BuildBloc extends Bloc<BuildEvent, BuildState> {
 
   Future<void> _onStarted(
     _Started event,
-    Emitter<dynamic> emit,
+    Emitter<BuildState> emit,
   ) async {
     emit(const _Loading());
     try {
@@ -32,5 +32,16 @@ class BuildBloc extends Bloc<BuildEvent, BuildState> {
     } catch (e) {
       emit(_Failure(message: '$e'));
     }
+
+    await emit.forEach<DroneEvent?>(
+      _repository.newRepoEvent
+          .where((e) => e?.repo.build?.number == event.number),
+      onData: (data) {
+        if (data == null) {
+          return state;
+        }
+        return _Success(build: data.repo.build!);
+      },
+    );
   }
 }

@@ -89,22 +89,28 @@ class HomePage extends HookWidget {
                   );
                 }
                 final reposWithBuild = state.homeRepos.reposWithBuild;
-                return GridView.builder(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 12,
+                return RefreshIndicator(
+                   onRefresh: () async {
+          context.read<HomeBloc>().add(const HomeEvent.started());
+          return;
+        },
+                  child: GridView.builder(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      childAspectRatio: 1.2,
+                    ),
+                    itemCount: reposWithBuild.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final repo = reposWithBuild[index];
+                      return RepoWidget(repo);
+                    },
                   ),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
-                    childAspectRatio: 1.2,
-                  ),
-                  itemCount: reposWithBuild.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final repo = reposWithBuild[index];
-                    return RepoWidget(repo);
-                  },
                 );
               },
             ),
