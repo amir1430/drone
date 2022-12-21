@@ -20,6 +20,7 @@ mixin _$HomeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(DroneRepo repo) newBuild,
+    required TResult Function() syncRepos,
     required TResult Function(String value) onSearched,
     required TResult Function(DrawerFilter filter) filterChanged,
   }) =>
@@ -28,6 +29,7 @@ mixin _$HomeEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(DroneRepo repo)? newBuild,
+    TResult? Function()? syncRepos,
     TResult? Function(String value)? onSearched,
     TResult? Function(DrawerFilter filter)? filterChanged,
   }) =>
@@ -36,6 +38,7 @@ mixin _$HomeEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(DroneRepo repo)? newBuild,
+    TResult Function()? syncRepos,
     TResult Function(String value)? onSearched,
     TResult Function(DrawerFilter filter)? filterChanged,
     required TResult orElse(),
@@ -45,6 +48,7 @@ mixin _$HomeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_NewBuild value) newBuild,
+    required TResult Function(_SyncRepos value) syncRepos,
     required TResult Function(_OnSearched value) onSearched,
     required TResult Function(_FilterChanged value) filterChanged,
   }) =>
@@ -53,6 +57,7 @@ mixin _$HomeEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_NewBuild value)? newBuild,
+    TResult? Function(_SyncRepos value)? syncRepos,
     TResult? Function(_OnSearched value)? onSearched,
     TResult? Function(_FilterChanged value)? filterChanged,
   }) =>
@@ -61,6 +66,7 @@ mixin _$HomeEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_NewBuild value)? newBuild,
+    TResult Function(_SyncRepos value)? syncRepos,
     TResult Function(_OnSearched value)? onSearched,
     TResult Function(_FilterChanged value)? filterChanged,
     required TResult orElse(),
@@ -124,6 +130,7 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(DroneRepo repo) newBuild,
+    required TResult Function() syncRepos,
     required TResult Function(String value) onSearched,
     required TResult Function(DrawerFilter filter) filterChanged,
   }) {
@@ -135,6 +142,7 @@ class _$_Started implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(DroneRepo repo)? newBuild,
+    TResult? Function()? syncRepos,
     TResult? Function(String value)? onSearched,
     TResult? Function(DrawerFilter filter)? filterChanged,
   }) {
@@ -146,6 +154,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(DroneRepo repo)? newBuild,
+    TResult Function()? syncRepos,
     TResult Function(String value)? onSearched,
     TResult Function(DrawerFilter filter)? filterChanged,
     required TResult orElse(),
@@ -161,6 +170,7 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_NewBuild value) newBuild,
+    required TResult Function(_SyncRepos value) syncRepos,
     required TResult Function(_OnSearched value) onSearched,
     required TResult Function(_FilterChanged value) filterChanged,
   }) {
@@ -172,6 +182,7 @@ class _$_Started implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_NewBuild value)? newBuild,
+    TResult? Function(_SyncRepos value)? syncRepos,
     TResult? Function(_OnSearched value)? onSearched,
     TResult? Function(_FilterChanged value)? filterChanged,
   }) {
@@ -183,6 +194,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_NewBuild value)? newBuild,
+    TResult Function(_SyncRepos value)? syncRepos,
     TResult Function(_OnSearched value)? onSearched,
     TResult Function(_FilterChanged value)? filterChanged,
     required TResult orElse(),
@@ -274,6 +286,7 @@ class _$_NewBuild implements _NewBuild {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(DroneRepo repo) newBuild,
+    required TResult Function() syncRepos,
     required TResult Function(String value) onSearched,
     required TResult Function(DrawerFilter filter) filterChanged,
   }) {
@@ -285,6 +298,7 @@ class _$_NewBuild implements _NewBuild {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(DroneRepo repo)? newBuild,
+    TResult? Function()? syncRepos,
     TResult? Function(String value)? onSearched,
     TResult? Function(DrawerFilter filter)? filterChanged,
   }) {
@@ -296,6 +310,7 @@ class _$_NewBuild implements _NewBuild {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(DroneRepo repo)? newBuild,
+    TResult Function()? syncRepos,
     TResult Function(String value)? onSearched,
     TResult Function(DrawerFilter filter)? filterChanged,
     required TResult orElse(),
@@ -311,6 +326,7 @@ class _$_NewBuild implements _NewBuild {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_NewBuild value) newBuild,
+    required TResult Function(_SyncRepos value) syncRepos,
     required TResult Function(_OnSearched value) onSearched,
     required TResult Function(_FilterChanged value) filterChanged,
   }) {
@@ -322,6 +338,7 @@ class _$_NewBuild implements _NewBuild {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_NewBuild value)? newBuild,
+    TResult? Function(_SyncRepos value)? syncRepos,
     TResult? Function(_OnSearched value)? onSearched,
     TResult? Function(_FilterChanged value)? filterChanged,
   }) {
@@ -333,6 +350,7 @@ class _$_NewBuild implements _NewBuild {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_NewBuild value)? newBuild,
+    TResult Function(_SyncRepos value)? syncRepos,
     TResult Function(_OnSearched value)? onSearched,
     TResult Function(_FilterChanged value)? filterChanged,
     required TResult orElse(),
@@ -351,6 +369,126 @@ abstract class _NewBuild implements HomeEvent {
   @JsonKey(ignore: true)
   _$$_NewBuildCopyWith<_$_NewBuild> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SyncReposCopyWith<$Res> {
+  factory _$$_SyncReposCopyWith(
+          _$_SyncRepos value, $Res Function(_$_SyncRepos) then) =
+      __$$_SyncReposCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SyncReposCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$_SyncRepos>
+    implements _$$_SyncReposCopyWith<$Res> {
+  __$$_SyncReposCopyWithImpl(
+      _$_SyncRepos _value, $Res Function(_$_SyncRepos) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_SyncRepos implements _SyncRepos {
+  const _$_SyncRepos();
+
+  @override
+  String toString() {
+    return 'HomeEvent.syncRepos()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_SyncRepos);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(DroneRepo repo) newBuild,
+    required TResult Function() syncRepos,
+    required TResult Function(String value) onSearched,
+    required TResult Function(DrawerFilter filter) filterChanged,
+  }) {
+    return syncRepos();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(DroneRepo repo)? newBuild,
+    TResult? Function()? syncRepos,
+    TResult? Function(String value)? onSearched,
+    TResult? Function(DrawerFilter filter)? filterChanged,
+  }) {
+    return syncRepos?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(DroneRepo repo)? newBuild,
+    TResult Function()? syncRepos,
+    TResult Function(String value)? onSearched,
+    TResult Function(DrawerFilter filter)? filterChanged,
+    required TResult orElse(),
+  }) {
+    if (syncRepos != null) {
+      return syncRepos();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_NewBuild value) newBuild,
+    required TResult Function(_SyncRepos value) syncRepos,
+    required TResult Function(_OnSearched value) onSearched,
+    required TResult Function(_FilterChanged value) filterChanged,
+  }) {
+    return syncRepos(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_NewBuild value)? newBuild,
+    TResult? Function(_SyncRepos value)? syncRepos,
+    TResult? Function(_OnSearched value)? onSearched,
+    TResult? Function(_FilterChanged value)? filterChanged,
+  }) {
+    return syncRepos?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NewBuild value)? newBuild,
+    TResult Function(_SyncRepos value)? syncRepos,
+    TResult Function(_OnSearched value)? onSearched,
+    TResult Function(_FilterChanged value)? filterChanged,
+    required TResult orElse(),
+  }) {
+    if (syncRepos != null) {
+      return syncRepos(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SyncRepos implements HomeEvent {
+  const factory _SyncRepos() = _$_SyncRepos;
 }
 
 /// @nodoc
@@ -419,6 +557,7 @@ class _$_OnSearched implements _OnSearched {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(DroneRepo repo) newBuild,
+    required TResult Function() syncRepos,
     required TResult Function(String value) onSearched,
     required TResult Function(DrawerFilter filter) filterChanged,
   }) {
@@ -430,6 +569,7 @@ class _$_OnSearched implements _OnSearched {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(DroneRepo repo)? newBuild,
+    TResult? Function()? syncRepos,
     TResult? Function(String value)? onSearched,
     TResult? Function(DrawerFilter filter)? filterChanged,
   }) {
@@ -441,6 +581,7 @@ class _$_OnSearched implements _OnSearched {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(DroneRepo repo)? newBuild,
+    TResult Function()? syncRepos,
     TResult Function(String value)? onSearched,
     TResult Function(DrawerFilter filter)? filterChanged,
     required TResult orElse(),
@@ -456,6 +597,7 @@ class _$_OnSearched implements _OnSearched {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_NewBuild value) newBuild,
+    required TResult Function(_SyncRepos value) syncRepos,
     required TResult Function(_OnSearched value) onSearched,
     required TResult Function(_FilterChanged value) filterChanged,
   }) {
@@ -467,6 +609,7 @@ class _$_OnSearched implements _OnSearched {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_NewBuild value)? newBuild,
+    TResult? Function(_SyncRepos value)? syncRepos,
     TResult? Function(_OnSearched value)? onSearched,
     TResult? Function(_FilterChanged value)? filterChanged,
   }) {
@@ -478,6 +621,7 @@ class _$_OnSearched implements _OnSearched {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_NewBuild value)? newBuild,
+    TResult Function(_SyncRepos value)? syncRepos,
     TResult Function(_OnSearched value)? onSearched,
     TResult Function(_FilterChanged value)? filterChanged,
     required TResult orElse(),
@@ -564,6 +708,7 @@ class _$_FilterChanged implements _FilterChanged {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(DroneRepo repo) newBuild,
+    required TResult Function() syncRepos,
     required TResult Function(String value) onSearched,
     required TResult Function(DrawerFilter filter) filterChanged,
   }) {
@@ -575,6 +720,7 @@ class _$_FilterChanged implements _FilterChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(DroneRepo repo)? newBuild,
+    TResult? Function()? syncRepos,
     TResult? Function(String value)? onSearched,
     TResult? Function(DrawerFilter filter)? filterChanged,
   }) {
@@ -586,6 +732,7 @@ class _$_FilterChanged implements _FilterChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(DroneRepo repo)? newBuild,
+    TResult Function()? syncRepos,
     TResult Function(String value)? onSearched,
     TResult Function(DrawerFilter filter)? filterChanged,
     required TResult orElse(),
@@ -601,6 +748,7 @@ class _$_FilterChanged implements _FilterChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_NewBuild value) newBuild,
+    required TResult Function(_SyncRepos value) syncRepos,
     required TResult Function(_OnSearched value) onSearched,
     required TResult Function(_FilterChanged value) filterChanged,
   }) {
@@ -612,6 +760,7 @@ class _$_FilterChanged implements _FilterChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_NewBuild value)? newBuild,
+    TResult? Function(_SyncRepos value)? syncRepos,
     TResult? Function(_OnSearched value)? onSearched,
     TResult? Function(_FilterChanged value)? filterChanged,
   }) {
@@ -623,6 +772,7 @@ class _$_FilterChanged implements _FilterChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_NewBuild value)? newBuild,
+    TResult Function(_SyncRepos value)? syncRepos,
     TResult Function(_OnSearched value)? onSearched,
     TResult Function(_FilterChanged value)? filterChanged,
     required TResult orElse(),
@@ -647,6 +797,7 @@ abstract class _FilterChanged implements HomeEvent {
 /// @nodoc
 mixin _$HomeState {
   HomeStatus get status => throw _privateConstructorUsedError;
+  HomeStatus get syncStatus => throw _privateConstructorUsedError;
   DrawerFilter get filter => throw _privateConstructorUsedError;
   List<DroneRepo> get repos => throw _privateConstructorUsedError;
   List<DroneRepo> get homeRepos => throw _privateConstructorUsedError;
@@ -665,6 +816,7 @@ abstract class $HomeStateCopyWith<$Res> {
   @useResult
   $Res call(
       {HomeStatus status,
+      HomeStatus syncStatus,
       DrawerFilter filter,
       List<DroneRepo> repos,
       List<DroneRepo> homeRepos,
@@ -686,6 +838,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? status = null,
+    Object? syncStatus = null,
     Object? filter = null,
     Object? repos = null,
     Object? homeRepos = null,
@@ -696,6 +849,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as HomeStatus,
+      syncStatus: null == syncStatus
+          ? _value.syncStatus
+          : syncStatus // ignore: cast_nullable_to_non_nullable
               as HomeStatus,
       filter: null == filter
           ? _value.filter
@@ -730,6 +887,7 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
   @useResult
   $Res call(
       {HomeStatus status,
+      HomeStatus syncStatus,
       DrawerFilter filter,
       List<DroneRepo> repos,
       List<DroneRepo> homeRepos,
@@ -749,6 +907,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? syncStatus = null,
     Object? filter = null,
     Object? repos = null,
     Object? homeRepos = null,
@@ -759,6 +918,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as HomeStatus,
+      syncStatus: null == syncStatus
+          ? _value.syncStatus
+          : syncStatus // ignore: cast_nullable_to_non_nullable
               as HomeStatus,
       filter: null == filter
           ? _value.filter
@@ -789,6 +952,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
 class _$_HomeState implements _HomeState {
   const _$_HomeState(
       {this.status = HomeStatus.initial,
+      this.syncStatus = HomeStatus.initial,
       this.filter = DrawerFilter.all,
       final List<DroneRepo> repos = const [],
       final List<DroneRepo> homeRepos = const [],
@@ -801,6 +965,9 @@ class _$_HomeState implements _HomeState {
   @override
   @JsonKey()
   final HomeStatus status;
+  @override
+  @JsonKey()
+  final HomeStatus syncStatus;
   @override
   @JsonKey()
   final DrawerFilter filter;
@@ -836,7 +1003,7 @@ class _$_HomeState implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(status: $status, filter: $filter, repos: $repos, homeRepos: $homeRepos, drawerRepos: $drawerRepos, failureMessage: $failureMessage)';
+    return 'HomeState(status: $status, syncStatus: $syncStatus, filter: $filter, repos: $repos, homeRepos: $homeRepos, drawerRepos: $drawerRepos, failureMessage: $failureMessage)';
   }
 
   @override
@@ -845,6 +1012,8 @@ class _$_HomeState implements _HomeState {
         (other.runtimeType == runtimeType &&
             other is _$_HomeState &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.syncStatus, syncStatus) ||
+                other.syncStatus == syncStatus) &&
             (identical(other.filter, filter) || other.filter == filter) &&
             const DeepCollectionEquality().equals(other._repos, _repos) &&
             const DeepCollectionEquality()
@@ -859,6 +1028,7 @@ class _$_HomeState implements _HomeState {
   int get hashCode => Object.hash(
       runtimeType,
       status,
+      syncStatus,
       filter,
       const DeepCollectionEquality().hash(_repos),
       const DeepCollectionEquality().hash(_homeRepos),
@@ -875,6 +1045,7 @@ class _$_HomeState implements _HomeState {
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {final HomeStatus status,
+      final HomeStatus syncStatus,
       final DrawerFilter filter,
       final List<DroneRepo> repos,
       final List<DroneRepo> homeRepos,
@@ -883,6 +1054,8 @@ abstract class _HomeState implements HomeState {
 
   @override
   HomeStatus get status;
+  @override
+  HomeStatus get syncStatus;
   @override
   DrawerFilter get filter;
   @override

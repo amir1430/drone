@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:auth_repository/auth_repository.dart';
 import 'package:drone/core/core.dart';
 import 'package:drone/features/app/app.dart';
 import 'package:drone/features/home/home.dart';
+import 'package:drone/features/home/widgets/sync_repos_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -42,6 +45,7 @@ class HomePage extends HookWidget {
               onPressed: () => context.openDrawer,
             ),
             actions: [
+              const SyncReposBtn(),
               BlocBuilder<AppBloc, AuthenticationStatus>(
                 builder: (context, state) {
                   return state.maybeWhen(
@@ -90,16 +94,17 @@ class HomePage extends HookWidget {
                 }
                 final reposWithBuild = state.homeRepos.reposWithBuild;
                 return RefreshIndicator(
-                   onRefresh: () async {
-          context.read<HomeBloc>().add(const HomeEvent.started());
-          return;
-        },
+                  onRefresh: () async {
+                    context.read<HomeBloc>().add(const HomeEvent.started());
+                    return;
+                  },
                   child: GridView.builder(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 12,
                     ),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 12,
                       mainAxisSpacing: 12,

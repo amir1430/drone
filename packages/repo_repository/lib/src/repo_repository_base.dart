@@ -69,6 +69,8 @@ class RepoRepository {
 
   Future<List<DroneRepo>> getAllRepos() => _fetch(_client.userSection.repos());
 
+  Future<List<DroneRepo>> syncRepos() => _fetch(_client.userSection.sync());
+
   Future<DroneRepo> enableRepo({
     required String owner,
     required String repoName,

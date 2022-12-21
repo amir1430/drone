@@ -30,6 +30,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<_Started>(_onStarted, transformer: restartable());
     on<_OnSearched>(_onSearched);
     on<_FilterChanged>(_onFilterChanged);
+    on<_SyncRepos>(_onSyncRepos);
   }
 
   late final StreamSubscription<AuthenticationStatus> _appStateSubscription;
@@ -124,5 +125,39 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     await _appStateSubscription.cancel();
     // await _droneEventSubscription.cancel();
     return super.close();
+  }
+
+  Future<void> _onSyncRepos(
+    _SyncRepos event,
+    Emitter<HomeState> emit,
+  ) async {
+    emit(state.copyWith(syncStatus: HomeStatus.loading));
+
+    try {
+      await repoRepository.syncRepos();
+      final repos = await repoRepository.getAllRepos();
+      emit(
+        state.copyWith(
+          syncStatus: HomeStatus.success,
+          repos: [...repos],
+          homeRepos: [...repos],
+          drawerRepos: [...repos],
+        ),
+      );
+    } on DroneException catch (e) {
+      emit(
+        state.copyWith(
+          syncStatus: HomeStatus.failure,
+          failureMessage: e.message,
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          syncStatus: HomeStatus.failure,
+          failureMessage: e.toString(),
+        ),
+      );
+    }
   }
 }

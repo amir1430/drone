@@ -8,6 +8,7 @@ enum HomeStatus { initial, loading, success, failure }
 class HomeState with _$HomeState {
   const factory HomeState({
     @Default(HomeStatus.initial) HomeStatus status,
+    @Default(HomeStatus.initial) HomeStatus syncStatus,
     @Default(DrawerFilter.all) DrawerFilter filter,
     @Default([]) List<DroneRepo> repos,
     @Default([]) List<DroneRepo> homeRepos,
