@@ -21,30 +21,36 @@ class BuildsView extends StatelessWidget {
     return Builder(
       builder: (context) {
         return Scaffold(
-          body: BlocBuilder<BuildsBloc, BuildsState>(
+          body: BlocConsumer<BuildsBloc, BuildsState>(
+            listener: (context, state) {
+              if (state.status == Status.failure) {
+                showDroneSnackbar(
+                  context,
+                  message: 'Somthing went wrong.',
+                  isError: true,
+                );
+              }
+            },
             builder: (context, state) {
               if (state.status == Status.loading) {
                 return const Center(child: CircularProgressIndicator());
               }
-              if (state.status == Status.success) {
-                return _BuildsView(
-                  builds: state.builds,
-                  owner: owner,
-                  repoName: repoName,
-                );
-              }
-              if (state.status == Status.failure) {
-                return DroneErrorWidget(
-                  message: 'Somthing went wrong',
-                  onRetry: () => context.read<BuildsBloc>().add(
-                        BuildsEvent.started(
-                          owner: owner,
-                          repoName: repoName,
-                        ),
-                      ),
-                );
-              }
-              return const SizedBox.shrink();
+              return _BuildsView(
+                builds: state.builds,
+                owner: owner,
+                repoName: repoName,
+              );
+              // if (state.status == Status.failure) {
+              //   return DroneErrorWidget(
+              //     message: 'Somthing went wrong',
+              //     onRetry: () => context.read<BuildsBloc>().add(
+              //           BuildsEvent.started(
+              //             owner: owner,
+              //             repoName: repoName,
+              //           ),
+              //         ),
+              //   );
+              // }
             },
           ),
         );

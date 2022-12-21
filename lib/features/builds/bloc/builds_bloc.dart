@@ -77,7 +77,7 @@ class BuildsBloc extends Bloc<BuildsEvent, BuildsState> {
         ),
       );
     } catch (e) {
-      emit(state.copyWith(status: Status.failure));
+      emit(state.copyWith(status: Status.failure, isLoadingMore: false));
     }
   }
 
