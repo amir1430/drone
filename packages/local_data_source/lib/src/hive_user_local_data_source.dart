@@ -84,6 +84,11 @@ class HiveUserLocalDataSource implements UserLocalDataSource {
   }
 
   @override
+  User? getUserByToken(String token) {
+    return _userBox.get(token);
+  }
+
+  @override
   Future<void> close() async {
     await _currentUserController.close();
     await _usersController.close();

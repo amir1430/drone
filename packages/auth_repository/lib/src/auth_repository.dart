@@ -25,6 +25,8 @@ class AuthRepository {
 
   User? get currentUser => dataSource.currentUser;
 
+  User? getUserByToken(String token) => dataSource.getUserByToken(token);
+
   Stream<User?> get userStream => dataSource.currentUserStream;
 
   Stream<List<User>> get usersStream => dataSource.usersStream;

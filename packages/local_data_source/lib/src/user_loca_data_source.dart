@@ -11,6 +11,8 @@ abstract class UserLocalDataSource {
 
   User? get currentUser;
 
+  User? getUserByToken(String token);
+
   Future<void> add(User user);
 
   Future<void> delete(User user);
