@@ -1,19 +1,6 @@
-import 'package:drone/core/utils/utils.dart';
+import 'package:drone/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-
-// typedef Test<T> = bool Function(T element);
-
-// extension IterableX<T extends Object> on Iterable<T> {
-//   T? firstWhenOrNull(Test<T> test) {
-//     for (var item in this) {
-//       if (test(item)) {
-//         return item;
-//       }
-//     }
-//     return null;
-//   }
-// }
 
 extension BuildContextX on BuildContext {
   Size get size => MediaQuery.of(this).size;
@@ -49,7 +36,6 @@ extension BuildContextX on BuildContext {
       context: this,
       barrierDismissible: dismissible,
       builder: (context) => child,
-      
     );
   }
 }
@@ -88,13 +74,10 @@ extension StatusX on String {
 
   String get subStr8 => substring(0, 8);
 
-  Icon get buildStatusToIcon {
+  Widget get buildStatusToIcon {
     switch (this) {
       case 'running':
-        return const Icon(
-          Ionicons.sync_circle_outline,
-          color: Color(0xff42ab45),
-        );
+        return const RotationSyncIcon(color: Color(0xff42ab45));
       case 'success':
         return const Icon(
           Ionicons.checkmark_circle_outline,
@@ -116,18 +99,17 @@ extension StatusX on String {
           color: Color(0xffe43326),
         );
       case 'pending':
-        return const Icon(
-          Ionicons.sync_circle_outline,
-          color: Color(0xffffa500),
+        return const RotationSyncIcon(
+          color: Color.fromARGB(255, 161, 161, 161),
         );
+
       case 'declined':
         return const Icon(Ionicons.remove_circle_outline);
       case 'skipped':
         return const Icon(Ionicons.remove_circle_outline);
       case 'waiting_on_dependencies':
-        return const Icon(Ionicons.sync_circle_outline);
       case 'blocked':
-        return const Icon(Ionicons.sync_circle_outline);
+        return const RotationSyncIcon();
       default:
         return const Icon(Ionicons.checkmark_done_outline);
     }

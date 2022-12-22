@@ -4,6 +4,7 @@ export 'dialog.dart';
 export 'drone_error_widget.dart';
 export 'icon_btn.dart';
 export 'refresh_button.dart';
+export 'rotation_sync_icon.dart';
 export 'snackbar.dart';
 export 'square_btn.dart';
 export 'text_field.dart';
