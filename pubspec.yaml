@@ -3,7 +3,7 @@ description: A new Flutter project.
 publish_to: "none"
 version: 1.0.0+1
 environment:
-  sdk: ">=2.18.0 <3.0.0"
+  sdk: '>=2.18.6 <3.0.0'
 
 dependencies:
   flutter:
@@ -33,13 +33,15 @@ dependencies:
   flutter_launcher_icons: "^0.11.0"
 
 dev_dependencies:
-  analyzer: ^5.2.0
-  build_runner: ^2.1.8
+  analyzer:
+  build_runner: any
+  go_router_builder: any
+  build_verify: any
   flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
-  freezed: ^2.2.1
-  hive_generator: ^2.0.0
+  freezed: any
+  hive_generator: 
   very_good_analysis: ^3.0.1
 
 flutter:
