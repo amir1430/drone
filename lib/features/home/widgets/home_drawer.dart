@@ -1,8 +1,8 @@
 import 'package:drone/core/core.dart';
+import 'package:drone/features/app/router.dart';
 import 'package:drone/features/home/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({super.key});
@@ -105,13 +105,10 @@ class HomeDrawer extends StatelessWidget {
                       leading: repo.build == null
                           ? const Icon(Icons.minimize_outlined)
                           : repo.build!.status.buildStatusToIcon,
-                      onTap: () => context.pushNamed(
-                        'repo',
-                        params: {
-                          'owner': repo.namespace,
-                          'repo_name': repo.name
-                        },
-                      ),
+                      onTap: () {
+                        RepoRoute(owner: repo.namespace, repoName: repo.name)
+                            .push(context);
+                      },
                     );
                   },
                   childCount: state.drawerRepos.length,

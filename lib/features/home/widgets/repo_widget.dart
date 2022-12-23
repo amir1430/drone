@@ -1,7 +1,7 @@
 import 'package:drone/core/core.dart';
+import 'package:drone/features/app/router.dart';
 import 'package:drone_dart/drone_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class RepoWidget extends StatelessWidget {
   const RepoWidget(
@@ -24,11 +24,8 @@ class RepoWidget extends StatelessWidget {
     final message = build.message;
 
     return SquareBtn(
-      onPressed: () => context.pushNamed(
-        'repo',
-        extra: repo,
-        params: {'owner': namespace, 'repo_name': repo.name},
-      ),
+      onPressed: () =>
+          RepoRoute(owner: namespace, repoName: repoName).push(context),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         child: Column(

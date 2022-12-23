@@ -1,4 +1,5 @@
 import 'package:drone/core/core.dart';
+import 'package:drone/features/app/router.dart';
 import 'package:drone/features/build/build.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -181,20 +182,15 @@ class BuildView extends HookWidget {
                                               .split('/');
                                           final owner = location[2];
                                           final repoName = location[3];
-                                          context.pushNamed(
-                                            'log',
-                                            params: {
-                                              'owner': owner,
-                                              'repo_name': repoName,
-                                              'number': '${build.number}'
-                                            },
-                                            queryParams: {
-                                              'stage_num': '${stage.number}',
-                                              'step_num': '${step.number}',
-                                              'stage_name': stage.name,
-                                              'step_name': step.name,
-                                            },
-                                          );
+                                          LogRoute(
+                                            owner: owner,
+                                            repoName: repoName,
+                                            number: number,
+                                            stageName: stage.name,
+                                            stageNum: '${stage.number}',
+                                            stepName: step.name,
+                                            stepNum: '${step.number}',
+                                          ).push(context);
                                         },
                                       );
                                     })

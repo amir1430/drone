@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:auth_repository/auth_repository.dart';
 import 'package:drone/core/core.dart';
 import 'package:drone/features/app/app.dart';
+import 'package:drone/features/app/router.dart';
 import 'package:drone/features/home/home.dart';
 import 'package:drone/features/home/widgets/sync_repos_btn.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,7 @@ class HomePage extends HookWidget {
                                 .copyWith(color: Colors.white),
                           ),
                         ),
-                        onTap: () => context.pushNamed('settings'),
+                        onTap: () => SettingsRoute().push(context),
                         // onTap: () => context.toDialog(
                         //   child: const SettingView(),
                         // ),

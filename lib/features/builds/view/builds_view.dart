@@ -1,5 +1,6 @@
 import 'package:drone/core/core.dart';
 import 'package:drone/core/widgets/simple_activity.dart';
+import 'package:drone/features/app/router.dart';
 import 'package:drone/features/builds/builds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -95,14 +96,11 @@ class _BuildsView extends StatelessWidget {
                       final location = GoRouter.of(context).location.split('/');
                       final owner = location[2];
                       final repoName = location[3];
-                      context.pushNamed(
-                        'build',
-                        params: {
-                          'owner': owner,
-                          'repo_name': repoName,
-                          'number': '${build.number}'
-                        },
-                      );
+                      BuildRotue(
+                        owner: owner,
+                        repoName: repoName,
+                        number: build.number,
+                      ).push(context);
                     },
                     title: Row(
                       children: [
