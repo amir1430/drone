@@ -36,6 +36,7 @@ class BuildsView extends StatelessWidget {
               if (state.status == Status.loading) {
                 return const Center(child: CircularProgressIndicator());
               }
+
               return _BuildsView(
                 builds: state.builds,
                 owner: owner,
@@ -84,6 +85,55 @@ class _BuildsView extends StatelessWidget {
       },
       child: CustomScrollView(
         slivers: <Widget>[
+          SliverPadding(
+            padding: const EdgeInsets.all(12),
+            sliver: SliverToBoxAdapter(
+              child: SizedBox(
+                height: 200,
+                child: Row(
+                  children: [
+                    Flexible(
+                      flex: 4,
+                      child: Material(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        elevation: 4,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: BlocSelector<BuildsBloc, BuildsState,
+                              List<DroneBuild>>(
+                            selector: (state) {
+                              return [
+                                ...state.builds
+                                    .sublist(
+                                      0,
+                                      builds.length <= 20 ? builds.length : 20,
+                                    )
+                                    .reversed
+                              ];
+                            },
+                            builder: (context, latestBuilds) {
+                              return DroneBarChart(
+                                builds: [...latestBuilds],
+                                callBack: (index) {
+                                  final build = latestBuilds[index];
+                                  BuildRotue(
+                                    owner: owner,
+                                    repoName: repoName,
+                                    number: build.number,
+                                  ).push(context);
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
           SliverPadding(
             padding: const EdgeInsets.all(8),
             sliver: SliverList(

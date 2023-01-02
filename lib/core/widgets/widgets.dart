@@ -1,5 +1,6 @@
 export 'app_bar.dart';
 export 'back_btn.dart';
+export 'bar_chart.dart';
 export 'dialog.dart';
 export 'drone_error_widget.dart';
 export 'icon_btn.dart';
