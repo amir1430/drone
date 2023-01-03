@@ -127,37 +127,3 @@ extension DroneBuildX on DroneBuild {
         (started == 0 ? created : started);
   }
 }
-    
-// extension BuildsX on List<DroneBuild> {
-//   List<DroneBuild> get lastBuilds =>
-//       [...sublist(0, length > 25 ? 24 : length - 1).reversed];
-
-//   int get maxDuration =>
-//       lastBuilds.sorted((a, b) => b.duration.compareTo(a.duration))[0].duration;
-
-//   List<BarChartGroupData> get barChartList {
-//     return [
-//       ...lastBuilds.map(
-//         (e) {
-//           final max = getYTickValues(lastBuilds);
-//           return BarChartGroupData(
-//             x: indexOf(e) + 1,
-//             barRods: [
-//               BarChartRodData(
-//                 toY: double.parse(
-//                   (e.duration == 0
-//                           ? max[max.length - 1] * .16 / 100
-//                           : e.duration / (max[max.length - 1] * .01) / 100)
-//                       .toStringAsFixed(2),
-//                 ),
-//                 color: e.status.toStepStatus() == StepStatus.success
-//                     ? Colors.green
-//                     : Colors.red,
-//               )
-//             ],
-//           );
-//         },
-//       )
-//     ];
-//   }
-// }

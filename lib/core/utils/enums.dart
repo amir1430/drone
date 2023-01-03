@@ -21,7 +21,7 @@ extension DroneStatusX on DroneStatus {
       case DroneStatus.skipped:
       case DroneStatus.waitingOnDependencies:
       case DroneStatus.unknown:
-        return const Color.fromARGB(255, 43, 43, 43);
+        return const Color.fromARGB(255, 163, 163, 163);
     }
   }
 
@@ -31,7 +31,7 @@ extension DroneStatusX on DroneStatus {
         return RotationSyncIcon(color: color);
       case DroneStatus.success:
         return Icon(
-          Ionicons.checkmark_circle_outline,
+          Ionicons.checkmark_circle,
           color: color,
         );
       case DroneStatus.failure:
@@ -39,7 +39,7 @@ extension DroneStatusX on DroneStatus {
       case DroneStatus.killed:
       case DroneStatus.declined:
         return Icon(
-          Ionicons.close_circle_outline,
+          Ionicons.close_circle,
           color: color,
         );
       case DroneStatus.pending:
@@ -49,7 +49,7 @@ extension DroneStatusX on DroneStatus {
       case DroneStatus.waitingOnDependencies:
       case DroneStatus.unknown:
         return Icon(
-          Ionicons.ellipse_outline,
+          Ionicons.remove_circle,
           color: color,
         );
     }

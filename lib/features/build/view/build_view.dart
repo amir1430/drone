@@ -8,6 +8,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:repo_repository/repo_repository.dart';
 
 class BuildView extends HookWidget {
   const BuildView({
@@ -176,6 +177,10 @@ class BuildView extends HookWidget {
                                         leading: step.status.toIcon,
                                         trailing: Text(time),
                                         onTap: () {
+                                          if (step.status ==
+                                              DroneStatus.skipped) {
+                                            return;
+                                          }
                                           final location = GoRouter.of(context)
                                               .location
                                               .split('/');
