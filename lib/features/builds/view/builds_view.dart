@@ -249,15 +249,28 @@ class _BuildsView extends StatelessWidget {
                         const SizedBox(height: 4),
                         SimpleActivity(build),
                         const SizedBox(height: 6),
-                        Text(
-                          build.started.unixToHuman,
-                          style: context.caption?.copyWith(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              build.deployTo == null
+                                  ? build.target.targetToIcon()
+                                  : build.deployTo!.targetToIcon(),
+                              size: 14,
+                              color: context.secondaryColor.withOpacity(.6),
+                            ),
+                            const SizedBox(width: 3),
+                            Text(
+                              '${build.deployTo ?? build.target},'
+                              ' ${build.started.unixToHuman}',
+                              style: context.caption?.copyWith(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   );

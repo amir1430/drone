@@ -126,12 +126,12 @@ class _PushActivity extends _ActivityBase {
               icon: Ionicons.git_commit,
               label: Text(commit.subStr8),
             ),
-            const Text('to'),
-            _ActivityBtn(
-              onPressed: () {},
-              icon: Ionicons.git_branch,
-              label: Text(branch),
-            ),
+            // const Text('to'),
+            // _ActivityBtn(
+            //   onPressed: () {},
+            //   icon: Ionicons.git_branch,
+            //   label: Text(branch),
+            // ),
           ],
         );
 
@@ -162,12 +162,12 @@ class _PullRequestActivity extends _ActivityBase {
               icon: Ionicons.git_pull_request,
               label: Text('# ${ref.extractNumber}'),
             ),
-            const Text('to'),
-            _ActivityBtn(
-              onPressed: () {},
-              icon: Ionicons.git_branch,
-              label: Text(branch),
-            ),
+            // const Text('to'),
+            // _ActivityBtn(
+            //   onPressed: () {},
+            //   icon: Ionicons.git_branch,
+            //   label: Text(branch),
+            // ),
           ],
         );
 
@@ -228,12 +228,12 @@ class _PromoteActivity extends _ActivityBase {
               icon: Icons.numbers_rounded,
               label: Text('$parent'),
             ),
-            const Text('to'),
-            _ActivityBtn(
-              onPressed: () {},
-              icon: Ionicons.cube,
-              label: Text(target),
-            ),
+            // const Text('to'),
+            // _ActivityBtn(
+            //   onPressed: () {},
+            //   icon: Ionicons.cube,
+            //   label: Text(target),
+            // ),
           ],
         );
 
@@ -266,12 +266,12 @@ class _RollbackActivity extends _ActivityBase {
               icon: Ionicons.cube,
               label: Text(target),
             ),
-            const Text('to'),
-            _ActivityBtn(
-              onPressed: () {},
-              icon: Icons.numbers_rounded,
-              label: Text('$parent'),
-            ),
+            // const Text('to'),
+            // _ActivityBtn(
+            //   onPressed: () {},
+            //   icon: Icons.numbers_rounded,
+            //   label: Text('$parent'),
+            // ),
           ],
         );
 
@@ -297,12 +297,12 @@ class _CronActivity extends _ActivityBase {
             Text(
               '$actor executed scheduled task',
             ),
-            const Text('to'),
-            _ActivityBtn(
-              onPressed: () {},
-              icon: Icons.timer_outlined,
-              label: Text(cron),
-            ),
+            // const Text('to'),
+            // _ActivityBtn(
+            //   onPressed: () {},
+            //   icon: Icons.timer_outlined,
+            //   label: Text(cron),
+            // ),
           ],
         );
 
