@@ -7,24 +7,12 @@ import 'package:rxdart/rxdart.dart';
 class RepoRepository {
   RepoRepository({
     required UserLocalDataSource userLocalDataSource,
-  }) : _userLocalDataSource = userLocalDataSource;
-
-  final UserLocalDataSource _userLocalDataSource;
-
-  late StreamSubscription<User?>? _currentUserStreamSubscription;
-  late StreamSubscription<List<User>>? _usersStreamSubscription;
-  late StreamSubscription<DroneEvent>? _newRepoEventsubscription;
-
-  late StreamController<DroneEvent?> _newRepoEventcontroller;
-
-  late DroneClient _client;
-
-  Future<void> init() async {
+  }) : _userLocalDataSource = userLocalDataSource {
     _newRepoEventcontroller = BehaviorSubject();
 
     _currentUserStreamSubscription =
-        _userLocalDataSource.currentUserStream.listen((currentUser) {
-
+        _userLocalDataSource.currentUserStream.listen((currentUser) async {
+      await _newRepoEventsubscription?.cancel();
       if (currentUser != null) {
         _client = currentUser.client;
 
@@ -38,12 +26,26 @@ class RepoRepository {
         _userLocalDataSource.usersStream.listen((users) {});
   }
 
+  final UserLocalDataSource _userLocalDataSource;
+
+  StreamSubscription<User?>? _currentUserStreamSubscription;
+  StreamSubscription<List<User>>? _usersStreamSubscription;
+  StreamSubscription<DroneEvent>? _newRepoEventsubscription;
+
+  late StreamController<DroneEvent?> _newRepoEventcontroller;
+
+  late DroneClient _client;
+
   Future<void> close() async {
     await _newRepoEventcontroller.close();
 
     await _newRepoEventsubscription?.cancel();
     await _usersStreamSubscription?.cancel();
     await _currentUserStreamSubscription?.cancel();
+  }
+
+  Future<void> cancelnewRepoEventsubscription() async {
+    await _newRepoEventsubscription?.cancel();
   }
 
   Stream<DroneEvent?> get newRepoEvent => _newRepoEventcontroller.stream;

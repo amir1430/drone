@@ -23,7 +23,7 @@ Future<void> initSl() async {
     ..registerFactory<HomeBloc>(
       () => HomeBloc(
         authRepository: sl(),
-        repoRepository: sl()..init(),
+        repoRepository: sl(),
       ),
     )
     ..registerFactory<RepoSettingsBloc>(
@@ -69,6 +69,9 @@ Future<void> initSl() async {
     )
     ..registerLazySingleton<RepoRepository>(
       () => RepoRepository(userLocalDataSource: sl()),
+      dispose: (instance) async {
+        await instance.close();
+      },
     )
     ..registerLazySingleton<Box<User>>(
       () => Hive.box<User>('users_box'),
@@ -80,10 +83,25 @@ Future<void> initSl() async {
     );
 }
 
-extension GetItX on GetIt {
-  void resetRepoRepository() {
-    resetLazySingleton<RepoRepository>(
-      disposingFunction: (instance) async => instance.close(),
-    );
-  }
-}
+// extension GetItX on GetIt {
+//   Future<void> resetRepoRepository() async {
+//     await resetLazySingleton<RepoRepository>(
+//       // instance: RepoRepository(userLocalDataSource: this()),
+//     );
+
+//     // if (isRegistered<RepoRepository>()) {
+
+//     //   registerSingleton<RepoRepository>(
+//     //     RepoRepository(
+//     //       userLocalDataSource: this(),
+//     //     ),
+//     //   );
+//     // } else {
+//     //   registerSingleton<RepoRepository>(
+//     //     RepoRepository(
+//     //       userLocalDataSource: this(),
+//     //     ),
+//     //   );
+//     // }
+//   }
+// }

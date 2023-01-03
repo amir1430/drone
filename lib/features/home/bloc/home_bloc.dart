@@ -25,8 +25,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
     });
 
-    // _droneEventSubscription = repoRepository.newRepoEvent.listen((event) {});
-
     on<_Started>(_onStarted, transformer: restartable());
     on<_OnSearched>(_onSearched);
     on<_FilterChanged>(_onFilterChanged);
@@ -34,7 +32,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   late final StreamSubscription<AuthenticationStatus> _appStateSubscription;
-  // late final StreamSubscription<DroneEvent?> _droneEventSubscription;
 
   final RepoRepository repoRepository;
   final AuthRepository authRepository;
