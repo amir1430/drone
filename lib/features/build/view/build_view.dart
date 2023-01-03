@@ -152,7 +152,7 @@ class BuildView extends HookWidget {
                                   start: stage.started,
                                 );
                                 return ExpansionTile(
-                                  leading: stage.status.buildStatusToIcon,
+                                  leading: stage.status.toIcon,
                                   trailing: Text(time),
                                   controlAffinity:
                                       ListTileControlAffinity.leading,
@@ -174,7 +174,7 @@ class BuildView extends HookWidget {
 
                                       return ListTile(
                                         title: Text(step.name),
-                                        leading: step.status.buildStatusToIcon,
+                                        leading: step.status.toIcon,
                                         trailing: Text(time),
                                         onTap: () {
                                           final location = GoRouter.of(context)

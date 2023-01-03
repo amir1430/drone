@@ -45,75 +45,7 @@ extension StatusX on String {
     return RegExp(r'\d+').firstMatch(this)?[0];
   }
 
-  StepStatus toStepStatus() {
-    switch (this) {
-      case 'error':
-        return StepStatus.error;
-      case 'running':
-        return StepStatus.running;
-      case 'pending':
-        return StepStatus.pending;
-      case 'success':
-        return StepStatus.success;
-      case 'declined':
-        return StepStatus.declined;
-      case 'failure':
-        return StepStatus.failure;
-      case 'killed':
-        return StepStatus.killed;
-      case 'skipped':
-        return StepStatus.skipped;
-      case 'waiting_on_dependencies':
-        return StepStatus.waiting;
-      case 'blocked':
-        return StepStatus.blocked;
-      default:
-        return StepStatus.unknown;
-    }
-  }
-
   String get subStr8 => substring(0, 8);
-
-  Widget get buildStatusToIcon {
-    switch (this) {
-      case 'running':
-        return const RotationSyncIcon(color: Color(0xff42ab45));
-      case 'success':
-        return const Icon(
-          Ionicons.checkmark_circle_outline,
-          color: Color(0xff42ab45),
-        );
-      case 'failure':
-        return const Icon(
-          Ionicons.close_circle_outline,
-          color: Color(0xffe43326),
-        );
-      case 'error':
-        return const Icon(
-          Ionicons.close_circle_outline,
-          color: Color(0xffe43326),
-        );
-      case 'killed':
-        return const Icon(
-          Ionicons.remove_circle_outline,
-          color: Color(0xffe43326),
-        );
-      case 'pending':
-        return const RotationSyncIcon(
-          color: Color.fromARGB(255, 161, 161, 161),
-        );
-
-      case 'declined':
-        return const Icon(Ionicons.remove_circle_outline);
-      case 'skipped':
-        return const Icon(Ionicons.remove_circle_outline);
-      case 'waiting_on_dependencies':
-      case 'blocked':
-        return const RotationSyncIcon();
-      default:
-        return const Icon(Ionicons.checkmark_done_outline);
-    }
-  }
 
   IconData targetToIcon() {
     switch (this) {

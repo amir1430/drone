@@ -62,8 +62,8 @@ class RepoWidget extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.topRight,
                     child: Tooltip(
-                      message: status,
-                      child: status.buildStatusToIcon,
+                      message: status.status,
+                      child: status.toIcon,
                     ),
                   ),
                 )

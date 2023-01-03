@@ -104,7 +104,7 @@ class HomeDrawer extends StatelessWidget {
                       ),
                       leading: repo.build == null
                           ? const Icon(Icons.minimize_outlined)
-                          : repo.build!.status.buildStatusToIcon,
+                          : repo.build!.status.toIcon,
                       onTap: () {
                         RepoRoute(owner: repo.namespace, repoName: repo.name)
                             .push(context);

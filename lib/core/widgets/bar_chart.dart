@@ -27,15 +27,7 @@ class DroneBarChart extends HookWidget {
         final withHeight = builds.map((e) {
           final value = e.duration / (max * .01) / 100;
           final status = e.status;
-          late Color color;
-          if (status == DroneStatus.success) {
-            color = Colors.green;
-          } else if (status == DroneStatus.pending ||
-              status == DroneStatus.running) {
-            color = Colors.yellow.shade700;
-          } else {
-            color = Colors.red;
-          }
+
           return BarChartGroupData(
             x: 0,
             barRods: [
@@ -43,7 +35,7 @@ class DroneBarChart extends HookWidget {
                 toY: value == 0
                     ? (max * .001)
                     : double.parse(value.toStringAsFixed(2)),
-                color: color,
+                color: status.color,
               ),
             ],
           );

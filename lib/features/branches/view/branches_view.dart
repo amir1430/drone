@@ -38,7 +38,7 @@ class BranchesView extends StatelessWidget {
                     leading: CircleAvatar(
                       backgroundImage: NetworkImage(branch.authorAvatar),
                     ),
-                    trailing: branch.status.buildStatusToIcon,
+                    trailing: branch.status.toIcon,
                     title: Text(
                       branch.message,
                       maxLines: 2,

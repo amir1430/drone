@@ -41,7 +41,7 @@ class DeploymentsView extends StatelessWidget {
                     leading: CircleAvatar(
                       backgroundImage: NetworkImage(deployment.authorAvatar),
                     ),
-                    trailing: deployment.status.buildStatusToIcon,
+                    trailing: deployment.status.toIcon,
                     title: Text('${deployment.sender}/ ${deployment.deployTo}'),
                     subtitle: Text(deployment.message),
                   );

@@ -129,6 +129,72 @@ class _BuildsView extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(width: 12),
+                    Flexible(
+                      flex: 2,
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Material(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              elevation: 4,
+                              child: Center(
+                                child: ListTile(
+                                  title: Text(
+                                    'Last status',
+                                    style:
+                                        context.caption!.copyWith(fontSize: 12),
+                                  ),
+                                  subtitle: BlocSelector<BuildsBloc,
+                                      BuildsState, DroneStatus>(
+                                    selector: (state) {
+                                      return state.latestBuild.status;
+                                    },
+                                    builder: (context, status) {
+                                      return Text(
+                                        status.status,
+                                        style: context.headline2!
+                                            .copyWith(color: status.color),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          Expanded(
+                            child: Material(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              elevation: 4,
+                              child: Center(
+                                child: ListTile(
+                                  title: Text(
+                                    'Last status',
+                                    style:
+                                        context.caption!.copyWith(fontSize: 14),
+                                  ),
+                                  subtitle: BlocSelector<BuildsBloc,
+                                      BuildsState, DroneStatus>(
+                                    selector: (state) {
+                                      return state.latestBuild.status;
+                                    },
+                                    builder: (context, status) {
+                                      return Text(
+                                        status.status,
+                                        style: context.headline2!.copyWith(),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -173,8 +239,8 @@ class _BuildsView extends StatelessWidget {
                       ],
                     ),
                     trailing: Tooltip(
-                      message: build.status,
-                      child: build.status.buildStatusToIcon,
+                      message: build.status.status,
+                      child: build.status.toIcon,
                     ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
