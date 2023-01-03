@@ -6,7 +6,9 @@ import 'package:drone/features/build/bloc/build_log_bloc/build_log_bloc.dart';
 import 'package:drone/features/builds/bloc/builds_bloc.dart';
 import 'package:drone/features/deployments/bloc/deployments_bloc.dart';
 import 'package:drone/features/home/bloc/home_bloc.dart';
+import 'package:drone/features/login/cubit/login_cubit.dart';
 import 'package:drone/features/repo_settings/bloc/repo_setting_bloc.dart';
+import 'package:drone/features/setting/bloc/setting_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:repo_repository/repo_repository.dart';
@@ -50,6 +52,16 @@ Future<void> initSl() async {
     ..registerFactory<BuildBloc>(
       () => BuildBloc(
         repository: sl(),
+      ),
+    )
+    ..registerFactory<SettingBloc>(
+      () => SettingBloc(
+        authRepository: sl(),
+      ),
+    )
+    ..registerFactory<LoginCubit>(
+      () => LoginCubit(
+        authRepository: sl(),
       ),
     )
     ..registerLazySingleton<AuthRepository>(

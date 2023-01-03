@@ -1,10 +1,10 @@
-import 'package:auth_repository/auth_repository.dart';
 import 'package:drone/core/core.dart';
 import 'package:drone/features/login/cubit/login_cubit.dart';
 import 'package:drone/features/login/widget/nick_name_text_field.dart';
 import 'package:drone/features/login/widget/server_text_field.dart';
 import 'package:drone/features/login/widget/submit_button.dart';
 import 'package:drone/features/login/widget/token_text_field.dart';
+import 'package:drone/sl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -15,9 +15,8 @@ class NewAccountDiolog extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          LoginCubit(authRepository: context.read<AuthRepository>()),
+    return BlocProvider<LoginCubit>(
+      create: (context) => sl(),
       child: const _NewAccountDiolog(),
     );
   }

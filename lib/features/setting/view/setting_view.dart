@@ -3,6 +3,7 @@ import 'package:drone/core/core.dart';
 import 'package:drone/features/app/app.dart';
 import 'package:drone/features/login/login.dart';
 import 'package:drone/features/setting/bloc/setting_bloc.dart';
+import 'package:drone/sl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -15,10 +16,8 @@ class SettingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SettingBloc(
-        authRepository: context.read<AuthRepository>(),
-      )..add(const SettingEvent.started()),
+    return BlocProvider<SettingBloc>(
+      create: (context) => sl()..add(const SettingEvent.started()),
       // child: const _SettingBody(),
       child: const _SettingBody(),
     );
