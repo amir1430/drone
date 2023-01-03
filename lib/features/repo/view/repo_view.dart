@@ -94,6 +94,9 @@ class _RepoView extends HookWidget {
             indicatorSize: TabBarIndicatorSize.label,
             labelColor: context.secondaryColor,
             unselectedLabelColor: context.secondaryColor.withOpacity(.4),
+            labelStyle: context.headline2?.copyWith(fontSize: 16),
+            labelPadding:
+                const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
             tabs: const [
               Tab(text: 'Builds'),
               Tab(text: 'Branches'),
@@ -110,7 +113,9 @@ class _RepoView extends HookWidget {
             Expanded(
               child: TabBarView(
                 controller: tabController,
-                physics: const NeverScrollableScrollPhysics(),
+                physics: isActive.value
+                    ? ScrollConfiguration.of(context).getScrollPhysics(context)
+                    : const NeverScrollableScrollPhysics(),
                 children: [
                   BuildsView(owner: owner, repoName: repoName),
                   BranchesView(owner: owner, repoName: repoName),
