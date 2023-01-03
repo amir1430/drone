@@ -4,10 +4,10 @@ import 'package:drone/features/builds/builds.dart';
 import 'package:drone/features/deployments/deployments.dart';
 import 'package:drone/features/repo_settings/bloc/repo_setting_bloc.dart';
 import 'package:drone/features/repo_settings/view/repo_settings_view.dart';
+import 'package:drone/sl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:repo_repository/repo_repository.dart';
 
 class RepoView extends StatelessWidget {
   const RepoView({
@@ -23,26 +23,22 @@ class RepoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
+        BlocProvider<RepoSettingsBloc>(
           lazy: false,
-          create: (context) => RepoSettingsBloc(
-            repoRepository: context.read<RepoRepository>(),
-          )..add(RepoSettingsEvent.started(owner: owner, repoName: repoName)),
+          create: (context) => sl()
+            ..add(RepoSettingsEvent.started(owner: owner, repoName: repoName)),
         ),
-        BlocProvider(
-          create: (context) => BuildsBloc(
-            repoRepository: context.read<RepoRepository>(),
-          )..add(BuildsEvent.started(owner: owner, repoName: repoName)),
+        BlocProvider<BuildsBloc>(
+          create: (context) =>
+              sl()..add(BuildsEvent.started(owner: owner, repoName: repoName)),
         ),
-        BlocProvider(
-          create: (context) => BranchesBloc(
-            repoRepository: context.read<RepoRepository>(),
-          )..add(BranchesEvent.started(owner: owner, repoName: repoName)),
+        BlocProvider<BranchesBloc>(
+          create: (context) => sl()
+            ..add(BranchesEvent.started(owner: owner, repoName: repoName)),
         ),
-        BlocProvider(
-          create: (context) => DeploymentsBloc(
-            repoRepository: context.read<RepoRepository>(),
-          )..add(DeploymentsEvent.started(owner: owner, repoName: repoName)),
+        BlocProvider<DeploymentsBloc>(
+          create: (context) => sl()
+            ..add(DeploymentsEvent.started(owner: owner, repoName: repoName)),
         )
       ],
       child: _RepoView(owner: owner, repoName: repoName),

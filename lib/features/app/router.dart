@@ -7,6 +7,7 @@ import 'package:drone/features/home/home.dart';
 import 'package:drone/features/login/login.dart';
 import 'package:drone/features/repo/repo.dart';
 import 'package:drone/features/setting/setting.dart';
+import 'package:drone/sl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -59,11 +60,8 @@ class HomeRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return _PageBuilder.builder(
       key: state.pageKey,
-      child: BlocProvider(
-        create: (context) => HomeBloc(
-          authRepository: context.read(),
-          repoRepository: context.read()..init(),
-        ),
+      child: BlocProvider<HomeBloc>(
+        create: (context) => sl(),
         child: const HomeView(),
       ),
     );

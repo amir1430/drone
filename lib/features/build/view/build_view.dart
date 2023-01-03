@@ -1,13 +1,13 @@
 import 'package:drone/core/core.dart';
 import 'package:drone/features/app/router.dart';
 import 'package:drone/features/build/build.dart';
+import 'package:drone/sl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:repo_repository/repo_repository.dart';
 
 class BuildView extends HookWidget {
   const BuildView({
@@ -28,10 +28,9 @@ class BuildView extends HookWidget {
     final x = Tween<double>(begin: 0, end: 60).animate(animCont);
     final w = useAnimation(x);
 
-    return BlocProvider(
-      create: (context) => BuildBloc(
-        repository: context.read<RepoRepository>(),
-      )..add(BuildEvent.started(number: number, owner: owner, repoName: name)),
+    return BlocProvider<BuildBloc>(
+      create: (context) => sl()
+        ..add(BuildEvent.started(number: number, owner: owner, repoName: name)),
       child: BlocListener<BuildBloc, BuildState>(
         listener: (context, state) {
           state.whenOrNull(

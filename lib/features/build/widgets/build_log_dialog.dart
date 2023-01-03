@@ -1,8 +1,8 @@
 import 'package:drone/core/core.dart';
 import 'package:drone/features/build/bloc/build_log_bloc/build_log_bloc.dart';
+import 'package:drone/sl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:repo_repository/repo_repository.dart';
 
 class BuildLogDialog extends StatelessWidget {
   const BuildLogDialog({
@@ -26,14 +26,15 @@ class BuildLogDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BuildLogBloc(
-        repoRepository: context.read<RepoRepository>(),
-        number: number,
-        stage: stageNum,
-        step: stepNum,
-        owner: owner,
-        name: name,
+    return BlocProvider<BuildLogBloc>(
+      create: (context) => sl.get(
+        param1: BuildLogBlocParams(
+          stage: stageNum,
+          step: stepNum,
+          owner: owner,
+          name: name,
+          number: number,
+        ),
       ),
       lazy: false,
       child: Scaffold(

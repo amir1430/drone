@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:drone/features/app/app.dart';
+import 'package:drone/sl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,9 @@ Future<void> main() async {
       // Hive
       await Hive.initFlutter();
       Hive.registerAdapter(HiveUserAdapter());
-      final usersBox = await Hive.openBox<User>('users_box');
+      await Hive.openBox<User>('users_box');
+
+      await initSl();
 
       await SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
@@ -32,11 +35,7 @@ Future<void> main() async {
         ),
       );
 
-      runApp(
-        App(
-          userBox: usersBox,
-        ),
-      );
+      runApp(const App());
     },
     (_, __) {},
   );
