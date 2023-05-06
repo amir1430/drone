@@ -9,15 +9,13 @@ class ServerTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) =>
-          previous.server.value != current.server.value,
-      builder: (context, state) {
+    return BlocSelector<LoginCubit, LoginState, ServerField>(
+      selector: (state) => state.server,
+      builder: (context, server) {
         return DroneTextField(
           onChange: context.read<LoginCubit>().serverInputFieldChanged,
           label: 'Server',
-          errorText:
-              state.server.invalid ? ServerFieldError.invalid.text : null,
+          errorText: server.displayError?.text,
         );
       },
     );

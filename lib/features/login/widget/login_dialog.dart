@@ -29,7 +29,7 @@ class _NewAccountDiolog extends HookWidget {
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
-        if (state.status == FormzStatus.submissionFailure) {
+        if (state.status == FormzSubmissionStatus.failure) {
           showDroneSnackbar(context, message: state.error!, isError: true);
         }
       },

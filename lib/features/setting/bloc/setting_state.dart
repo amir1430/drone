@@ -1,9 +1,9 @@
 part of 'setting_bloc.dart';
 
 @freezed
-class SettingState with _$SettingState {
+class SettingState with _$SettingState, FormzMixin {
   const factory SettingState({
-    @Default(FormzStatus.pure) FormzStatus status,
+    @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus status,
     @Default(TokenField.pure()) TokenField token,
     @Default(ServerField.pure()) ServerField server,
     @Default(NickNameField.pure()) NickNameField nickName,
@@ -14,7 +14,7 @@ class SettingState with _$SettingState {
 
   factory SettingState.fromUser(User user) {
     return SettingState(
-      status: FormzStatus.pure,
+      status: FormzSubmissionStatus.initial,
       server: ServerField.pure(user.server),
       nickName: NickNameField.pure(user.nickName),
       token: TokenField.pure(user.token),
@@ -23,4 +23,11 @@ class SettingState with _$SettingState {
   }
 
   const SettingState._();
+
+  @override
+  List<FormzInput<dynamic, dynamic>> get inputs => [
+        token,
+        server,
+        nickName,
+      ];
 }

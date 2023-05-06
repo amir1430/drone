@@ -1,9 +1,9 @@
 import 'package:drone/core/core.dart';
 import 'package:drone/features/repo_settings/bloc/repo_setting_bloc.dart';
-import 'package:drone_dart/drone_dart.dart' as drone;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:repo_repository/repo_repository.dart' as drone;
 
 class SettingsView extends StatelessWidget {
   const SettingsView({
@@ -33,7 +33,8 @@ class SettingsView extends StatelessWidget {
                     // const SizedBox(height: 12,),
                     if (repo.permissions != null && !repo.permissions!.admin)
                       const Text(
-                        'Please contact the repository administrator to activate this repository.',
+                        'Please contact the repository'
+                        ' administrator to activate this repository.',
                       ),
                     if (repo.permissions != null && repo.permissions!.admin)
                       TextButton(

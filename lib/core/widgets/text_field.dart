@@ -10,7 +10,7 @@ class DroneTextField extends StatelessWidget {
     this.controller,
     this.onChange,
     this.errorText,
-    this.elevation = 4,
+    this.elevation = 0,
     this.initialValue,
     this.color = Colors.white,
     this.border = InputBorder.none,
@@ -28,26 +28,41 @@ class DroneTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      clipBehavior: Clip.antiAlias,
-      borderRadius: BorderRadius.circular(12),
-      color: color,
-      shadowColor: Theme.of(context).colorScheme.primary.withOpacity(.1),
-      elevation: elevation,
-      child: TextFormField(
-        initialValue: initialValue,
-        enabled: enabled,
-        controller: controller,
-        onChanged: onChange,
-        decoration: InputDecoration(
-          labelText: label,
-          errorText: errorText,
-          // labelStyle: const TextStyle(fontSize: ),
-          border: border,
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: 8,
-            horizontal: 12,
-          ),
+    return TextFormField(
+      initialValue: initialValue,
+      enabled: enabled,
+      controller: controller,
+      onChanged: onChange,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white70,
+        labelText: label,
+        labelStyle: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+        floatingLabelStyle:
+            TextStyle(color: Theme.of(context).colorScheme.secondary),
+        errorText: errorText,
+        border: OutlineInputBorder(
+          borderSide:
+              const BorderSide(color: Color.fromARGB(255, 228, 228, 228)),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide:
+              const BorderSide(color: Color.fromARGB(255, 228, 228, 228)),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide:
+              BorderSide(color: Theme.of(context).colorScheme.secondary),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 12,
         ),
       ),
     );

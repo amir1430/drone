@@ -1,4 +1,3 @@
-import 'package:auth_repository/auth_repository.dart';
 import 'package:drone/core/core.dart';
 import 'package:drone/features/app/app.dart';
 import 'package:drone/features/app/router.dart';
@@ -28,7 +27,6 @@ class HomePage extends HookWidget {
         children: [
           DroneAppBar(
             title: DroneTextField(
-              elevation: 0,
               label: 'search',
               controller: searchController,
               color: context.theme.scaffoldBackgroundColor.withOpacity(.3),
@@ -37,7 +35,6 @@ class HomePage extends HookWidget {
                   .add(HomeEvent.onSearched(value: value)),
             ),
             leading: IconBtn(
-              color: context.secondaryColor,
               icon: Ionicons.grid_outline,
               toolTip: 'Repositories',
               onPressed: () => context.openDrawer,
@@ -61,7 +58,7 @@ class HomePage extends HookWidget {
                                 .copyWith(color: Colors.white),
                           ),
                         ),
-                        onTap: () => SettingsRoute().push(context),
+                        onTap: () => SettingsRoute().push<void>(context),
                         // onTap: () => context.toDialog(
                         //   child: const SettingView(),
                         // ),
@@ -106,7 +103,7 @@ class HomePage extends HookWidget {
                       crossAxisCount: 2,
                       crossAxisSpacing: 12,
                       mainAxisSpacing: 12,
-                      childAspectRatio: 1.2,
+                      childAspectRatio: 1.8,
                     ),
                     itemCount: reposWithBuild.length,
                     itemBuilder: (BuildContext context, int index) {

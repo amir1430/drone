@@ -14,6 +14,5 @@ dependencies:
   rxdart: ^0.27.7
   local_data_source: 
     path: ../local_data_source
-  drone_dart: 
-    path: D:/Drone-sdk/drone-dart
   awesome_notifications: ^0.7.4+1
+  drone_dart: ^1.2.1

@@ -16,13 +16,13 @@ extension BuildContextX on BuildContext {
   Color get backgroundColor => theme.scaffoldBackgroundColor;
 
   TextTheme get textTheme => theme.textTheme;
-  TextStyle? get headline1 => textTheme.headline1;
-  TextStyle? get headline2 => textTheme.headline2;
-  TextStyle? get headline3 => textTheme.headline3;
-  TextStyle? get headline4 => textTheme.headline4;
-  TextStyle? get headline5 => textTheme.headline5;
-  TextStyle? get headline6 => textTheme.headline6;
-  TextStyle? get caption => textTheme.caption;
+  TextStyle? get headline1 => textTheme.displayLarge;
+  TextStyle? get headline2 => textTheme.displayMedium;
+  TextStyle? get headline3 => textTheme.displaySmall;
+  TextStyle? get headline4 => textTheme.headlineMedium;
+  TextStyle? get headline5 => textTheme.headlineSmall;
+  TextStyle? get headline6 => textTheme.titleLarge;
+  TextStyle? get caption => textTheme.bodySmall;
 
   ScaffoldState get scaffold => Scaffold.of(this);
   ScaffoldMessengerState get scaffoldMessenger => ScaffoldMessenger.of(this);
@@ -63,14 +63,15 @@ extension IntX on int {
 String _format(
   int date,
 ) {
-  final _clock = DateTime.now();
-  final _date = DateTime.fromMillisecondsSinceEpoch(date);
-  var elapsed = _clock.millisecondsSinceEpoch ~/ 1000 - date;
+  final clock = DateTime.now();
+  final date0 = DateTime.fromMillisecondsSinceEpoch(date);
+  var elapsed = clock.millisecondsSinceEpoch ~/ 1000 - date;
 
-  String prefix, suffix;
+  String prefix;
+  String suffix;
 
   if (elapsed < 0) {
-    elapsed = _date.isBefore(_clock) ? elapsed : elapsed.abs();
+    elapsed = date0.isBefore(clock) ? elapsed : elapsed.abs();
     prefix = _Messages.prefixFromNow();
     suffix = _Messages.suffixFromNow();
   } else {

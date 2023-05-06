@@ -1,6 +1,6 @@
 import 'package:drone/core/core.dart';
-import 'package:drone_dart/drone_dart.dart';
 import 'package:flutter/material.dart';
+import 'package:repo_repository/repo_repository.dart';
 
 class DroneErrorWidget extends StatelessWidget {
   const DroneErrorWidget({
@@ -20,11 +20,11 @@ class DroneErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late final String _message;
-    if (message is DroneException) {
-      _message = (message as DroneException).message;
+    late final String message;
+    if (this.message is DroneException) {
+      message = (this.message as DroneException).message;
     } else {
-      _message = '$message';
+      message = '${this.message}';
     }
     return Padding(
       padding: const EdgeInsets.all(12),
@@ -33,7 +33,7 @@ class DroneErrorWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              _message,
+              message,
               maxLines: 3,
               style: style ?? context.headline5,
             ),

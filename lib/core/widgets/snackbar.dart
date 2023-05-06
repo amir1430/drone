@@ -27,7 +27,9 @@ void showDroneSnackbar(
   context.scaffoldMessenger.showSnackBar(
     DroneSnackbar(
       message: message,
-      color: isError == true ? Colors.red : context.colorScheme.primary,
+      color: isError != null && isError == true
+          ? Colors.red
+          : context.colorScheme.primary,
     ),
   );
 }

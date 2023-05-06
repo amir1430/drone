@@ -23,8 +23,8 @@ class AppRouter {
       initialLocation: SplashRoute().location,
       refreshListenable: _GoRouterRefreshStream(appBloc.stream),
       redirect: (context, state) async {
-        final _isGoingToLogin = state.subloc == LoginRoute().location;
-        final _isInSplash = state.subloc == SplashRoute().location;
+        final isGoingToLogin = state.matchedLocation == LoginRoute().location;
+        final isInSplash = state.matchedLocation == SplashRoute().location;
 
         return appBloc.state.when(
           unknown: () => null,
@@ -33,9 +33,9 @@ class AppRouter {
               return deferredPath;
             }
 
-            return _isGoingToLogin || _isInSplash ? HomeRoute().location : null;
+            return isGoingToLogin || isInSplash ? HomeRoute().location : null;
           },
-          unAuthenticated: () => _isGoingToLogin ? null : LoginRoute().location,
+          unAuthenticated: () => isGoingToLogin ? null : LoginRoute().location,
         );
       },
       routes: $appRoutes,

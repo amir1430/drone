@@ -5,6 +5,8 @@ import 'package:drone/sl.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -19,19 +21,27 @@ class App extends StatelessWidget {
           create: (context) => sl()..add(const AppEvent.started()),
         ),
       ],
-      child: const _App(),
+      child: Builder(
+        builder: (context) {
+          return _App(context.read());
+        },
+      ),
     );
   }
 }
 
-class _App extends StatelessWidget {
-  const _App();
+class _App extends HookWidget {
+  _App(this.appBloc)
+      : router = AppRouter.router(
+          appBloc: appBloc,
+        );
+
+  final AppBloc appBloc;
+
+  late final GoRouter router;
 
   @override
   Widget build(BuildContext context) {
-    final router = AppRouter.router(
-      appBloc: context.read<AppBloc>(),
-    );
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'drone app',

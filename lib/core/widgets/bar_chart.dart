@@ -65,7 +65,7 @@ class DroneBarChart extends HookWidget {
             getTooltipItem: (group, groupIndex, rod, rodIndex) {
               return BarTooltipItem(
                 '#.${builds[groupIndex].number}',
-                context.textTheme.caption!.copyWith(
+                context.textTheme.bodySmall!.copyWith(
                   color: Colors.white,
                 ),
               );

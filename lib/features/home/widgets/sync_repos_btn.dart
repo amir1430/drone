@@ -37,9 +37,12 @@ class SyncReposBtn extends HookWidget {
               context.read<HomeBloc>().add(const HomeEvent.syncRepos()),
           child: Transform.rotate(
             angle: angle,
-            child:  Icon(
+            child: Icon(
               Ionicons.sync,
-              color: Colors.blue.shade800,
+              color: animationController.isAnimating
+                  ? context.primaryColor
+                  : context.secondaryColor,
+              // color: Theme.of(context).colorScheme.secondary,
             ),
           ),
         );

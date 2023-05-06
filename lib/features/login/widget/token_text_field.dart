@@ -9,14 +9,13 @@ class TokenTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) =>
-          previous.token.value != current.token.value,
-      builder: (context, state) {
+    return BlocSelector<LoginCubit, LoginState, TokenField>(
+      selector: (state) => state.token,
+      builder: (context, token) {
         return DroneTextField(
           onChange: context.read<LoginCubit>().tokenInputFieldChanged,
           label: 'Token',
-          errorText: state.token.invalid ? TokenFieldError.invalid.text : null,
+          errorText: token.displayError?.text,
         );
       },
     );

@@ -1,15 +1,24 @@
 part of 'login_cubit.dart';
 
 @freezed
-class LoginState with _$LoginState {
+class LoginState with _$LoginState, FormzMixin {
   const factory LoginState({
-    @Default(FormzStatus.pure) FormzStatus status,
     @Default(ServerField.pure()) ServerField server,
     @Default(TokenField.pure()) TokenField token,
     @Default(NickNameField.pure()) NickNameField nickName,
+    @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus status,
     Color? color,
     String? error,
   }) = _LoginState;
+
+  const LoginState._();
+
+  @override
+  List<FormzInput<dynamic, dynamic>> get inputs => [
+        server,
+        token,
+        nickName,
+      ];
 }
 
 Color _randomColor() {

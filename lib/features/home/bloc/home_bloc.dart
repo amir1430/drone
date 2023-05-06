@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:auth_repository/auth_repository.dart';
-import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:repo_repository/repo_repository.dart';
 
@@ -76,23 +76,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         if (droneEvent == null) {
           return state;
         }
-        final _repos = state.repos;
-        final _isInRepos = _repos
+        final repos0 = state.repos;
+        final isInRepos = repos0
             .firstWhereOrNull((element) => element.id == droneEvent.repo.id);
-        final _new = <DroneRepo>[
+        final newRepo = <DroneRepo>[
           droneEvent.repo,
-          if (_isInRepos == null)
-            ..._repos
+          if (isInRepos == null)
+            ...repos0
           else
-            ..._repos.where(
-              (element) => element.id != _isInRepos.id,
+            ...repos0.where(
+              (element) => element.id != isInRepos.id,
             )
         ];
 
         return state.copyWith(
-          repos: [..._new],
-          drawerRepos: [..._new],
-          homeRepos: [..._new],
+          repos: [...newRepo],
+          drawerRepos: [...newRepo],
+          homeRepos: [...newRepo],
         );
       },
     );
@@ -102,9 +102,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     _OnSearched event,
     Emitter<HomeState> emit,
   ) async {
-    final _filterdRepos =
+    final filterdRepos =
         state.repos.where((element) => element.name.contains(event.value));
-    emit(state.copyWith(homeRepos: [..._filterdRepos]));
+    emit(state.copyWith(homeRepos: [...filterdRepos]));
   }
 
   Future<void> _onFilterChanged(

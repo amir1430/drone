@@ -9,15 +9,13 @@ class NickNameTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) =>
-          previous.nickName.value != current.nickName.value,
-      builder: (context, state) {
+    return BlocSelector<LoginCubit, LoginState, NickNameField>(
+      selector: (state) => state.nickName,
+      builder: (context, nickName) {
         return DroneTextField(
           onChange: context.read<LoginCubit>().nickNameInputFieldChanged,
           label: 'Nick Name',
-          errorText:
-              state.nickName.invalid ? NickNameFieldError.invalid.text : null,
+          errorText: nickName.displayError?.text,
         );
       },
     );

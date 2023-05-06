@@ -18,6 +18,5 @@ dev_dependencies:
 dependencies:
   local_data_source: 
     path: ../local_data_source
-  drone_dart: 
-    path: D:/Drone-sdk/drone-dart
+  drone_dart: ^1.2.1
   rxdart: ^0.27.3

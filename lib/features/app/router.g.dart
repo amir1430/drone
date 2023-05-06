@@ -56,8 +56,8 @@ extension $HomeRouteExtension on HomeRoute {
 
 extension $RepoRouteExtension on RepoRoute {
   static RepoRoute _fromState(GoRouterState state) => RepoRoute(
-        owner: state.params['owner']!,
-        repoName: state.params['repoName']!,
+        owner: state.pathParameters['owner']!,
+        repoName: state.pathParameters['repoName']!,
       );
 
   String get location => GoRouteData.$location(
@@ -74,9 +74,9 @@ extension $RepoRouteExtension on RepoRoute {
 
 extension $BuildRotueExtension on BuildRotue {
   static BuildRotue _fromState(GoRouterState state) => BuildRotue(
-        owner: state.params['owner']!,
-        repoName: state.params['repoName']!,
-        number: int.parse(state.params['number']!),
+        owner: state.pathParameters['owner']!,
+        repoName: state.pathParameters['repoName']!,
+        number: int.parse(state.pathParameters['number']!),
       );
 
   String get location => GoRouteData.$location(
@@ -93,13 +93,13 @@ extension $BuildRotueExtension on BuildRotue {
 
 extension $LogRouteExtension on LogRoute {
   static LogRoute _fromState(GoRouterState state) => LogRoute(
-        owner: state.params['owner']!,
-        repoName: state.params['repoName']!,
-        number: int.parse(state.params['number']!),
-        stageName: state.queryParams['stage-name'],
-        stageNum: state.queryParams['stage-num'],
-        stepName: state.queryParams['step-name'],
-        stepNum: state.queryParams['step-num'],
+        owner: state.pathParameters['owner']!,
+        repoName: state.pathParameters['repoName']!,
+        number: int.parse(state.pathParameters['number']!),
+        stageName: state.queryParameters['stage-name'],
+        stageNum: state.queryParameters['stage-num'],
+        stepName: state.queryParameters['step-name'],
+        stepNum: state.queryParameters['step-num'],
       );
 
   String get location => GoRouteData.$location(

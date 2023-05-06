@@ -155,7 +155,8 @@ class _PullRequestActivity extends _ActivityBase {
               child: Image.network(avatar),
             ),
             Text(
-              '$actor ${action == 'opened' ? 'opened' : 'synchronized'} pull request',
+              '$actor ${action == 'opened' ? 'opened' : 'synchronized'}'
+              ' pull request',
             ),
             _ActivityBtn(
               onPressed: () {},

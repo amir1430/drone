@@ -2,14 +2,15 @@ class TimeFormatter {
   static String unixToHuman(
     int date,
   ) {
-    final _clock = DateTime.now();
-    final _date = DateTime.fromMillisecondsSinceEpoch(date);
-    var elapsed = _clock.millisecondsSinceEpoch ~/ 1000 - date;
+    final clock = DateTime.now();
+    final date0 = DateTime.fromMillisecondsSinceEpoch(date);
+    var elapsed = clock.millisecondsSinceEpoch ~/ 1000 - date;
 
-    String prefix, suffix;
+    String prefix;
+    String suffix;
 
     if (elapsed < 0) {
-      elapsed = _date.isBefore(_clock) ? elapsed : elapsed.abs();
+      elapsed = date0.isBefore(clock) ? elapsed : elapsed.abs();
       prefix = _Messages.prefixFromNow();
       suffix = _Messages.suffixFromNow();
     } else {

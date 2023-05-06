@@ -85,11 +85,16 @@ class BuildLogDialog extends StatelessWidget {
                                     children: [
                                       TextSpan(
                                         text: '${index + 1}. ',
-                                        style: context.caption
-                                            ?.copyWith(color: Colors.black54),
+                                        style: context.caption?.copyWith(
+                                          color: context.secondaryColor,
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                       ),
                                       TextSpan(
                                         text: logs[index].out.trim(),
+                                        style: context.caption?.copyWith(
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ],
                                   ),

@@ -10,8 +10,7 @@ dev_dependencies:
   test: ^1.16.0
 
 dependencies:
+  drone_dart: ^1.2.1
   equatable: ^2.0.3
   hive: ^2.2.3
-  drone_dart: 
-    path: D:/Drone-sdk/drone-dart
   rxdart: ^0.27.7

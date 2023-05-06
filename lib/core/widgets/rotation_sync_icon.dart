@@ -1,9 +1,7 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:ionicons/ionicons.dart';
 
 class RotationSyncIcon extends HookWidget {
   const RotationSyncIcon({super.key, this.color});
@@ -20,17 +18,17 @@ class RotationSyncIcon extends HookWidget {
       ..forward()
       ..repeat();
 
-    final _tween = useMemoized(
+    final tween = useMemoized(
       () {
         return Tween<double>(end: 0, begin: pi * 2);
       },
     );
-    final animation = useAnimation(_tween.animate(animationController));
+    final animation = useAnimation(tween.animate(animationController));
 
     return Transform.rotate(
       angle: animation,
       child: Icon(
-        Icons.change_circle,
+        Icons.sync_outlined,
         color: color,
       ),
     );

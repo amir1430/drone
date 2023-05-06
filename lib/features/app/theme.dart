@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
+  static const int _primaryCode = 0xffbd2930;
+  static const int _secondaryCode = 0xFF292f32;
+  static const int _backgroundCode = 0xfffafcfc;
+
   static ThemeData theme = ThemeData(
-    fontFamily: 'Signika',
+    // fontFamily: 'Signika',?
     useMaterial3: true,
     appBarTheme: AppBarTheme(
-      elevation: 4,
-      shadowColor: const Color(0xff457E75).withOpacity(.2),
+      elevation: 2,
+      scrolledUnderElevation: 0,
+      shadowColor: const Color(0xFF4E5FFF).withOpacity(.2),
       color: Colors.white,
       iconTheme: const IconThemeData(color: Color(0xff162119)),
       shape: RoundedRectangleBorder(
@@ -14,17 +19,19 @@ class AppTheme {
       ),
     ),
     highlightColor: Colors.transparent,
-    scaffoldBackgroundColor: const Color.fromARGB(255, 235, 235, 235),
-    splashColor: const Color(0xff457E75).withOpacity(.3),
+    // scaffoldBackgroundColor: const Color.fromARGB(255, 235, 235, 235),
+    splashColor: const Color(_secondaryCode).withOpacity(.2),
     iconTheme: const IconThemeData(
       color: Color.fromARGB(255, 39, 54, 43),
     ),
+
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        backgroundColor: Colors.white,
-        elevation: 2,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-        shadowColor: const Color(0xff457E75).withOpacity(.05),
+        // minimumSize: const Size.fromHeight(48),
+        elevation: 0,
+        foregroundColor: const Color(_secondaryCode),
+        disabledBackgroundColor: const Color(_backgroundCode),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -32,14 +39,13 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(_primaryCode),
+        disabledForegroundColor: const Color(_secondaryCode),
+        disabledBackgroundColor: Colors.transparent,
+        foregroundColor: const Color(_backgroundCode),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-        // minimumSize: const Size.fromHeight(80),
-        elevation: 2,
-        textStyle: const TextStyle(
-          fontSize: 16,
-          color: Color.fromARGB(255, 202, 238, 211),
-        ),
-        shadowColor: const Color(0xff457E75).withOpacity(.35),
+        elevation: 0,
+        shadowColor: const Color(_secondaryCode).withOpacity(.35),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -47,7 +53,7 @@ class AppTheme {
     ),
     tooltipTheme: TooltipThemeData(
       decoration: BoxDecoration(
-        color: const Color(0xff457E75).withOpacity(.8),
+        color: const Color(_primaryCode).withOpacity(.8),
         borderRadius: BorderRadius.circular(8),
       ),
     ),
@@ -58,33 +64,33 @@ class AppTheme {
         borderRadius: BorderRadius.circular(12),
       ),
     ),
-    shadowColor: const Color(0xff457E75).withOpacity(.05),
+    shadowColor: const Color(_primaryCode).withOpacity(.05),
     textTheme: const TextTheme(
-      caption: TextStyle(
+      bodySmall: TextStyle(
         fontSize: 16,
         color: Color.fromARGB(255, 98, 114, 103),
       ),
-      headline1: TextStyle(
+      displayLarge: TextStyle(
         fontSize: 24,
         color: Color(0xff162119),
       ),
-      headline2: TextStyle(
+      displayMedium: TextStyle(
         fontSize: 22,
         color: Color(0xff162119),
       ),
-      headline3: TextStyle(
+      displaySmall: TextStyle(
         fontSize: 20,
         color: Color(0xff162119),
       ),
-      headline4: TextStyle(
+      headlineMedium: TextStyle(
         fontSize: 18,
         color: Color(0xff162119),
       ),
-      headline5: TextStyle(
+      headlineSmall: TextStyle(
         fontSize: 16,
         color: Color(0xff162119),
       ),
-      headline6: TextStyle(
+      titleLarge: TextStyle(
         fontSize: 14,
         color: Color(0xff162119),
       ),
@@ -95,12 +101,15 @@ class AppTheme {
       ),
     ),
     colorScheme: const ColorScheme.light(
-      primary: Color(0xff457E75),
-      secondary: Color(0xff162119),
-      error: Color.fromARGB(255, 189, 0, 0),
+      primary: Color(_primaryCode),
+      secondary: Color(_secondaryCode),
+      background: Color(_backgroundCode),
+      error: Color(_primaryCode),
     ),
+    dividerColor: Colors.transparent,
+// dropdownMenuTheme: DropdownMenuThemeData(menuStyle: MenuStyle(shape: )),
     dividerTheme: DividerThemeData(
-      color: const Color(0xff457E75).withOpacity(.2),
+      color: const Color(_primaryCode).withOpacity(.2),
       endIndent: 12,
       indent: 12,
       space: 8,

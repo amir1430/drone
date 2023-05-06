@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:auth_repository/auth_repository.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:bloc/bloc.dart';
 import 'package:drone/core/core.dart';
 import 'package:drone/features/app/router.dart';
 import 'package:drone/sl.dart';
-import 'package:drone_dart/drone_dart.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:notification_repository/notification_repository.dart';
+import 'package:repo_repository/repo_repository.dart';
 
 part 'app_bloc.freezed.dart';
 part 'app_event.dart';
@@ -123,11 +123,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               ),
             );
           } else {
-            final _num = int.tryParse(number);
+            final num = int.tryParse(number);
             emit(
               state.asAuthenticated!.copyWith(
                 deferredPath:
-                    BuildRotue(owner: owner, repoName: repoName, number: _num!)
+                    BuildRotue(owner: owner, repoName: repoName, number: num!)
                         .location,
               ),
             );

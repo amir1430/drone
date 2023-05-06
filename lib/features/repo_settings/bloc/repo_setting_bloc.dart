@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:repo_repository/repo_repository.dart';
 
@@ -87,11 +87,11 @@ class RepoSettingsBloc extends Bloc<RepoSettingsEvent, RepoSettingsState> {
     _UpdateRepoRequested event,
     Emitter<RepoSettingsState> emit,
   ) async {
-    final _repo = state.repo!;
+    final repo0 = state.repo!;
     emit(const _Loading());
     try {
       final repo = await repoRepository.updateRepo(
-        repo: _repo,
+        repo: repo0,
         owner: event.owner,
         repoName: event.repoName,
       );
@@ -107,10 +107,10 @@ class RepoSettingsBloc extends Bloc<RepoSettingsEvent, RepoSettingsState> {
     _DisablePullRequestClicked event,
     Emitter<RepoSettingsState> emit,
   ) {
-    final _repo = state.repo!;
+    final repo = state.repo!;
     emit(
       _Success(
-        repo: _repo.copyWith(ignorePullRequests: !_repo.ignorePullRequests),
+        repo: repo.copyWith(ignorePullRequests: !repo.ignorePullRequests),
       ),
     );
   }
@@ -119,9 +119,9 @@ class RepoSettingsBloc extends Bloc<RepoSettingsEvent, RepoSettingsState> {
     _DisableForksClicked event,
     Emitter<RepoSettingsState> emit,
   ) {
-    final _repo = state.repo!;
+    final repo = state.repo!;
     emit(
-      _Success(repo: _repo.copyWith(ignoreForks: !_repo.ignoreForks)),
+      _Success(repo: repo.copyWith(ignoreForks: !repo.ignoreForks)),
     );
   }
 
@@ -129,9 +129,9 @@ class RepoSettingsBloc extends Bloc<RepoSettingsEvent, RepoSettingsState> {
     _ChangeProtectedClicked event,
     Emitter<RepoSettingsState> emit,
   ) {
-    final _repo = state.repo!;
+    final repo = state.repo!;
     emit(
-      _Success(repo: _repo.copyWith(protected: !_repo.protected)),
+      _Success(repo: repo.copyWith(protected: !repo.protected)),
     );
   }
 
@@ -139,9 +139,9 @@ class RepoSettingsBloc extends Bloc<RepoSettingsEvent, RepoSettingsState> {
     _ChangeTrustedClicked event,
     Emitter<RepoSettingsState> emit,
   ) {
-    final _repo = state.repo!;
+    final repo = state.repo!;
     emit(
-      _Success(repo: _repo.copyWith(trusted: !_repo.trusted)),
+      _Success(repo: repo.copyWith(trusted: !repo.trusted)),
     );
   }
 
@@ -149,11 +149,11 @@ class RepoSettingsBloc extends Bloc<RepoSettingsEvent, RepoSettingsState> {
     _ChangeAutoCancelPullRequestsClicked event,
     Emitter<RepoSettingsState> emit,
   ) {
-    final _repo = state.repo!;
+    final repo = state.repo!;
     emit(
       _Success(
-        repo: _repo.copyWith(
-          autoCancelPullRequests: !_repo.autoCancelPullRequests,
+        repo: repo.copyWith(
+          autoCancelPullRequests: !repo.autoCancelPullRequests,
         ),
       ),
     );
@@ -163,9 +163,9 @@ class RepoSettingsBloc extends Bloc<RepoSettingsEvent, RepoSettingsState> {
     _ChangeAutoCancelPushesClicked event,
     Emitter<RepoSettingsState> emit,
   ) {
-    final _repo = state.repo!;
+    final repo = state.repo!;
     emit(
-      _Success(repo: _repo.copyWith(autoCancelPushes: !_repo.autoCancelPushes)),
+      _Success(repo: repo.copyWith(autoCancelPushes: !repo.autoCancelPushes)),
     );
   }
 
@@ -173,9 +173,9 @@ class RepoSettingsBloc extends Bloc<RepoSettingsEvent, RepoSettingsState> {
     _ChangeVisibilityClicked event,
     Emitter<RepoSettingsState> emit,
   ) {
-    final _repo = state.repo!;
+    final repo = state.repo!;
     emit(
-      _Success(repo: _repo.copyWith(visibility: event.visibility)),
+      _Success(repo: repo.copyWith(visibility: event.visibility)),
     );
   }
 
@@ -183,9 +183,9 @@ class RepoSettingsBloc extends Bloc<RepoSettingsEvent, RepoSettingsState> {
     _ConfigPathChanged event,
     Emitter<RepoSettingsState> emit,
   ) {
-    final _repo = state.repo!;
+    final repo = state.repo!;
     emit(
-      _Success(repo: _repo.copyWith(configPath: event.value)),
+      _Success(repo: repo.copyWith(configPath: event.value)),
     );
   }
 
@@ -193,9 +193,9 @@ class RepoSettingsBloc extends Bloc<RepoSettingsEvent, RepoSettingsState> {
     _ChangeTimeout event,
     Emitter<RepoSettingsState> emit,
   ) {
-    final _repo = state.repo!;
+    final repo = state.repo!;
     emit(
-      _Success(repo: _repo.copyWith(timeout: event.timeout.value)),
+      _Success(repo: repo.copyWith(timeout: event.timeout.value)),
     );
   }
 }

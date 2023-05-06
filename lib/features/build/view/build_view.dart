@@ -63,7 +63,7 @@ class BuildView extends HookWidget {
                       return state.maybeWhen(
                         orElse: SizedBox.new,
                         success: (build) {
-                          String _printDuration(Duration duration) {
+                          String printDuration(Duration duration) {
                             String oneDigits(int n) =>
                                 n.toString().padLeft(1, '0');
                             final min =
@@ -94,7 +94,7 @@ class BuildView extends HookWidget {
                                   color: context.theme.colorScheme.primary,
                                 ),
                                 const SizedBox(width: 4),
-                                Text(_printDuration(diff)),
+                                Text(printDuration(diff)),
                                 const SizedBox(width: 12),
                                 Icon(
                                   Ionicons.calendar_outline,
@@ -194,7 +194,7 @@ class BuildView extends HookWidget {
                                             stageNum: '${stage.number}',
                                             stepName: step.name,
                                             stepNum: '${step.number}',
-                                          ).push(context);
+                                          ).push<void>(context);
                                         },
                                       );
                                     })

@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:repo_repository/repo_repository.dart';
 
@@ -21,12 +21,12 @@ class BuildBloc extends Bloc<BuildEvent, BuildState> {
   ) async {
     emit(const _Loading());
     try {
-      final _info = await _repository.getRepoBuildInfo(
+      final info = await _repository.getRepoBuildInfo(
         build: event.number,
         owner: event.owner,
         repoName: event.repoName,
       );
-      emit(_Success(build: _info));
+      emit(_Success(build: info));
     } on DroneException catch (e) {
       emit(_Failure(message: e.message));
     } catch (e) {

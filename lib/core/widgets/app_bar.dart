@@ -9,7 +9,7 @@ class DroneAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.bottom,
     this.leading,
     this.title,
-    this.backgroundColor = Colors.white,
+    this.backgroundColor,
   });
 
   final Widget? leading;
@@ -17,7 +17,7 @@ class DroneAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? flexibleSpace;
   final List<Widget>? actions;
   final PreferredSizeWidget? bottom;
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,8 @@ class DroneAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
       child: AppBar(
-        backgroundColor: backgroundColor,
+        backgroundColor: backgroundColor ??
+            Theme.of(context).colorScheme.background.withOpacity(.1),
         titleTextStyle: context.headline5,
         flexibleSpace: flexibleSpace,
         title: title,
@@ -44,5 +45,4 @@ class DroneAppBar extends StatelessWidget implements PreferredSizeWidget {
             ? kToolbarHeight
             : kToolbarHeight + bottom!.preferredSize.height,
       );
-
 }

@@ -97,7 +97,7 @@ class _BuildsView extends StatelessWidget {
                       child: Material(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
-                        elevation: 4,
+                        elevation: 2,
                         child: Padding(
                           padding: const EdgeInsets.all(8),
                           child: BlocSelector<BuildsBloc, BuildsState,
@@ -121,7 +121,7 @@ class _BuildsView extends StatelessWidget {
                                     owner: owner,
                                     repoName: repoName,
                                     number: build.number,
-                                  ).push(context);
+                                  ).push<void>(context);
                                 },
                               );
                             },
@@ -136,9 +136,9 @@ class _BuildsView extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Material(
-                              color: Colors.white,
+                              // color: Colors.white,
                               borderRadius: BorderRadius.circular(12),
-                              elevation: 4,
+                              elevation: 2,
                               child: Center(
                                 child: ListTile(
                                   title: Text(
@@ -168,7 +168,7 @@ class _BuildsView extends StatelessWidget {
                             child: Material(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(12),
-                              elevation: 4,
+                              elevation: 2,
                               child: Center(
                                 child: ListTile(
                                   title: Text(
@@ -216,7 +216,7 @@ class _BuildsView extends StatelessWidget {
                         owner: owner,
                         repoName: repoName,
                         number: build.number,
-                      ).push(context);
+                      ).push<void>(context);
                     },
                     title: Row(
                       children: [

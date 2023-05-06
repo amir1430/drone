@@ -1675,7 +1675,7 @@ abstract class _ChangeIsNotificationEnable implements SettingEvent {
 
 /// @nodoc
 mixin _$SettingState {
-  FormzStatus get status => throw _privateConstructorUsedError;
+  FormzSubmissionStatus get status => throw _privateConstructorUsedError;
   TokenField get token => throw _privateConstructorUsedError;
   ServerField get server => throw _privateConstructorUsedError;
   NickNameField get nickName => throw _privateConstructorUsedError;
@@ -1695,7 +1695,7 @@ abstract class $SettingStateCopyWith<$Res> {
       _$SettingStateCopyWithImpl<$Res, SettingState>;
   @useResult
   $Res call(
-      {FormzStatus status,
+      {FormzSubmissionStatus status,
       TokenField token,
       ServerField server,
       NickNameField nickName,
@@ -1729,7 +1729,7 @@ class _$SettingStateCopyWithImpl<$Res, $Val extends SettingState>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
+              as FormzSubmissionStatus,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -1767,7 +1767,7 @@ abstract class _$$_SettingStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FormzStatus status,
+      {FormzSubmissionStatus status,
       TokenField token,
       ServerField server,
       NickNameField nickName,
@@ -1799,7 +1799,7 @@ class __$$_SettingStateCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
+              as FormzSubmissionStatus,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -1832,7 +1832,7 @@ class __$$_SettingStateCopyWithImpl<$Res>
 
 class _$_SettingState extends _SettingState {
   const _$_SettingState(
-      {this.status = FormzStatus.pure,
+      {this.status = FormzSubmissionStatus.initial,
       this.token = const TokenField.pure(),
       this.server = const ServerField.pure(),
       this.nickName = const NickNameField.pure(),
@@ -1843,7 +1843,7 @@ class _$_SettingState extends _SettingState {
 
   @override
   @JsonKey()
-  final FormzStatus status;
+  final FormzSubmissionStatus status;
   @override
   @JsonKey()
   final TokenField token;
@@ -1898,7 +1898,7 @@ class _$_SettingState extends _SettingState {
 
 abstract class _SettingState extends SettingState {
   const factory _SettingState(
-      {final FormzStatus status,
+      {final FormzSubmissionStatus status,
       final TokenField token,
       final ServerField server,
       final NickNameField nickName,
@@ -1908,7 +1908,7 @@ abstract class _SettingState extends SettingState {
   const _SettingState._() : super._();
 
   @override
-  FormzStatus get status;
+  FormzSubmissionStatus get status;
   @override
   TokenField get token;
   @override

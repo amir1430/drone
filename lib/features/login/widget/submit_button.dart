@@ -9,22 +9,16 @@ class SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return ElevatedButton(
-          onPressed: !state.status.isValidated
+          onPressed: state.status.isInProgress || state.isNotValid
               ? null
               : () {
                   FocusScope.of(context).unfocus();
                   context.read<LoginCubit>().login();
                 },
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size.fromHeight(48),
-          ),
           child: Text(
-            state.status == FormzStatus.submissionInProgress
-                ? 'Loading ...'
-                : 'Login',
+            state.status.isInProgress ? 'Loading ...' : 'Login',
           ),
         );
       },

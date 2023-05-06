@@ -41,7 +41,7 @@ class _SettingBody extends HookWidget {
         tokenController.text = state.token.value;
         nickNameController.text = state.nickName.value;
 
-        if (state.status.isSubmissionFailure) {
+        if (state.status.isFailure) {
           showDroneSnackbar(
             context,
             message: state.errorMessage ?? 'Somthig went wrong',
@@ -108,12 +108,6 @@ class _SettingBody extends HookWidget {
                                               .copyWith(color: Colors.white),
                                         ),
                                       ),
-                                      // child: ClipRRect(
-                                      //   child: Image.network(
-                                      //     user.avatarUrl,
-                                      //     fit: BoxFit.cover,
-                                      //   ),
-                                      // ),
                                       onTap: () {
                                         context.read<SettingBloc>().add(
                                               SettingEvent.changeUser(
@@ -147,11 +141,9 @@ class _SettingBody extends HookWidget {
                   padding: const EdgeInsets.all(8),
                   child: BlocBuilder<SettingBloc, SettingState>(
                     builder: (context, state) {
-                      if (state.status == FormzStatus.valid) {
+                      if (state.isValid) {
                         return IconBtn(
-                          icon: state.status == FormzStatus.valid
-                              ? Ionicons.checkmark
-                              : Icons.abc,
+                          icon: Ionicons.checkmark,
                           onPressed: () {
                             final currentUser = context
                                 .read<AppBloc>()
@@ -167,7 +159,7 @@ class _SettingBody extends HookWidget {
                           },
                         );
                       }
-                      if (state.status == FormzStatus.submissionInProgress) {
+                      if (state.status.isInProgress) {
                         return Transform.scale(
                           scale: .6,
                           child:
@@ -191,21 +183,14 @@ class _SettingBody extends HookWidget {
                       vertical: 12,
                     ),
                     children: [
-                      BlocBuilder<SettingBloc, SettingState>(
-                        buildWhen: (previous, current) =>
-                            previous.nickName != current.nickName,
-                        builder: (context, state) {
+                      BlocSelector<SettingBloc, SettingState, NickNameField>(
+                        selector: (state) => state.nickName,
+                        builder: (context, nickName) {
                           return DroneTextField(
-                            border: const UnderlineInputBorder(
-                              borderSide: BorderSide(width: 2),
-                            ),
                             color: Colors.transparent,
-                            elevation: 0,
                             controller: nickNameController,
                             label: 'Nick name',
-                            errorText: state.nickName.invalid
-                                ? NickNameFieldError.invalid.name
-                                : null,
+                            errorText: nickName.displayError?.text,
                             onChange: (value) {
                               context
                                   .read<SettingBloc>()
@@ -215,21 +200,14 @@ class _SettingBody extends HookWidget {
                         },
                       ),
                       const SizedBox(height: 12),
-                      BlocBuilder<SettingBloc, SettingState>(
-                        buildWhen: (previous, current) =>
-                            previous.server != current.server,
-                        builder: (context, state) {
+                      BlocSelector<SettingBloc, SettingState, ServerField>(
+                        selector: (state) => state.server,
+                        builder: (context, server) {
                           return DroneTextField(
-                            border: const UnderlineInputBorder(
-                              borderSide: BorderSide(width: 2),
-                            ),
                             color: Colors.transparent,
-                            elevation: 0,
                             controller: serverController,
                             label: 'Server',
-                            errorText: state.server.invalid
-                                ? ServerFieldError.invalid.name
-                                : null,
+                            errorText: server.displayError?.text,
                             onChange: (value) {
                               context
                                   .read<SettingBloc>()
@@ -239,19 +217,14 @@ class _SettingBody extends HookWidget {
                         },
                       ),
                       const SizedBox(height: 12),
-                      BlocBuilder<SettingBloc, SettingState>(
-                        buildWhen: (previous, current) =>
-                            previous.token != current.token,
-                        builder: (context, state) {
+                      BlocSelector<SettingBloc, SettingState, TokenField>(
+                        selector: (state) => state.token,
+                        builder: (context, token) {
                           return DroneTextField(
                             color: Colors.transparent,
-                            elevation: 0,
-                            border: const UnderlineInputBorder(),
                             controller: tokenController,
                             label: 'Token',
-                            errorText: state.token.invalid
-                                ? TokenFieldError.invalid.name
-                                : null,
+                            errorText: token.displayError?.text,
                             onChange: (value) {
                               context
                                   .read<SettingBloc>()

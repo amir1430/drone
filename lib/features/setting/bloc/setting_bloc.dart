@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:auth_repository/auth_repository.dart';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_input/form_input.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -32,7 +32,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     _AddNewUser event,
     Emitter<SettingState> emit,
   ) async {
-    if (state.status.isSubmissionInProgress) {
+    if (state.status.isInProgress) {
       return;
     }
     emit(const SettingState(inNewUser: true));
@@ -89,7 +89,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     _ChangeUser event,
     Emitter<SettingState> emit,
   ) async {
-    if (state.status.isSubmissionInProgress) {
+    if (state.isNotValid) {
       return;
     }
     try {
@@ -117,7 +117,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     _UpdateUser event,
     Emitter<SettingState> emit,
   ) async {
-    emit(state.copyWith(status: FormzStatus.submissionInProgress));
+    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
     try {
       final newUser = await _authRepository.getUserCredentials(
         token: state.token.value,
@@ -130,13 +130,14 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
         oldUser: event.user,
         newUser: newUser,
       );
+      emit(state.copyWith(status: FormzSubmissionStatus.success));
     } on DroneException catch (e) {
       emit(
         state.copyWith(
           server: ServerField.pure(event.user.server),
           token: TokenField.pure(event.user.token),
           errorMessage: e.message,
-          status: FormzStatus.submissionFailure,
+          status: FormzSubmissionStatus.failure,
         ),
       );
     } catch (e) {
@@ -145,7 +146,6 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
           server: ServerField.pure(event.user.server),
           token: TokenField.pure(event.user.token),
           errorMessage: '$e',
-          status: FormzStatus.submissionFailure,
         ),
       );
     }
@@ -155,14 +155,9 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     _NickNameChanged event,
     Emitter<SettingState> emit,
   ) async {
-    final _nickName = NickNameField.dirty(event.value);
+    final nickName = NickNameField.dirty(event.value);
     emit(
-      state.copyWith(
-        nickName: _nickName,
-        status: Formz.validate(
-          [_nickName, state.token, state.server],
-        ),
-      ),
+      state.copyWith(nickName: nickName),
     );
   }
 
@@ -170,14 +165,9 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     _ServerChanged event,
     Emitter<SettingState> emit,
   ) async {
-    final _server = ServerField.dirty(event.value);
+    final server = ServerField.dirty(event.value);
     emit(
-      state.copyWith(
-        server: _server,
-        status: Formz.validate(
-          [_server, state.token, state.nickName],
-        ),
-      ),
+      state.copyWith(server: server),
     );
   }
 
@@ -185,14 +175,9 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     _TokenChanged event,
     Emitter<SettingState> emit,
   ) async {
-    final _token = TokenField.dirty(event.value);
+    final token = TokenField.dirty(event.value);
     emit(
-      state.copyWith(
-        token: _token,
-        status: Formz.validate(
-          [_token, state.server, state.nickName],
-        ),
-      ),
+      state.copyWith(token: token),
     );
   }
 }

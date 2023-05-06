@@ -16,10 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoginState {
-  FormzStatus get status => throw _privateConstructorUsedError;
   ServerField get server => throw _privateConstructorUsedError;
   TokenField get token => throw _privateConstructorUsedError;
   NickNameField get nickName => throw _privateConstructorUsedError;
+  FormzSubmissionStatus get status => throw _privateConstructorUsedError;
   Color? get color => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
@@ -35,10 +35,10 @@ abstract class $LoginStateCopyWith<$Res> {
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
   $Res call(
-      {FormzStatus status,
-      ServerField server,
+      {ServerField server,
       TokenField token,
       NickNameField nickName,
+      FormzSubmissionStatus status,
       Color? color,
       String? error});
 }
@@ -56,18 +56,14 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
     Object? server = null,
     Object? token = null,
     Object? nickName = null,
+    Object? status = null,
     Object? color = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
       server: null == server
           ? _value.server
           : server // ignore: cast_nullable_to_non_nullable
@@ -80,6 +76,10 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.nickName
           : nickName // ignore: cast_nullable_to_non_nullable
               as NickNameField,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FormzSubmissionStatus,
       color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -101,10 +101,10 @@ abstract class _$$_LoginStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FormzStatus status,
-      ServerField server,
+      {ServerField server,
       TokenField token,
       NickNameField nickName,
+      FormzSubmissionStatus status,
       Color? color,
       String? error});
 }
@@ -120,18 +120,14 @@ class __$$_LoginStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
     Object? server = null,
     Object? token = null,
     Object? nickName = null,
+    Object? status = null,
     Object? color = freezed,
     Object? error = freezed,
   }) {
     return _then(_$_LoginState(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
       server: null == server
           ? _value.server
           : server // ignore: cast_nullable_to_non_nullable
@@ -144,6 +140,10 @@ class __$$_LoginStateCopyWithImpl<$Res>
           ? _value.nickName
           : nickName // ignore: cast_nullable_to_non_nullable
               as NickNameField,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FormzSubmissionStatus,
       color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -158,18 +158,16 @@ class __$$_LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoginState implements _LoginState {
+class _$_LoginState extends _LoginState {
   const _$_LoginState(
-      {this.status = FormzStatus.pure,
-      this.server = const ServerField.pure(),
+      {this.server = const ServerField.pure(),
       this.token = const TokenField.pure(),
       this.nickName = const NickNameField.pure(),
+      this.status = FormzSubmissionStatus.initial,
       this.color,
-      this.error});
+      this.error})
+      : super._();
 
-  @override
-  @JsonKey()
-  final FormzStatus status;
   @override
   @JsonKey()
   final ServerField server;
@@ -180,13 +178,16 @@ class _$_LoginState implements _LoginState {
   @JsonKey()
   final NickNameField nickName;
   @override
+  @JsonKey()
+  final FormzSubmissionStatus status;
+  @override
   final Color? color;
   @override
   final String? error;
 
   @override
   String toString() {
-    return 'LoginState(status: $status, server: $server, token: $token, nickName: $nickName, color: $color, error: $error)';
+    return 'LoginState(server: $server, token: $token, nickName: $nickName, status: $status, color: $color, error: $error)';
   }
 
   @override
@@ -194,18 +195,18 @@ class _$_LoginState implements _LoginState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoginState &&
-            (identical(other.status, status) || other.status == status) &&
             (identical(other.server, server) || other.server == server) &&
             (identical(other.token, token) || other.token == token) &&
             (identical(other.nickName, nickName) ||
                 other.nickName == nickName) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, status, server, token, nickName, color, error);
+      Object.hash(runtimeType, server, token, nickName, status, color, error);
 
   @JsonKey(ignore: true)
   @override
@@ -214,23 +215,24 @@ class _$_LoginState implements _LoginState {
       __$$_LoginStateCopyWithImpl<_$_LoginState>(this, _$identity);
 }
 
-abstract class _LoginState implements LoginState {
+abstract class _LoginState extends LoginState {
   const factory _LoginState(
-      {final FormzStatus status,
-      final ServerField server,
+      {final ServerField server,
       final TokenField token,
       final NickNameField nickName,
+      final FormzSubmissionStatus status,
       final Color? color,
       final String? error}) = _$_LoginState;
+  const _LoginState._() : super._();
 
-  @override
-  FormzStatus get status;
   @override
   ServerField get server;
   @override
   TokenField get token;
   @override
   NickNameField get nickName;
+  @override
+  FormzSubmissionStatus get status;
   @override
   Color? get color;
   @override
