@@ -25,6 +25,9 @@ README.md
 # is commented out by default.
 #.vscode/
 
+*.g.dart
+*.freezed.dart
+
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
