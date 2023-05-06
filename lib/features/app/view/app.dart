@@ -5,9 +5,8 @@ import 'package:drone/sl.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
-class App extends HookWidget {
+class App extends StatelessWidget {
   const App({
     super.key,
   });
@@ -39,16 +38,41 @@ class _App extends StatelessWidget {
       routerConfig: router,
       theme: AppTheme.theme,
       builder: (context, child) {
-        return ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(
-            overscroll: false,
-            physics: const BouncingScrollPhysics(),
-            dragDevices: {
-              PointerDeviceKind.touch,
-              PointerDeviceKind.mouse,
-            },
+        return BlocListener<AppBloc, AppState>(
+          listenWhen: (previous, current) {
+            final previousPath = previous.whenOrNull(
+              authenticated: (_, __, deferredPath) {
+                return deferredPath;
+              },
+            );
+            final currentPath = current.whenOrNull(
+              authenticated: (_, __, deferredPath) {
+                return deferredPath;
+              },
+            );
+
+            return previousPath != currentPath;
+          },
+          listener: (context, state) {
+            // state.whenOrNull(
+            //   authenticated: (users, currentUser, deferredPath) {
+            //     if (deferredPath != null) {
+            //       context.push(deferredPath);
+            //     }
+            //   },
+            // );
+          },
+          child: ScrollConfiguration(
+            behavior: ScrollConfiguration.of(context).copyWith(
+              overscroll: false,
+              physics: const BouncingScrollPhysics(),
+              dragDevices: {
+                PointerDeviceKind.touch,
+                PointerDeviceKind.mouse,
+              },
+            ),
+            child: SafeArea(child: child!),
           ),
-          child: SafeArea(child: child!),
         );
       },
     );

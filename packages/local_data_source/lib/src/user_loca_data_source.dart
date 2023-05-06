@@ -7,6 +7,8 @@ abstract class UserLocalDataSource {
 
   Stream<List<User>> get usersStream;
 
+  Stream<UserLocalDataSourceEvent> get userOperationsStream;
+
   List<User> get users;
 
   User? get currentUser;
@@ -24,3 +26,17 @@ abstract class UserLocalDataSource {
 
   Future<void> close();
 }
+
+class UserLocalDataSourceEvent {
+  const UserLocalDataSourceEvent({
+    required this.operation,
+    required this.user,
+    this.oldUser,
+  });
+
+  final User user;
+  final User? oldUser;
+  final Operation operation;
+}
+
+enum Operation { initial, delete, add, update }

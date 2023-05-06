@@ -7,6 +7,7 @@ class SettingState with _$SettingState {
     @Default(TokenField.pure()) TokenField token,
     @Default(ServerField.pure()) ServerField server,
     @Default(NickNameField.pure()) NickNameField nickName,
+    @Default(false) bool isNotificationEnable,
     @Default(false) bool inNewUser,
     String? errorMessage,
   }) = _SettingState;
@@ -17,6 +18,7 @@ class SettingState with _$SettingState {
       server: ServerField.pure(user.server),
       nickName: NickNameField.pure(user.nickName),
       token: TokenField.pure(user.token),
+      isNotificationEnable: user.isNotificationEnable,
     );
   }
 

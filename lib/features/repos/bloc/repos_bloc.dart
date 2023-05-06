@@ -42,9 +42,4 @@ class ReposBloc extends Bloc<ReposEvent, ReposState> {
       emit(_Loaded(repos: [event.repo, ...latestState]));
     }
   }
-
-  @override
-  Future<void> close() {
-    return super.close();
-  }
 }

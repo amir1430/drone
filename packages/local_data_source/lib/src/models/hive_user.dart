@@ -10,6 +10,7 @@ class User with EquatableMixin {
     required this.avatarUrl,
     required this.admin,
     required this.machine,
+    required this.isNotificationEnable,
     required this.token,
     required this.server,
     required this.color,
@@ -21,6 +22,7 @@ class User with EquatableMixin {
   String avatarUrl;
   bool admin;
   bool machine;
+  bool isNotificationEnable;
   String server;
   String token;
   int color;
@@ -40,6 +42,7 @@ class User with EquatableMixin {
       machine: user.machine,
       token: user.token,
       server: server,
+      isNotificationEnable: false,
       color: color ?? 0xff457E75,
     );
   }
@@ -52,6 +55,7 @@ class User with EquatableMixin {
     String? avatarUrl,
     bool? admin,
     bool? machine,
+    bool? enabaleNotification,
     String? server,
     String? token,
     int? color,
@@ -63,6 +67,7 @@ class User with EquatableMixin {
       avatarUrl: avatarUrl ?? this.avatarUrl,
       admin: admin ?? this.admin,
       machine: machine ?? this.machine,
+      isNotificationEnable: enabaleNotification ?? isNotificationEnable,
       token: token ?? this.token,
       server: server ?? this.server,
       color: color ?? this.color,
@@ -73,8 +78,18 @@ class User with EquatableMixin {
   bool? get stringify => true;
 
   @override
-  List<Object?> get props =>
-      [nickName, name, email, avatarUrl, admin, machine, server, token, color];
+  List<Object?> get props => [
+        nickName,
+        name,
+        email,
+        avatarUrl,
+        admin,
+        machine,
+        isNotificationEnable,
+        server,
+        token,
+        color
+      ];
 }
 
 class HiveUserAdapter extends TypeAdapter<User> {
@@ -87,6 +102,7 @@ class HiveUserAdapter extends TypeAdapter<User> {
       avatarUrl: reader.readString(),
       admin: reader.readBool(),
       machine: reader.readBool(),
+      isNotificationEnable: reader.readBool(),
       token: reader.readString(),
       server: reader.readString(),
       color: reader.readUint32(),
@@ -104,6 +120,7 @@ class HiveUserAdapter extends TypeAdapter<User> {
     writer.writeString(obj.avatarUrl);
     writer.writeBool(obj.admin);
     writer.writeBool(obj.machine);
+    writer.writeBool(obj.isNotificationEnable);
     writer.writeString(obj.token);
     writer.writeString(obj.server);
     writer.writeUint32(obj.color);

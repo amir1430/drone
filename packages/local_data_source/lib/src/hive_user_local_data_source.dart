@@ -10,6 +10,7 @@ class HiveUserLocalDataSource implements UserLocalDataSource {
   HiveUserLocalDataSource({
     required Box<User> userBox,
   }) : _userBox = userBox {
+    _userOperationsController = BehaviorSubject();
     _usersController = BehaviorSubject.seeded(users);
     _currentUserController = BehaviorSubject.seeded(currentUser);
 
@@ -24,6 +25,8 @@ class HiveUserLocalDataSource implements UserLocalDataSource {
   // controllers
   late final StreamController<List<User>> _usersController;
   late final StreamController<User?> _currentUserController;
+  late final StreamController<UserLocalDataSourceEvent>
+      _userOperationsController;
 
   // stream subscriptions
   late final StreamSubscription<BoxEvent> _currentUserSubscription;
@@ -38,6 +41,13 @@ class HiveUserLocalDataSource implements UserLocalDataSource {
   Stream<List<User>> get usersStream => _usersController.stream;
 
   @override
+  Stream<UserLocalDataSourceEvent> get userOperationsStream =>
+      _userOperationsController.stream.startWithMany(users
+          .map((user) => UserLocalDataSourceEvent(
+              operation: Operation.initial, user: user))
+          .toList());
+
+  @override
   List<User> get users => _userBox
       .toMap()
       .entries
@@ -49,15 +59,22 @@ class HiveUserLocalDataSource implements UserLocalDataSource {
   User? get currentUser => _userBox.get(LocalDataSourceKeys.currentUser);
 
   @override
-  Future<void> add(User user) async {
+  Future<void> add(User user, {bool sync = true}) async {
     await _userBox.putAll({
       LocalDataSourceKeys.currentUser: user,
       user.token: user,
     });
+
+    if (sync) {
+      _userOperationsController.sink.add(UserLocalDataSourceEvent(
+        operation: Operation.add,
+        user: user,
+      ));
+    }
   }
 
   @override
-  Future<void> delete(User user) async {
+  Future<void> delete(User user, {bool sync = true}) async {
     await _userBox.delete(user.token);
 
     final _currentUser = currentUser;
@@ -70,6 +87,13 @@ class HiveUserLocalDataSource implements UserLocalDataSource {
         await _userBox.delete(LocalDataSourceKeys.currentUser);
       }
     }
+
+    if (sync) {
+      _userOperationsController.sink.add(UserLocalDataSourceEvent(
+        operation: Operation.delete,
+        user: user,
+      ));
+    }
   }
 
   @override
@@ -77,10 +101,16 @@ class HiveUserLocalDataSource implements UserLocalDataSource {
     required User oldUser,
     required User newUser,
   }) async {
-    await add(newUser);
+    await add(newUser, sync: false);
     if (oldUser.token != newUser.token) {
-      await delete(oldUser);
+      await delete(oldUser, sync: false);
     }
+
+    _userOperationsController.sink.add(UserLocalDataSourceEvent(
+      operation: Operation.update,
+      user: newUser,
+      oldUser: oldUser,
+    ));
   }
 
   @override
