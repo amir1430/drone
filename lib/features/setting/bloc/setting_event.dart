@@ -19,4 +19,6 @@ class SettingEvent with _$SettingEvent {
   const factory SettingEvent.updateUser({
     required User user,
   }) = _UpdateUser;
+  const factory SettingEvent.changeIsNotificationEnable({required bool value}) =
+      _ChangeIsNotificationEnable;
 }

@@ -22,6 +22,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     on<_NickNameChanged>(_onNickNameChanged);
     on<_ServerChanged>(_onServerChanged);
     on<_TokenChanged>(_onTokenChanged);
+    on<_ChangeIsNotificationEnable>(_onChangeIsNotificationEnable);
     on<_UpdateUser>(_onUpdateAccount);
   }
 
@@ -68,6 +69,20 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
       emit(state.copyWith(errorMessage: '$e'));
       // emit(_Failure(error: '$e'));
     }
+  }
+
+  Future<void> _onChangeIsNotificationEnable(
+    _ChangeIsNotificationEnable event,
+    Emitter<SettingState> emit,
+  ) async {
+    emit(state.copyWith(isNotificationEnable: event.value));
+    final x = _authRepository.getUserByToken(state.token.value);
+    await _authRepository.updateUser(
+      oldUser: x!,
+      newUser: x.copyWith(
+        enabaleNotification: event.value,
+      ),
+    );
   }
 
   Future<void> _onChangeUserRequested(

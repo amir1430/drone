@@ -16,7 +16,7 @@ class HomePage extends HookWidget {
   Widget build(BuildContext context) {
     final searchController = useTextEditingController();
 
-    return BlocListener<AppBloc, AuthenticationStatus>(
+    return BlocListener<AppBloc, AppState>(
       listener: (_, state) {
         state.mapOrNull(
           authenticated: (_) {
@@ -44,11 +44,11 @@ class HomePage extends HookWidget {
             ),
             actions: [
               const SyncReposBtn(),
-              BlocBuilder<AppBloc, AuthenticationStatus>(
+              BlocBuilder<AppBloc, AppState>(
                 builder: (context, state) {
                   return state.maybeWhen(
                     orElse: SizedBox.shrink,
-                    authenticated: (users, current) => Padding(
+                    authenticated: (users, current, _) => Padding(
                       padding: const EdgeInsets.all(8),
                       child: UserTileWidget(
                         size: const Size.square(40),

@@ -1,20 +1,17 @@
 part of 'app_bloc.dart';
 
-// @freezed
-// class AppState with _$AppState {
-//   const factory AppState.unknown() = Unknown;
-//   const factory AppState.authenticated({
-//     required List<Account> accounts,
-//     required Account currentAccount,
-//   }) = Authenticated;
-//   const factory AppState.unAuthenticated() = UnAuthenticated;
-// }
-
-extension AuthenticatedX on Authenticated {
-  DroneClient get currentClient => currentUser.client;
+@freezed
+class AppState with _$AppState {
+  const factory AppState.unknown() = Unknown;
+  const factory AppState.authenticated({
+    required List<User> users,
+    required User currentUser,
+    String? deferredPath,
+  }) = Authenticated;
+  const factory AppState.unAuthenticated() = UnAuthenticated;
 }
 
-extension AppStateX on AuthenticationStatus {
+extension AppStateX on AppState {
   Authenticated? get asAuthenticated => mapOrNull(
         authenticated: (data) => data,
       );

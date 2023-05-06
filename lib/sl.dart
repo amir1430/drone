@@ -1,4 +1,5 @@
 import 'package:auth_repository/auth_repository.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:drone/features/app/app.dart';
 import 'package:drone/features/branches/bloc/branches_bloc.dart';
 import 'package:drone/features/build/bloc/bloc.dart';
@@ -11,6 +12,7 @@ import 'package:drone/features/repo_settings/bloc/repo_setting_bloc.dart';
 import 'package:drone/features/setting/bloc/setting_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:notification_repository/notification_repository.dart';
 import 'package:repo_repository/repo_repository.dart';
 
 final sl = GetIt.instance;
@@ -18,7 +20,10 @@ final sl = GetIt.instance;
 Future<void> initSl() async {
   sl
     ..registerFactory<AppBloc>(
-      () => AppBloc(authRepository: sl()),
+      () => AppBloc(
+        authRepository: sl(),
+        notificationRepository: sl(),
+      ),
     )
     ..registerFactory<HomeBloc>(
       () => HomeBloc(
@@ -69,39 +74,29 @@ Future<void> initSl() async {
     )
     ..registerLazySingleton<RepoRepository>(
       () => RepoRepository(userLocalDataSource: sl()),
-      dispose: (instance) async {
-        await instance.close();
-      },
     )
-    ..registerLazySingleton<Box<User>>(
-      () => Hive.box<User>('users_box'),
+    ..registerLazySingleton<NotificationRepository>(
+      () {
+        final awesomeNotifications = AwesomeNotifications();
+
+        final instance = NotificationRepository(
+          userLocalDataSource: sl(),
+          awesomeNotifications: awesomeNotifications,
+        );
+
+        awesomeNotifications.setListeners(
+          onActionReceivedMethod: NotificationRepository.onActionReceivedMethod,
+        );
+
+        return instance;
+      },
     )
     ..registerLazySingleton<UserLocalDataSource>(
       () {
         return HiveUserLocalDataSource(userBox: sl());
       },
+    )
+    ..registerSingleton<Box<User>>(
+      Hive.box<User>('users_box'),
     );
 }
-
-// extension GetItX on GetIt {
-//   Future<void> resetRepoRepository() async {
-//     await resetLazySingleton<RepoRepository>(
-//       // instance: RepoRepository(userLocalDataSource: this()),
-//     );
-
-//     // if (isRegistered<RepoRepository>()) {
-
-//     //   registerSingleton<RepoRepository>(
-//     //     RepoRepository(
-//     //       userLocalDataSource: this(),
-//     //     ),
-//     //   );
-//     // } else {
-//     //   registerSingleton<RepoRepository>(
-//     //     RepoRepository(
-//     //       userLocalDataSource: this(),
-//     //     ),
-//     //   );
-//     // }
-//   }
-// }

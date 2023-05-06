@@ -6,13 +6,13 @@ part of 'router.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<GoRoute> get $appRoutes => [
+List<RouteBase> get $appRoutes => [
       $homeRoute,
       $loginRoute,
       $splashRoute,
     ];
 
-GoRoute get $homeRoute => GoRouteData.$route(
+RouteBase get $homeRoute => GoRouteData.$route(
       path: '/',
       factory: $HomeRouteExtension._fromState,
       routes: [
@@ -46,9 +46,12 @@ extension $HomeRouteExtension on HomeRoute {
         '/',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $RepoRouteExtension on RepoRoute {
@@ -61,9 +64,12 @@ extension $RepoRouteExtension on RepoRoute {
         '/repo/${Uri.encodeComponent(owner)}/${Uri.encodeComponent(repoName)}',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $BuildRotueExtension on BuildRotue {
@@ -77,9 +83,12 @@ extension $BuildRotueExtension on BuildRotue {
         '/repo/${Uri.encodeComponent(owner)}/${Uri.encodeComponent(repoName)}/build/${Uri.encodeComponent(number.toString())}',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $LogRouteExtension on LogRoute {
@@ -96,16 +105,19 @@ extension $LogRouteExtension on LogRoute {
   String get location => GoRouteData.$location(
         '/repo/${Uri.encodeComponent(owner)}/${Uri.encodeComponent(repoName)}/build/${Uri.encodeComponent(number.toString())}/log',
         queryParams: {
-          if (stageName != null) 'stage-name': stageName!,
-          if (stageNum != null) 'stage-num': stageNum!,
-          if (stepName != null) 'step-name': stepName!,
-          if (stepNum != null) 'step-num': stepNum!,
+          if (stageName != null) 'stage-name': stageName,
+          if (stageNum != null) 'stage-num': stageNum,
+          if (stepName != null) 'step-name': stepName,
+          if (stepNum != null) 'step-num': stepNum,
         },
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $SettingsRouteExtension on SettingsRoute {
@@ -115,12 +127,15 @@ extension $SettingsRouteExtension on SettingsRoute {
         '/settings',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
-GoRoute get $loginRoute => GoRouteData.$route(
+RouteBase get $loginRoute => GoRouteData.$route(
       path: '/login',
       factory: $LoginRouteExtension._fromState,
     );
@@ -132,12 +147,15 @@ extension $LoginRouteExtension on LoginRoute {
         '/login',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
-GoRoute get $splashRoute => GoRouteData.$route(
+RouteBase get $splashRoute => GoRouteData.$route(
       path: '/splash',
       factory: $SplashRouteExtension._fromState,
     );
@@ -149,7 +167,10 @@ extension $SplashRouteExtension on SplashRoute {
         '/splash',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }

@@ -19,17 +19,22 @@ class AppRouter {
     required AppBloc appBloc,
   }) {
     return GoRouter(
-      // debugLogDiagnostics: true,
+      debugLogDiagnostics: true,
       initialLocation: SplashRoute().location,
       refreshListenable: _GoRouterRefreshStream(appBloc.stream),
-      redirect: (context, state) {
+      redirect: (context, state) async {
         final _isGoingToLogin = state.subloc == LoginRoute().location;
         final _isInSplash = state.subloc == SplashRoute().location;
 
         return appBloc.state.when(
           unknown: () => null,
-          authenticated: (_, __) =>
-              _isGoingToLogin || _isInSplash ? HomeRoute().location : null,
+          authenticated: (_, __, deferredPath) {
+            if (deferredPath != null && state.location != deferredPath) {
+              return deferredPath;
+            }
+
+            return _isGoingToLogin || _isInSplash ? HomeRoute().location : null;
+          },
           unAuthenticated: () => _isGoingToLogin ? null : LoginRoute().location,
         );
       },

@@ -1,4 +1,6 @@
-import 'package:auth_repository/auth_repository.dart';
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:drone/core/core.dart';
 import 'package:drone/features/app/app.dart';
 import 'package:drone/features/login/login.dart';
@@ -52,7 +54,7 @@ class _SettingBody extends HookWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             DroneAppBar(
-              title: BlocBuilder<AppBloc, AuthenticationStatus>(
+              title: BlocBuilder<AppBloc, AppState>(
                 buildWhen: (previous, current) {
                   return previous.asAuthenticated!.currentUser !=
                       current.asAuthenticated!.currentUser;
@@ -60,7 +62,7 @@ class _SettingBody extends HookWidget {
                 builder: (context, state) {
                   return state.maybeWhen(
                     orElse: SizedBox.shrink,
-                    authenticated: (users, currentUser) {
+                    authenticated: (users, currentUser, _) {
                       return SizedBox(
                         height: const DroneAppBar().preferredSize.height,
                         child: ListView.builder(
@@ -259,6 +261,29 @@ class _SettingBody extends HookWidget {
                         },
                       ),
                       const SizedBox(height: 12),
+                      BlocSelector<SettingBloc, SettingState, bool>(
+                        selector: (state) {
+                          return state.isNotificationEnable;
+                        },
+                        builder: (context, value) {
+                          return SwitchListTile(
+                            title: const Text('Enable Notifications'),
+                            value: value,
+                            onChanged: (v) {
+                              context.read<SettingBloc>().add(
+                                    SettingEvent.changeIsNotificationEnable(
+                                      value: !value,
+                                    ),
+                                  );
+
+                              if (!value) {
+                                handlePermissionToSendNotifications(context);
+                              }
+                            },
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 12),
                       ListTile(
                         title: const Text('Logout'),
                         leading: Icon(
@@ -287,6 +312,107 @@ class _SettingBody extends HookWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+Future<void> handlePermissionToSendNotifications(
+  BuildContext context,
+) async {
+  const channelKey = AppConstants.channelKey;
+  final permissionList = <NotificationPermission>[
+    NotificationPermission.Alert,
+    NotificationPermission.Light,
+    NotificationPermission.Provisional,
+    NotificationPermission.Sound,
+  ];
+
+  var permissionsAllowed = await AwesomeNotifications().checkPermissionList(
+    channelKey: channelKey,
+    permissions: permissionList,
+  );
+
+  if (permissionsAllowed.length == permissionList.length) return;
+
+  final permissionsNeeded =
+      permissionList.toSet().difference(permissionsAllowed.toSet()).toList();
+
+  final lockedPermissions =
+      await AwesomeNotifications().shouldShowRationaleToRequest(
+    channelKey: channelKey,
+    permissions: permissionsNeeded,
+  );
+
+  if (lockedPermissions.isEmpty) {
+    // Request the permission through native resources.
+    await AwesomeNotifications().requestPermissionToSendNotifications(
+      channelKey: channelKey,
+      permissions: permissionsNeeded,
+    );
+
+    permissionsAllowed = await AwesomeNotifications().checkPermissionList(
+      channelKey: channelKey,
+      permissions: permissionsNeeded,
+    );
+  } else {
+    await showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: const Color(0xfffbfbfb),
+        title: const Text(
+          'Required notification permission',
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          style: TextStyle(fontSize: 22),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              lockedPermissions
+                  .join(', ')
+                  .replaceAll('NotificationPermission.', ''),
+              maxLines: 2,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 14),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              'Deny',
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+          TextButton(
+            onPressed: () async {
+              await AwesomeNotifications().requestPermissionToSendNotifications(
+                channelKey: channelKey,
+                permissions: lockedPermissions,
+              );
+
+              permissionsAllowed =
+                  await AwesomeNotifications().checkPermissionList(
+                channelKey: channelKey,
+                permissions: lockedPermissions,
+              );
+
+              Navigator.pop(context);
+            },
+            child: const Text(
+              'Allow',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

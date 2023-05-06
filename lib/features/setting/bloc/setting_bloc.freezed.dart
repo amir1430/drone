@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'setting_bloc.dart';
 
@@ -26,6 +26,7 @@ mixin _$SettingEvent {
     required TResult Function(String value) serverChanged,
     required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
+    required TResult Function(bool value) changeIsNotificationEnable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +39,7 @@ mixin _$SettingEvent {
     TResult? Function(String value)? serverChanged,
     TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
+    TResult? Function(bool value)? changeIsNotificationEnable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +52,7 @@ mixin _$SettingEvent {
     TResult Function(String value)? serverChanged,
     TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
+    TResult Function(bool value)? changeIsNotificationEnable,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,6 +66,8 @@ mixin _$SettingEvent {
     required TResult Function(_ServerChanged value) serverChanged,
     required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_ChangeIsNotificationEnable value)
+        changeIsNotificationEnable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +80,8 @@ mixin _$SettingEvent {
     TResult? Function(_ServerChanged value)? serverChanged,
     TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +94,8 @@ mixin _$SettingEvent {
     TResult Function(_ServerChanged value)? serverChanged,
     TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -155,6 +164,7 @@ class _$_Started implements _Started {
     required TResult Function(String value) serverChanged,
     required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
+    required TResult Function(bool value) changeIsNotificationEnable,
   }) {
     return started();
   }
@@ -170,6 +180,7 @@ class _$_Started implements _Started {
     TResult? Function(String value)? serverChanged,
     TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
+    TResult? Function(bool value)? changeIsNotificationEnable,
   }) {
     return started?.call();
   }
@@ -185,6 +196,7 @@ class _$_Started implements _Started {
     TResult Function(String value)? serverChanged,
     TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
+    TResult Function(bool value)? changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -204,6 +216,8 @@ class _$_Started implements _Started {
     required TResult Function(_ServerChanged value) serverChanged,
     required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_ChangeIsNotificationEnable value)
+        changeIsNotificationEnable,
   }) {
     return started(this);
   }
@@ -219,6 +233,8 @@ class _$_Started implements _Started {
     TResult? Function(_ServerChanged value)? serverChanged,
     TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
   }) {
     return started?.call(this);
   }
@@ -234,6 +250,8 @@ class _$_Started implements _Started {
     TResult Function(_ServerChanged value)? serverChanged,
     TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -319,6 +337,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     required TResult Function(String value) serverChanged,
     required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
+    required TResult Function(bool value) changeIsNotificationEnable,
   }) {
     return logoutRequested(user);
   }
@@ -334,6 +353,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult? Function(String value)? serverChanged,
     TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
+    TResult? Function(bool value)? changeIsNotificationEnable,
   }) {
     return logoutRequested?.call(user);
   }
@@ -349,6 +369,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult Function(String value)? serverChanged,
     TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
+    TResult Function(bool value)? changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
@@ -368,6 +389,8 @@ class _$_LogoutRequested implements _LogoutRequested {
     required TResult Function(_ServerChanged value) serverChanged,
     required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_ChangeIsNotificationEnable value)
+        changeIsNotificationEnable,
   }) {
     return logoutRequested(this);
   }
@@ -383,6 +406,8 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult? Function(_ServerChanged value)? serverChanged,
     TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
   }) {
     return logoutRequested?.call(this);
   }
@@ -398,6 +423,8 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult Function(_ServerChanged value)? serverChanged,
     TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
@@ -497,6 +524,7 @@ class _$_ChangeUser implements _ChangeUser {
     required TResult Function(String value) serverChanged,
     required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
+    required TResult Function(bool value) changeIsNotificationEnable,
   }) {
     return changeUser(user, color);
   }
@@ -512,6 +540,7 @@ class _$_ChangeUser implements _ChangeUser {
     TResult? Function(String value)? serverChanged,
     TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
+    TResult? Function(bool value)? changeIsNotificationEnable,
   }) {
     return changeUser?.call(user, color);
   }
@@ -527,6 +556,7 @@ class _$_ChangeUser implements _ChangeUser {
     TResult Function(String value)? serverChanged,
     TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
+    TResult Function(bool value)? changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (changeUser != null) {
@@ -546,6 +576,8 @@ class _$_ChangeUser implements _ChangeUser {
     required TResult Function(_ServerChanged value) serverChanged,
     required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_ChangeIsNotificationEnable value)
+        changeIsNotificationEnable,
   }) {
     return changeUser(this);
   }
@@ -561,6 +593,8 @@ class _$_ChangeUser implements _ChangeUser {
     TResult? Function(_ServerChanged value)? serverChanged,
     TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
   }) {
     return changeUser?.call(this);
   }
@@ -576,6 +610,8 @@ class _$_ChangeUser implements _ChangeUser {
     TResult Function(_ServerChanged value)? serverChanged,
     TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (changeUser != null) {
@@ -642,6 +678,7 @@ class _$_AddNewUser implements _AddNewUser {
     required TResult Function(String value) serverChanged,
     required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
+    required TResult Function(bool value) changeIsNotificationEnable,
   }) {
     return addNewUser();
   }
@@ -657,6 +694,7 @@ class _$_AddNewUser implements _AddNewUser {
     TResult? Function(String value)? serverChanged,
     TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
+    TResult? Function(bool value)? changeIsNotificationEnable,
   }) {
     return addNewUser?.call();
   }
@@ -672,6 +710,7 @@ class _$_AddNewUser implements _AddNewUser {
     TResult Function(String value)? serverChanged,
     TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
+    TResult Function(bool value)? changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (addNewUser != null) {
@@ -691,6 +730,8 @@ class _$_AddNewUser implements _AddNewUser {
     required TResult Function(_ServerChanged value) serverChanged,
     required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_ChangeIsNotificationEnable value)
+        changeIsNotificationEnable,
   }) {
     return addNewUser(this);
   }
@@ -706,6 +747,8 @@ class _$_AddNewUser implements _AddNewUser {
     TResult? Function(_ServerChanged value)? serverChanged,
     TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
   }) {
     return addNewUser?.call(this);
   }
@@ -721,6 +764,8 @@ class _$_AddNewUser implements _AddNewUser {
     TResult Function(_ServerChanged value)? serverChanged,
     TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (addNewUser != null) {
@@ -806,6 +851,7 @@ class _$_TokenChanged implements _TokenChanged {
     required TResult Function(String value) serverChanged,
     required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
+    required TResult Function(bool value) changeIsNotificationEnable,
   }) {
     return tokenChanged(value);
   }
@@ -821,6 +867,7 @@ class _$_TokenChanged implements _TokenChanged {
     TResult? Function(String value)? serverChanged,
     TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
+    TResult? Function(bool value)? changeIsNotificationEnable,
   }) {
     return tokenChanged?.call(value);
   }
@@ -836,6 +883,7 @@ class _$_TokenChanged implements _TokenChanged {
     TResult Function(String value)? serverChanged,
     TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
+    TResult Function(bool value)? changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (tokenChanged != null) {
@@ -855,6 +903,8 @@ class _$_TokenChanged implements _TokenChanged {
     required TResult Function(_ServerChanged value) serverChanged,
     required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_ChangeIsNotificationEnable value)
+        changeIsNotificationEnable,
   }) {
     return tokenChanged(this);
   }
@@ -870,6 +920,8 @@ class _$_TokenChanged implements _TokenChanged {
     TResult? Function(_ServerChanged value)? serverChanged,
     TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
   }) {
     return tokenChanged?.call(this);
   }
@@ -885,6 +937,8 @@ class _$_TokenChanged implements _TokenChanged {
     TResult Function(_ServerChanged value)? serverChanged,
     TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (tokenChanged != null) {
@@ -975,6 +1029,7 @@ class _$_ServerChanged implements _ServerChanged {
     required TResult Function(String value) serverChanged,
     required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
+    required TResult Function(bool value) changeIsNotificationEnable,
   }) {
     return serverChanged(value);
   }
@@ -990,6 +1045,7 @@ class _$_ServerChanged implements _ServerChanged {
     TResult? Function(String value)? serverChanged,
     TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
+    TResult? Function(bool value)? changeIsNotificationEnable,
   }) {
     return serverChanged?.call(value);
   }
@@ -1005,6 +1061,7 @@ class _$_ServerChanged implements _ServerChanged {
     TResult Function(String value)? serverChanged,
     TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
+    TResult Function(bool value)? changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (serverChanged != null) {
@@ -1024,6 +1081,8 @@ class _$_ServerChanged implements _ServerChanged {
     required TResult Function(_ServerChanged value) serverChanged,
     required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_ChangeIsNotificationEnable value)
+        changeIsNotificationEnable,
   }) {
     return serverChanged(this);
   }
@@ -1039,6 +1098,8 @@ class _$_ServerChanged implements _ServerChanged {
     TResult? Function(_ServerChanged value)? serverChanged,
     TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
   }) {
     return serverChanged?.call(this);
   }
@@ -1054,6 +1115,8 @@ class _$_ServerChanged implements _ServerChanged {
     TResult Function(_ServerChanged value)? serverChanged,
     TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (serverChanged != null) {
@@ -1144,6 +1207,7 @@ class _$_NickNameChanged implements _NickNameChanged {
     required TResult Function(String value) serverChanged,
     required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
+    required TResult Function(bool value) changeIsNotificationEnable,
   }) {
     return nickNameChanged(value);
   }
@@ -1159,6 +1223,7 @@ class _$_NickNameChanged implements _NickNameChanged {
     TResult? Function(String value)? serverChanged,
     TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
+    TResult? Function(bool value)? changeIsNotificationEnable,
   }) {
     return nickNameChanged?.call(value);
   }
@@ -1174,6 +1239,7 @@ class _$_NickNameChanged implements _NickNameChanged {
     TResult Function(String value)? serverChanged,
     TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
+    TResult Function(bool value)? changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (nickNameChanged != null) {
@@ -1193,6 +1259,8 @@ class _$_NickNameChanged implements _NickNameChanged {
     required TResult Function(_ServerChanged value) serverChanged,
     required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_ChangeIsNotificationEnable value)
+        changeIsNotificationEnable,
   }) {
     return nickNameChanged(this);
   }
@@ -1208,6 +1276,8 @@ class _$_NickNameChanged implements _NickNameChanged {
     TResult? Function(_ServerChanged value)? serverChanged,
     TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
   }) {
     return nickNameChanged?.call(this);
   }
@@ -1223,6 +1293,8 @@ class _$_NickNameChanged implements _NickNameChanged {
     TResult Function(_ServerChanged value)? serverChanged,
     TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (nickNameChanged != null) {
@@ -1313,6 +1385,7 @@ class _$_UpdateUser implements _UpdateUser {
     required TResult Function(String value) serverChanged,
     required TResult Function(String value) nickNameChanged,
     required TResult Function(User user) updateUser,
+    required TResult Function(bool value) changeIsNotificationEnable,
   }) {
     return updateUser(user);
   }
@@ -1328,6 +1401,7 @@ class _$_UpdateUser implements _UpdateUser {
     TResult? Function(String value)? serverChanged,
     TResult? Function(String value)? nickNameChanged,
     TResult? Function(User user)? updateUser,
+    TResult? Function(bool value)? changeIsNotificationEnable,
   }) {
     return updateUser?.call(user);
   }
@@ -1343,6 +1417,7 @@ class _$_UpdateUser implements _UpdateUser {
     TResult Function(String value)? serverChanged,
     TResult Function(String value)? nickNameChanged,
     TResult Function(User user)? updateUser,
+    TResult Function(bool value)? changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (updateUser != null) {
@@ -1362,6 +1437,8 @@ class _$_UpdateUser implements _UpdateUser {
     required TResult Function(_ServerChanged value) serverChanged,
     required TResult Function(_NickNameChanged value) nickNameChanged,
     required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_ChangeIsNotificationEnable value)
+        changeIsNotificationEnable,
   }) {
     return updateUser(this);
   }
@@ -1377,6 +1454,8 @@ class _$_UpdateUser implements _UpdateUser {
     TResult? Function(_ServerChanged value)? serverChanged,
     TResult? Function(_NickNameChanged value)? nickNameChanged,
     TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
   }) {
     return updateUser?.call(this);
   }
@@ -1392,6 +1471,8 @@ class _$_UpdateUser implements _UpdateUser {
     TResult Function(_ServerChanged value)? serverChanged,
     TResult Function(_NickNameChanged value)? nickNameChanged,
     TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
     required TResult orElse(),
   }) {
     if (updateUser != null) {
@@ -1411,11 +1492,194 @@ abstract class _UpdateUser implements SettingEvent {
 }
 
 /// @nodoc
+abstract class _$$_ChangeIsNotificationEnableCopyWith<$Res> {
+  factory _$$_ChangeIsNotificationEnableCopyWith(
+          _$_ChangeIsNotificationEnable value,
+          $Res Function(_$_ChangeIsNotificationEnable) then) =
+      __$$_ChangeIsNotificationEnableCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool value});
+}
+
+/// @nodoc
+class __$$_ChangeIsNotificationEnableCopyWithImpl<$Res>
+    extends _$SettingEventCopyWithImpl<$Res, _$_ChangeIsNotificationEnable>
+    implements _$$_ChangeIsNotificationEnableCopyWith<$Res> {
+  __$$_ChangeIsNotificationEnableCopyWithImpl(
+      _$_ChangeIsNotificationEnable _value,
+      $Res Function(_$_ChangeIsNotificationEnable) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$_ChangeIsNotificationEnable(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ChangeIsNotificationEnable implements _ChangeIsNotificationEnable {
+  const _$_ChangeIsNotificationEnable({required this.value});
+
+  @override
+  final bool value;
+
+  @override
+  String toString() {
+    return 'SettingEvent.changeIsNotificationEnable(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChangeIsNotificationEnable &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChangeIsNotificationEnableCopyWith<_$_ChangeIsNotificationEnable>
+      get copyWith => __$$_ChangeIsNotificationEnableCopyWithImpl<
+          _$_ChangeIsNotificationEnable>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(User user) logoutRequested,
+    required TResult Function(User user, int? color) changeUser,
+    required TResult Function() addNewUser,
+    required TResult Function(String value) tokenChanged,
+    required TResult Function(String value) serverChanged,
+    required TResult Function(String value) nickNameChanged,
+    required TResult Function(User user) updateUser,
+    required TResult Function(bool value) changeIsNotificationEnable,
+  }) {
+    return changeIsNotificationEnable(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(User user)? logoutRequested,
+    TResult? Function(User user, int? color)? changeUser,
+    TResult? Function()? addNewUser,
+    TResult? Function(String value)? tokenChanged,
+    TResult? Function(String value)? serverChanged,
+    TResult? Function(String value)? nickNameChanged,
+    TResult? Function(User user)? updateUser,
+    TResult? Function(bool value)? changeIsNotificationEnable,
+  }) {
+    return changeIsNotificationEnable?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(User user)? logoutRequested,
+    TResult Function(User user, int? color)? changeUser,
+    TResult Function()? addNewUser,
+    TResult Function(String value)? tokenChanged,
+    TResult Function(String value)? serverChanged,
+    TResult Function(String value)? nickNameChanged,
+    TResult Function(User user)? updateUser,
+    TResult Function(bool value)? changeIsNotificationEnable,
+    required TResult orElse(),
+  }) {
+    if (changeIsNotificationEnable != null) {
+      return changeIsNotificationEnable(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_LogoutRequested value) logoutRequested,
+    required TResult Function(_ChangeUser value) changeUser,
+    required TResult Function(_AddNewUser value) addNewUser,
+    required TResult Function(_TokenChanged value) tokenChanged,
+    required TResult Function(_ServerChanged value) serverChanged,
+    required TResult Function(_NickNameChanged value) nickNameChanged,
+    required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_ChangeIsNotificationEnable value)
+        changeIsNotificationEnable,
+  }) {
+    return changeIsNotificationEnable(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_LogoutRequested value)? logoutRequested,
+    TResult? Function(_ChangeUser value)? changeUser,
+    TResult? Function(_AddNewUser value)? addNewUser,
+    TResult? Function(_TokenChanged value)? tokenChanged,
+    TResult? Function(_ServerChanged value)? serverChanged,
+    TResult? Function(_NickNameChanged value)? nickNameChanged,
+    TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
+  }) {
+    return changeIsNotificationEnable?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_LogoutRequested value)? logoutRequested,
+    TResult Function(_ChangeUser value)? changeUser,
+    TResult Function(_AddNewUser value)? addNewUser,
+    TResult Function(_TokenChanged value)? tokenChanged,
+    TResult Function(_ServerChanged value)? serverChanged,
+    TResult Function(_NickNameChanged value)? nickNameChanged,
+    TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_ChangeIsNotificationEnable value)?
+        changeIsNotificationEnable,
+    required TResult orElse(),
+  }) {
+    if (changeIsNotificationEnable != null) {
+      return changeIsNotificationEnable(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeIsNotificationEnable implements SettingEvent {
+  const factory _ChangeIsNotificationEnable({required final bool value}) =
+      _$_ChangeIsNotificationEnable;
+
+  bool get value;
+  @JsonKey(ignore: true)
+  _$$_ChangeIsNotificationEnableCopyWith<_$_ChangeIsNotificationEnable>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$SettingState {
   FormzStatus get status => throw _privateConstructorUsedError;
   TokenField get token => throw _privateConstructorUsedError;
   ServerField get server => throw _privateConstructorUsedError;
   NickNameField get nickName => throw _privateConstructorUsedError;
+  bool get isNotificationEnable => throw _privateConstructorUsedError;
   bool get inNewUser => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
@@ -1435,6 +1699,7 @@ abstract class $SettingStateCopyWith<$Res> {
       TokenField token,
       ServerField server,
       NickNameField nickName,
+      bool isNotificationEnable,
       bool inNewUser,
       String? errorMessage});
 }
@@ -1456,6 +1721,7 @@ class _$SettingStateCopyWithImpl<$Res, $Val extends SettingState>
     Object? token = null,
     Object? server = null,
     Object? nickName = null,
+    Object? isNotificationEnable = null,
     Object? inNewUser = null,
     Object? errorMessage = freezed,
   }) {
@@ -1476,6 +1742,10 @@ class _$SettingStateCopyWithImpl<$Res, $Val extends SettingState>
           ? _value.nickName
           : nickName // ignore: cast_nullable_to_non_nullable
               as NickNameField,
+      isNotificationEnable: null == isNotificationEnable
+          ? _value.isNotificationEnable
+          : isNotificationEnable // ignore: cast_nullable_to_non_nullable
+              as bool,
       inNewUser: null == inNewUser
           ? _value.inNewUser
           : inNewUser // ignore: cast_nullable_to_non_nullable
@@ -1501,6 +1771,7 @@ abstract class _$$_SettingStateCopyWith<$Res>
       TokenField token,
       ServerField server,
       NickNameField nickName,
+      bool isNotificationEnable,
       bool inNewUser,
       String? errorMessage});
 }
@@ -1520,6 +1791,7 @@ class __$$_SettingStateCopyWithImpl<$Res>
     Object? token = null,
     Object? server = null,
     Object? nickName = null,
+    Object? isNotificationEnable = null,
     Object? inNewUser = null,
     Object? errorMessage = freezed,
   }) {
@@ -1540,6 +1812,10 @@ class __$$_SettingStateCopyWithImpl<$Res>
           ? _value.nickName
           : nickName // ignore: cast_nullable_to_non_nullable
               as NickNameField,
+      isNotificationEnable: null == isNotificationEnable
+          ? _value.isNotificationEnable
+          : isNotificationEnable // ignore: cast_nullable_to_non_nullable
+              as bool,
       inNewUser: null == inNewUser
           ? _value.inNewUser
           : inNewUser // ignore: cast_nullable_to_non_nullable
@@ -1560,6 +1836,7 @@ class _$_SettingState extends _SettingState {
       this.token = const TokenField.pure(),
       this.server = const ServerField.pure(),
       this.nickName = const NickNameField.pure(),
+      this.isNotificationEnable = false,
       this.inNewUser = false,
       this.errorMessage})
       : super._();
@@ -1578,13 +1855,16 @@ class _$_SettingState extends _SettingState {
   final NickNameField nickName;
   @override
   @JsonKey()
+  final bool isNotificationEnable;
+  @override
+  @JsonKey()
   final bool inNewUser;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'SettingState(status: $status, token: $token, server: $server, nickName: $nickName, inNewUser: $inNewUser, errorMessage: $errorMessage)';
+    return 'SettingState(status: $status, token: $token, server: $server, nickName: $nickName, isNotificationEnable: $isNotificationEnable, inNewUser: $inNewUser, errorMessage: $errorMessage)';
   }
 
   @override
@@ -1597,6 +1877,8 @@ class _$_SettingState extends _SettingState {
             (identical(other.server, server) || other.server == server) &&
             (identical(other.nickName, nickName) ||
                 other.nickName == nickName) &&
+            (identical(other.isNotificationEnable, isNotificationEnable) ||
+                other.isNotificationEnable == isNotificationEnable) &&
             (identical(other.inNewUser, inNewUser) ||
                 other.inNewUser == inNewUser) &&
             (identical(other.errorMessage, errorMessage) ||
@@ -1604,8 +1886,8 @@ class _$_SettingState extends _SettingState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, status, token, server, nickName, inNewUser, errorMessage);
+  int get hashCode => Object.hash(runtimeType, status, token, server, nickName,
+      isNotificationEnable, inNewUser, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -1620,6 +1902,7 @@ abstract class _SettingState extends SettingState {
       final TokenField token,
       final ServerField server,
       final NickNameField nickName,
+      final bool isNotificationEnable,
       final bool inNewUser,
       final String? errorMessage}) = _$_SettingState;
   const _SettingState._() : super._();
@@ -1632,6 +1915,8 @@ abstract class _SettingState extends SettingState {
   ServerField get server;
   @override
   NickNameField get nickName;
+  @override
+  bool get isNotificationEnable;
   @override
   bool get inNewUser;
   @override
